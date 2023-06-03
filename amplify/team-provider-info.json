@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-reactchat-dev-200351-authRole",
+      "UnauthRoleArn": "arn:aws:iam::669803027808:role/amplify-reactchat-dev-200351-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::669803027808:role/amplify-reactchat-dev-200351-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-reactchat-dev-200351-deployment",
+      "UnauthRoleName": "amplify-reactchat-dev-200351-unauthRole",
+      "StackName": "amplify-reactchat-dev-200351",
+      "StackId": "arn:aws:cloudformation:us-east-1:669803027808:stack/amplify-reactchat-dev-200351/0c542ae0-fee2-11ed-b6c1-0e916b2bf043",
+      "AmplifyAppId": "d3t2x9tu2bf2xv"
+    },
+    "categories": {
+      "auth": {
+        "reactchat2964f52b": {}
+      }
+    }
+  }
+}
