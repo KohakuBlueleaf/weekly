@@ -37,6 +37,13 @@ module.exports = {
     port: 9000,
     historyApiFallback: {
       index: 'index.html'
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9000',
+        router: () => 'http://localhost:3000',
+        logLevel: 'debug' /*optional*/
+      }
     }
   },
   plugins: [
@@ -45,5 +52,5 @@ module.exports = {
         { from: "src/public", to: "" } //to the dist root directory
       ],
     }),
-  ],
+  ]
 };

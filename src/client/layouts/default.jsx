@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { Container, Row, Col } from 'react-bootstrap';
@@ -10,6 +10,20 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 const DefaultLayout = () => {
   const { user, signOut } = useAuthenticator((context) => [context.user]);
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+
+  useEffect(() => {
+    const userStatus = async () => {
+      let data = await fetch("/api/user", {
+        method: "GET",
+        headers: {
+          "idToken": user.getSignInUserSession().getIdToken().getJwtToken(),
+        }
+      });
+      console.log(data)
+    }
+    if(authStatus === "authenticated")
+      userStatus().catch(console.error);
+  })
 
   return (
     <Container fluid className='m-0 p-0'>
