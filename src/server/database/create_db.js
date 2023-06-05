@@ -1,6 +1,6 @@
 const { Client } = require('pg');
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/database/config/config.json')[env];
+const config = require(__dirname + '/config/config.json')[env];
 
 [host, port] = config.host.split(':');
 let connection = {
@@ -15,7 +15,7 @@ const client = new Client(connection);
 const createDatabase = async () => {
   try {
     await client.connect();                            // gets connection
-    await client.query(`DROP DATABASE ${config.database}`); // sends queries
+    await client.query(`CREATE DATABASE ${config.database}`); // sends queries
     return true;
   } catch (error) {
     console.error(error.stack);
@@ -27,6 +27,6 @@ const createDatabase = async () => {
 
 createDatabase().then((result) => {
   if (result) {
-    console.log('Database dropped');
+    console.log('Database created');
   }
 });

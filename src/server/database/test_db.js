@@ -1,4 +1,4 @@
-const database = require('./database');
+const database = require('./index');
 
 (async () => {
   // const jane = await database.User.create({
