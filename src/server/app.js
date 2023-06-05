@@ -6,9 +6,7 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../../public')));
 
 // 設定伺服器路由
-const postRoutes = require('./routes/post');
 const userRoutes = require('./routes/user');
-app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 
 module.exports = app;

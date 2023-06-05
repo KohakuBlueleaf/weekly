@@ -27,13 +27,18 @@ router.get('/', async (req, res) => {
   })
   if(user == null){
     user = await database.User.create({
-      uid: uid,
+      uid: uid, 
       username: username,
       email: email
     });
   }
-  console.log(user)
-  console.log(new Date().toISOString(), ":", `${uid}:${username}`, "has logged in");
+  let posts = await database.Post.findAll({
+    where: {
+      userId: user.id
+    }
+  })
+  console.log(posts)
+  console.log(new Date().toISOString(), ":", `${user.uid}:${user.username}`, "has logged in");
   res.json({ message: 'Welcome to the user API!' });
 });
 
