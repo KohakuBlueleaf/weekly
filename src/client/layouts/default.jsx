@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import OffcanvasExample from '../components/offcanvasexample'
 
 import { useAuthenticator } from '@aws-amplify/ui-react';
+import '../style/default.css';
 
 
 const DefaultLayout = () => {
