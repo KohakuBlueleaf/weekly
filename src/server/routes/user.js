@@ -32,12 +32,7 @@ router.get('/', async (req, res) => {
       email: email
     });
   }
-  let posts = await database.Post.findAll({
-    where: {
-      userId: user.id
-    }
-  })
-  console.log(posts)
+  
   console.log(new Date().toISOString(), ":", `${user.uid}:${user.username}`, "has logged in");
   res.json({ message: 'Welcome to the user API!' });
 });
