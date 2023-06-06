@@ -14,7 +14,7 @@ const OffcanvasExample = (props) => {
 
   let button;
   if(props.authStatus==='authenticated'){
-    button = <Button onClick={()=>{props.signOut()}}>Sign out</Button>
+    button = <Button onClick={async ()=>{props.signOut();}}>Sign out</Button>
   }else{
     button = <Button onClick={()=>{navigate('/login')}}>Sign in</Button>
   }
