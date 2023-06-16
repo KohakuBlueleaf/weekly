@@ -8,7 +8,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
-import { MdAdd } from "react-icons/Md";
 
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
