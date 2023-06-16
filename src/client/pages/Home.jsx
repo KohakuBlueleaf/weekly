@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import { useOutletContext } from "react-router-dom";
@@ -35,26 +36,75 @@ const Home = () => {
   
   return (
     <div>
-      <h2>Home page</h2>
       <TimeLine/>
       <Modal
         show={addModalShow}
         onHide={() => dispatch(addClose())}
-        size="lg"
+        size="sm"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Add an event
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
+          <Form>
+            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+              <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
+              <div className='col-10'>
+                <Form.Control type="text" placeholder="Enter event title" />
+              </div>
+            </Form.Group>
+
+            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
+              <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
+              <div className='col-10'>
+                <Form.Select aria-label="Default select example">
+                  <option>selece a tag</option>
+                  <option>Math</option>
+                  <option>Algo</option>
+                  <option>OS</option>
+                </Form.Select>
+              </div>
+            </Form.Group>
+
+            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
+              <Form.Label className='col-2 align-self-center m-0'>Time:</Form.Label>
+              <div className='col-10'>
+                <Form.Select aria-label="Default select example">
+                  <option>selece a tag</option>
+                  <option>Math</option>
+                  <option>Algo</option>
+                  <option>OS</option>
+                </Form.Select>
+              </div>
+            </Form.Group>
+
+            <Form.Group className="d-flex flex-row row mb-3" controlId="formBasicCheckbox">
+              <Form.Check className='col-2' type="checkbox" label="todo" />
+              <Form.Check className='col-2' type="checkbox" label="event" />
+            </Form.Group>
+
+            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
+              <Form.Label className='col-2 align-self-center m-0'>Repeat:</Form.Label>
+              <div className='col-10'>
+                <Form.Select aria-label="Default select example">
+                  <option>selece a tag</option>
+                  <option>daily</option>
+                  <option>weekly</option>
+                  <option>monthly</option>
+                </Form.Select>
+              </div>
+            </Form.Group>
+          </Form>
+          <Modal.Footer>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Modal.Footer>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => dispatch(addClose())}>Close</Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );
