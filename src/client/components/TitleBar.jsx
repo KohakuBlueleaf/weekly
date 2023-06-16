@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function TitleBar() {
   return (
-    <Container fluid>
+    <Container>
       <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar'>
         <Container fluid>
           <Navbar.Brand href="#">Weekly</Navbar.Brand>
