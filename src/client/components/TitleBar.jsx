@@ -5,10 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function TitleBar() {
   return (
-    <Container fluid className='d-flex'>
+    <Container fluid>
       <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar'>
-        <Container>
+        <Container fluid>
           <Navbar.Brand href="#">Weekly</Navbar.Brand>
+          {!/settings$/.test(document.URL) && <button className=" btn btn-outline-success" type="submit">(SwipeUp)</button>}
         </Container>
       </Navbar>
     </Container>
