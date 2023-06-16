@@ -41,7 +41,6 @@ const DefaultLayout = () => {
   })
 
   return (
-<<<<<<< HEAD
     <Container fluid className='m-0 p-0 h-100 d-flex flex-column flex-row'>
 =======
     <Container fluid className='m-0 p-0 h-100 d-flex flex-column'>
