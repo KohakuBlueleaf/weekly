@@ -6,6 +6,7 @@ import EmptyLayout from './layouts/empty';
 import Post from './pages/Post';
 import Home from './pages/Home';
 import Login from './pages/Login'
+import Settings from './pages/Settings';
 
 
 const Router = () => {
@@ -15,6 +16,9 @@ const Router = () => {
         <Route element={<DefaultLayout/>}>
           <Route path="/" element={<Home />} />
           <Route path="/post" element={<Post />} />
+          {/* <Route path="/tags" element={<Tag />} /> */}
+          {/* <Route path="/helps" element={<Help />} /> */}
+          <Route path="/settings" element={<Settings />} />
         </Route>
         <Route element={<EmptyLayout/>}>
           <Route path="/login" element={<Login />} />
