@@ -40,7 +40,7 @@ const DefaultLayout = () => {
   })
 
   return (
-    <Container className='m-0 p-0 h-100'>
+    <Container fluid className='m-0 p-0 h-100 d-flex flex-column'>
       <div className='m-4'>
         <h1>Default Layout</h1>
         <Outlet context={[user, authStatus]}/>
