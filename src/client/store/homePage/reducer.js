@@ -4,12 +4,12 @@ const initHomePageState = {
 
 const homePageReducer = (state = initHomePageState, action) => {
   switch (action.type) {
-    case 'ADD_TOGGLE':
+    case 'HOME_ADD_TOGGLE':
       return {
         ...state,
         addModalShow: true,
       }
-    case 'ADD_CLOSE':
+    case 'HOME_ADD_CLOSE':
       return {
         ...state,
         addModalShow: false,

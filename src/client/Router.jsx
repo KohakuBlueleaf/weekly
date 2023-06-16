@@ -19,7 +19,7 @@ const Router = () => {
       <Routes>
         <Route element={<DefaultLayout/>}>
           <Route path="/" element={<Home />} />
-          <Route path="/post" element={<Post />} />
+          <Route path="/management" element={<Post />} />
           <Route path="/tags" element={<TagsEvent />} />
           <Route path="/routine" element={<TagsRoutine />} />
           <Route path="/todo" element={<TagsTodo />} />

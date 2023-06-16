@@ -1,11 +1,11 @@
 export function addToggle() {
   return {
-    type: 'ADD_TOGGLE'
+    type: 'HOME_ADD_TOGGLE'
   }
 }
 
 export function addClose() {
   return {
-    type: 'ADD_CLOSE'
+    type: 'HOME_ADD_CLOSE'
   }
 }
