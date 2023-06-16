@@ -7,6 +7,10 @@ import Post from './pages/Post';
 import Home from './pages/Home';
 import Login from './pages/Login'
 import Settings from './pages/Settings';
+import TagsEvent from './pages/TagsEvent';
+import TagsRoutine from './pages/TagsRoutine';
+import TagsTodo from './pages/TagsTodo';
+
 
 
 const Router = () => {
@@ -16,7 +20,9 @@ const Router = () => {
         <Route element={<DefaultLayout/>}>
           <Route path="/" element={<Home />} />
           <Route path="/post" element={<Post />} />
-          {/* <Route path="/tags" element={<Tag />} /> */}
+          <Route path="/tags" element={<TagsEvent />} />
+          <Route path="/routine" element={<TagsRoutine />} />
+          <Route path="/todo" element={<TagsTodo />} />
           {/* <Route path="/helps" element={<Help />} /> */}
           <Route path="/settings" element={<Settings />} />
         </Route>
