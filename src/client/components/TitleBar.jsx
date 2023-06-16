@@ -9,7 +9,7 @@ function TitleBar() {
       <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar'>
         <Container fluid>
           <Navbar.Brand href="#">Weekly</Navbar.Brand>
-          {!/settings$/.test(document.URL) && <button className=" btn btn-outline-success" type="submit">(SwipeUp)</button>}
+          {!/settings$/.test(document.URL) && !/tags$/.test(document.URL) && <button className=" btn btn-outline-success" type="submit">(SwipeUp)</button>}
         </Container>
       </Navbar>
     </Container>
