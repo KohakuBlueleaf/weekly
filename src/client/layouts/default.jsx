@@ -40,12 +40,12 @@ const DefaultLayout = () => {
   })
 
   return (
-    <Container fluid className='m-0 p-0'>
-      <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
+    <Container className='m-0 p-0 h-100'>
       <div className='m-4'>
         <h1>Default Layout</h1>
         <Outlet context={[user, authStatus]}/>
       </div>
+      <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
     </Container>
   )
 };
