@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { useOutletContext } from "react-router-dom";
+import TimeLine from "../components/TimeLine";
 
 
 /**
@@ -23,6 +24,7 @@ const Home = () => {
   return (
     <div>
       <h2>Home page</h2>
+      <TimeLine/>
     </div>
   );
 };

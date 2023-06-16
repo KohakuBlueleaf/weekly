@@ -41,7 +41,9 @@ const DefaultLayout = () => {
   })
 
   return (
+
     <Container fluid className='m-0 p-0 h-100 d-flex flex-column flex-row'>
+
       <TitleBar></TitleBar>
       <div className='m-4'>
         <h1>Default Layout</h1>
