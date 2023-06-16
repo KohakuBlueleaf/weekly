@@ -11,6 +11,8 @@ import TagsEvent from './pages/TagsEvent';
 import TagsRoutine from './pages/TagsRoutine';
 import TagsTodo from './pages/TagsTodo';
 
+
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -18,9 +20,9 @@ const Router = () => {
         <Route element={<DefaultLayout/>}>
           <Route path="/" element={<Home />} />
           <Route path="/post" element={<Post />} />
-          <Route path="/tags/event" element={<TagsEvent />} />
-          <Route path="/tags/routine" element={<TagsRoutine />} />
-          <Route path="/tags/todo" element={<TagsTodo />} />
+          <Route path="/tags" element={<TagsEvent />} />
+          <Route path="/routine" element={<TagsRoutine />} />
+          <Route path="/todo" element={<TagsTodo />} />
           {/* <Route path="/helps" element={<Help />} /> */}
           <Route path="/settings" element={<Settings />} />
         </Route>

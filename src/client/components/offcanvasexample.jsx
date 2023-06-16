@@ -44,7 +44,7 @@ const OffcanvasExample = (props) => {
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Link className="nav-link" to='/'>Home</Link>
               <Link className="nav-link" to='/post'>Management</Link>
-              <Link className="nav-link" to='/tags/event'>Tags</Link>
+              <Link className="nav-link" to='/tags'>Tags</Link>
               <Link className="nav-link" to='/helps'>Helps</Link>
               <Link className="nav-link" to='/settings'>Settings</Link>
             </Nav>
