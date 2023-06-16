@@ -9,8 +9,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
 
+import { connect, useSelector, useDispatch } from 'react-redux';
+
+import { addToggle } from '../store/homePage/action';
+
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let button;
   if(props.authStatus==='authenticated'){
@@ -29,7 +34,7 @@ const OffcanvasExample = (props) => {
       <Container fluid>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
         {/$/.test(document.URL) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
-        {!/settings$/.test(document.URL) && <button className="rounded-circle btn btn-outline-danger" type="submit">Add</button>}
+        {!/settings$/.test(document.URL) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={() => dispatch(addToggle())}>Add</button>}
         <Navbar.Offcanvas
           id={`offcanvasNavbar`}
           aria-labelledby={`offcanvasNavbarLabel`}
