@@ -15,7 +15,7 @@ async function verifyToken(idToken){
     return payload;
   } catch {
     console.log("Token not valid!");
-    return {};
+    return undefined;
   }
 }
 

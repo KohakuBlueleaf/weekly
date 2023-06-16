@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setStatus } from '../store/users/actions';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import OffcanvasExample from '../components/offcanvasexample'
@@ -11,6 +13,8 @@ import '../style/default.css';
 const DefaultLayout = () => {
   const { user, signOut } = useAuthenticator((context) => [context.user]);
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const loginStatus = useSelector((state) => state.user.login);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const userStatus = async () => {
@@ -22,17 +26,26 @@ const DefaultLayout = () => {
       });
       console.log(data)
     }
-    if(authStatus === "authenticated")
+    if(authStatus === "authenticated"){
       userStatus().catch(console.error);
+      dispatch(setStatus(true));
+      console.log("authenticated", loginStatus)
+    }else if(authStatus === "unauthenticated"){
+      console.log("unauthenticated", loginStatus)
+      if(loginStatus){
+        dispatch(setStatus(false));
+        location.reload();
+      }
+    }
   })
 
   return (
-    <Container fluid className='m-0 p-0'>
-      <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
+    <Container fluid className='m-0 p-0 h-100 d-flex flex-column'>
       <div className='m-4'>
         <h1>Default Layout</h1>
         <Outlet context={[user, authStatus]}/>
       </div>
+      <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
     </Container>
   )
 };
