@@ -28,7 +28,7 @@ const OffcanvasExample = (props) => {
     <Navbar bg="light" expand={false} className="mt-auto navbar">
       <Container fluid>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
-        {!/settings$/.test(document.URL) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
+        {/$/.test(document.URL) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
         {!/settings$/.test(document.URL) && <button className="rounded-circle btn btn-outline-danger" type="submit">Add</button>}
         <Navbar.Offcanvas
           id={`offcanvasNavbar`}
