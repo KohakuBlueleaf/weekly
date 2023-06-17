@@ -40,15 +40,16 @@ function TitleBar() {
     }
 
     return (
-        <Container fluid>
-          <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar title-bar'>
-              <Container fluid>
-                  <Navbar.Brand href="#">Weekly</Navbar.Brand>
-                  {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-success" type="submit" onClick={handleFilterClick}>Filter</button>}
-                  {/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-warning" type="submit" onClick={() => dispatch(tagsThemeToggle())}>Theme</button>}
-              </Container>
-          </Navbar>
-        </Container>
+       
+        <Navbar variant="light" bg="light">
+            <Container fluid className='title-bar'>
+              
+                <Navbar.Brand href="#" className='brand-weekly'>Weekly</Navbar.Brand>
+                {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-success" type="submit" onClick={handleFilterClick}>Filter</button>}
+                {/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-warning" type="submit" onClick={() => dispatch(tagsThemeToggle())}>Theme</button>}
+            </Container>
+        </Navbar>
+       
     );
 }
 

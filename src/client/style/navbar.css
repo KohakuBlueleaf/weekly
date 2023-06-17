@@ -40,3 +40,8 @@
 }
 
 /* 248,249,250 */
+
+.bottom-bar {
+  flex-direction: row;
+  justify-content: space-between;
+}
