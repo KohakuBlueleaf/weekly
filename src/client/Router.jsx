@@ -3,7 +3,7 @@ import { Routes, BrowserRouter, Route } from 'react-router-dom';
 
 import DefaultLayout from './layouts/default';
 import EmptyLayout from './layouts/empty';
-import Event from './pages/Event';
+import Management from './pages/Management';
 import Home from './pages/Home';
 import Login from './pages/Login'
 import Settings from './pages/Settings';
@@ -19,7 +19,7 @@ const Router = () => {
       <Routes>
         <Route element={<DefaultLayout/>}>
           <Route path="/" element={<Home />} />
-          <Route path="/management" element={<Event/>} />
+          <Route path="/management" element={<Management/>} />
             <Route path="/routine" element={<Routine/>} />
             <Route path="/todo" element={<Todo/>} />
           <Route path="/tags" element={<Tags/>} />
