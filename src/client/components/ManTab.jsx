@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { toEvent, toRoutine, toTodo } from '../store/management/action';
+import { toEvent, toRoutine, toTodo } from '../store/event/action';
 
 import Nav from 'react-bootstrap/Nav';
 
@@ -16,7 +16,7 @@ function ManTab() {
   const {
     curpage,
   } = useSelector((state) => ({
-    curpage: state.management.curpage,
+    curpage: state.event.curpage,
   }));
 
   return (

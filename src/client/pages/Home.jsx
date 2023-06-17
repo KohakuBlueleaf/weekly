@@ -11,6 +11,8 @@ import TimeLine from "../components/TimeLine";
 
 import { addToggle, addClose, filterToggle, filterClose } from '../store/homePage/action';
 
+import HomeAddModal from '../components/HomeAddModal';
+import HomeFilterModal from '../components/HomeFilterModal';
 
 /**
  * Renders a Home component with a title "Home page" 
@@ -39,119 +41,8 @@ const Home = () => {
   return (
     <div>
       <TimeLine/>
-      <Modal
-        show={addModalShow}
-        onHide={() => dispatch(addClose())}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Add an event
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-              <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
-              <div className='col-10'>
-                <Form.Control type="text" placeholder="Enter event title" />
-              </div>
-            </Form.Group>
-
-            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-              <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
-              <div className='col-10'>
-                <Form.Select aria-label="Default select example">
-                  <option>selece a tag</option>
-                  <option>Math</option>
-                  <option>Algo</option>
-                  <option>OS</option>
-                </Form.Select>
-              </div>
-            </Form.Group>
-
-            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-              <Form.Label className='col-2 align-self-center m-0'>Time:</Form.Label>
-              <div className='col-10'>
-                <Form.Select aria-label="Default select example">
-                  <option>selece a tag</option>
-                  <option>Math</option>
-                  <option>Algo</option>
-                  <option>OS</option>
-                </Form.Select>
-              </div>
-            </Form.Group>
-
-            <Form.Group className="d-flex flex-row row mb-3" controlId="formBasicCheckbox">
-              <Form.Check className='col-2' type="checkbox" label="todo" />
-              <Form.Check className='col-2' type="checkbox" label="event" />
-            </Form.Group>
-
-            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-              <Form.Label className='col-2 align-self-center m-0'>Repeat:</Form.Label>
-              <div className='col-10'>
-                <Form.Select aria-label="Default select example">
-                  <option>selece a tag</option>
-                  <option>daily</option>
-                  <option>weekly</option>
-                  <option>monthly</option>
-                </Form.Select>
-              </div>
-            </Form.Group>
-          </Form>
-          <Modal.Footer>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Modal.Footer>
-        </Modal.Body>
-      </Modal>
-      <Modal
-          show={filterModalShow}
-          onHide={() => dispatch(filterClose())}
-          size="md"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-      >
-          <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-              Filter
-          </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-              <Form className=''>
-                  <Form.Check
-                      className='lgcheckbox d-flex flex-row mb-3'
-                      type={'checkbox'}
-                      id={`default-checkbox`}
-                      label={`Routine`}
-                  />
-
-                  <Form.Check
-                      className='lgcheckbox d-flex flex-row mb-3'
-                      type={'checkbox'}
-                      id={`default-checkbox`}
-                      label={`Event`}
-                  />
-
-                  <Form.Check
-                      className='lgcheckbox d-flex flex-row mb-3'
-                      type={'checkbox'}
-                      id={`default-checkbox`}
-                      label={`Completed`}
-                  />
-
-
-              </Form>
-          <Modal.Footer>
-              <Button variant="primary" type="submit">
-                  Ok
-              </Button>
-          </Modal.Footer>
-          </Modal.Body>
-      </Modal>
+      <HomeAddModal/>
+      <HomeFilterModal/>
     </div>
   );
 };

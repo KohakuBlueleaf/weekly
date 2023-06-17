@@ -16,8 +16,9 @@ import { navToggle, navClose } from '../store/navbar/action';
 import { connect, useSelector, useDispatch } from 'react-redux';
 
 import { addToggle } from '../store/homePage/action';
-import { addToggle as addToggle_management } from "../store/management/action"
+import { addToggle as addToggle_event } from "../store/event/action"
 import { tagsAddToggle } from '../store/tags/action';
+import { addToggle as todoAddToggle } from '../store/todo/action';
 import ManTab from './ManTab';
 
 const OffcanvasExample = (props) => {
@@ -45,10 +46,13 @@ const OffcanvasExample = (props) => {
 
   let handleAddClick = () => {
     if (/management$/.test(currentLocation.pathname)) {
-      dispatch(addToggle_management());
+      dispatch(addToggle_event());
+    }
+    else if (/management\/todo$/.test(currentLocation.pathname)) {
+      dispatch(todoAddToggle());
     }
     else if (/tags$/.test(currentLocation.pathname)) {
-      dispatch(tagsAddToggle())
+      dispatch(tagsAddToggle());
     }
     else {
       dispatch(addToggle());
