@@ -1,36 +1,17 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { connect, useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-import { addMessage, cleanMessage } from '../store/posts/actions';
 
+import Nav from 'react-bootstrap/Nav';
+import ManTab from '../components/ManTab';
 
-const Todo = () => {
-  const [user, authStatus] = useOutletContext();
-  const posts = useSelector((state) => state.post.messages);
-  const dispatch = useDispatch();
-
-  const handleSendMessage = () => {
-    const newMessage = 'New message'; // 在實際應用中，這裡可以根據實際需求獲取使用者輸入等
-    dispatch(addMessage(newMessage));
-  };
-
-  const handleCleanMessage = () => {
-    dispatch(cleanMessage());
-  }
-
-  //Will be executed when this component be rendered
-  useEffect(()=>{
-    console.log(user, authStatus);
-  })
-
-  return (
-    <div>
-      <h1>Settings</h1>
-      <p>This is tags todo page</p>
-    </div>
-  );
-};
+function Todo() {
+  
+}
 
 export default Todo;
