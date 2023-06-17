@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setStatus } from '../store/users/actions';
 
 import { Container, Row, Col } from 'react-bootstrap';
-import OffcanvasExample from '../components/offcanvasexample'
+import OffcanvasExample from '../components/Navbar'
 import TitleBar from '../components/TitleBar';
 
 import { useAuthenticator } from '@aws-amplify/ui-react';

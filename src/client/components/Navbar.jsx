@@ -9,6 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
 
+import { navToggle, navClose } from '../store/navbar/action';
 import { connect, useSelector, useDispatch } from 'react-redux';
 
 import { addToggle } from '../store/homePage/action';
@@ -18,6 +19,12 @@ const OffcanvasExample = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentLocation = useLocation();
+
+  const {
+    navshow,
+  } = useSelector((state) => ({
+    navshow: state.navbar.navshow,
+  }));
 
   let button;
   if(props.authStatus==='authenticated'){
@@ -43,13 +50,19 @@ const OffcanvasExample = (props) => {
     }
   }
 
+  const navclose = () => {
+    dispatch(navClose());
+  }
+
   return (
     <Navbar bg="light" expand={false} className="mt-auto navbar">
       <Container fluid>
-        <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
-        {/\/$/.test(currentLocation.pathname) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
-        {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
+        <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
+        {/$/.test(document.URL) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
+        {!/settings$/.test(document.URL) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
+          show={navshow}
+          onHide={navclose}
           id={`offcanvasNavbar`}
           aria-labelledby={`offcanvasNavbarLabel`}
           placement="start"
@@ -61,11 +74,11 @@ const OffcanvasExample = (props) => {
           </Offcanvas.Header>
           <Offcanvas.Body className='d-flex flex-column'>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Link className="nav-link" to='/'>Home</Link>
-              <Link className="nav-link" to='/management'>Management</Link>
-              <Link className="nav-link" to='/tags'>Tags</Link>
-              <Link className="nav-link" to='/helps'>Helps</Link>
-              <Link className="nav-link" to='/settings'>Settings</Link>
+              <Link className="nav-link" to='/' onClick={navclose}>Home</Link>
+              <Link className="nav-link" to='/management' onClick={navclose}>Management</Link>
+              <Link className="nav-link" to='/tags' onClick={navclose}>Tags</Link>
+              <Link className="nav-link" to='/helps' onClick={navclose}>Helps</Link>
+              <Link className="nav-link" to='/settings' onClick={navclose}>Settings</Link>
             </Nav>
             {button}
           </Offcanvas.Body>
