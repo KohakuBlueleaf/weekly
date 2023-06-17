@@ -20,9 +20,9 @@ const Router = () => {
         <Route element={<DefaultLayout/>}>
           <Route path="/" element={<Home />} />
           <Route path="/management" element={<Event/>} />
+            <Route path="/routine" element={<Routine/>} />
+            <Route path="/todo" element={<Todo/>} />
           <Route path="/tags" element={<Tags/>} />
-          <Route path="/routine" element={<Routine/>} />
-          <Route path="/todo" element={<Todo/>} />
           {/* <Route path="/helps" element={<Help />} /> */}
           <Route path="/settings" element={<Settings />} />
         </Route>
