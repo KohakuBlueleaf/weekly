@@ -21,7 +21,7 @@ import { tagsAddToggle } from '../store/tags/action';
 import { addToggle as todoAddToggle } from '../store/todo/action';
 import { helpToggle } from '../store/help/action';
 import ManTab from './ManTab';
-import HelpModal from './HelpModal';
+import NavbarProfile from './NavbarProfile';
 
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
@@ -33,13 +33,6 @@ const OffcanvasExample = (props) => {
   } = useSelector((state) => ({
     navshow: state.navbar.navshow,
   }));
-
-  let button;
-  if(props.authStatus==='authenticated'){
-    button = <Button onClick={async ()=>{props.signOut();}}>Sign out</Button>
-  }else{
-    button = <Button onClick={()=>{navigate('/login')}}>Sign in</Button>
-  }
 
   // useEffect(()=>{
   //   console.log('URL: ', document.URL);
@@ -77,17 +70,19 @@ const OffcanvasExample = (props) => {
         {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
         {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
+          className='smoffcanvas'
           show={navshow}
           onHide={navclose}
           id={`offcanvasNavbar`}
           aria-labelledby={`offcanvasNavbarLabel`}
           placement="start"
         >
-          <Offcanvas.Header closeButton>
+          <Offcanvas.Header>
             <Offcanvas.Title id={`offcanvasNavbarLabel`}>
-              Offcanvas
+              Weekly
             </Offcanvas.Title>
           </Offcanvas.Header>
+          <NavbarProfile authStatus={props.authStatus} signOut={props.signOut}/>
           <Offcanvas.Body className='d-flex flex-column'>
             <div className='write-down-sth-wrapper'>
               <EditTextarea
@@ -105,7 +100,6 @@ const OffcanvasExample = (props) => {
               <Link className="nav-link" onClick={hadleHelpClick}>Helps</Link>
               <Link className="nav-link" to='/settings' onClick={navclose}>Settings</Link>
             </Nav>
-            {button}
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
