@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Routes, Route, useLocation} from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import { useEffect } from 'react';
@@ -17,6 +17,7 @@ import { addToggle as addToggle_management } from "../store/management/action"
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const currentLocation = useLocation();
 
   let button;
   if(props.authStatus==='authenticated'){
@@ -31,10 +32,10 @@ const OffcanvasExample = (props) => {
   // })
 
   let handleAddClick = () => {
-    if (/management$/.test(document.URL)) {
+    if (/management$/.test(currentLocation.pathname)) {
       dispatch(addToggle_management());
     }
-    else if (/tags$/.test(document.URL)) {
+    else if (/tags$/.test(currentLocation.pathname)) {
 
     }
     else {
@@ -46,8 +47,8 @@ const OffcanvasExample = (props) => {
     <Navbar bg="light" expand={false} className="mt-auto navbar">
       <Container fluid>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
-        {/$/.test(document.URL) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
-        {!/settings$/.test(document.URL) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
+        {/\/$/.test(currentLocation.pathname) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
+        {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
           id={`offcanvasNavbar`}
           aria-labelledby={`offcanvasNavbarLabel`}
