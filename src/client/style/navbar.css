@@ -10,6 +10,7 @@
 }
 .write-down-sth-wrapper{
   height: 100%;
+  background-color: #FFF8F0;
 }
 .write-down-sth-wrapper>textarea{
   height: 100% !important;
@@ -21,12 +22,16 @@
   }
 }
 
+.smoffcanvas {
+  background-color: #EAE1D7 !important;
+}
+
 .signInCard {
   cursor: pointer;
   margin: 0 5%;
   max-width: 90%;
   color: black !important;
-  background-color:rgb(234, 234, 234) !important;
+  background-color: #FFF8F0 !important;
   border-color: rgba(178, 182, 187, 0) !important;
 }
 
