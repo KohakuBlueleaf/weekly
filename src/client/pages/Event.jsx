@@ -10,11 +10,15 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import ManTab from '../components/ManTab';
 import EventList from '../components/EventList';
+import EventAddModal from '../components/EventAddModal';
+import EventFilterModal from '../components/EventFilterModal';
 
 function Event() {
   return (
     <div>
       <EventList></EventList>
+      <EventFilterModal/>
+      <EventAddModal/>
     </div>
   )
 }

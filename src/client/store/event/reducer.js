@@ -1,31 +1,42 @@
 const initManagementState = {
     addModalShow: false,
+    filterModalShow: false,
     curpage: 'event',
 };
 
-const managementReducer = (state = initManagementState, action) => {
+const eventReducer = (state = initManagementState, action) => {
     switch (action.type) {
-      case 'MANAGEMENT_ADD_TOGGLE':
+      case 'EVENT_ADD_TOGGLE':
         return {
           ...state,
           addModalShow: true,
         }
-      case 'MANAGEMENT_ADD_CLOSE':
+      case 'EVENT_ADD_CLOSE':
         return {
           ...state,
           addModalShow: false,
         }
-      case 'MANAGEMENT_TO_EVENT_PAGE':
+      case 'EVENT_FILTER_TOGGLE':
+        return {
+          ...state,
+          filterModalShow: true,
+        }
+      case 'EVENT_FILTER_CLOSE':
+        return {
+          ...state,
+          filterModalShow: false,
+        }
+      case 'EVENT_TO_EVENT_PAGE':
         return {
           ...state,
           curpage: 'event',
         }
-        case 'MANAGEMENT_TO_ROUTINE_PAGE':
+        case 'EVENT_TO_ROUTINE_PAGE':
       return {
         ...state,
         curpage: 'routine',
       }
-      case 'MANAGEMENT_TO_TODO_PAGE':
+      case 'EVENT_TO_TODO_PAGE':
       return {
         ...state,
         curpage: 'todo',
@@ -35,4 +46,4 @@ const managementReducer = (state = initManagementState, action) => {
     }
   };
   
-  export default managementReducer;
+  export default eventReducer;
