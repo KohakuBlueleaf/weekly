@@ -15,7 +15,7 @@ const SetMore = () => {
     return (
         <div>
             <p>More settings</p>
-            <ListGroup vertical>
+            <ListGroup vertical="true">
                 <ListGroup.Item>
                     <div>
                         <div className='d-flex flex-row justify-content-between'>Language<RxChevronDown></RxChevronDown></div>

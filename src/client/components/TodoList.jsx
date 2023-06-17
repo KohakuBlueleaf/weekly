@@ -13,7 +13,7 @@ import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 function TodoList() {
   return (
-    <ListGroup vertical>
+    <ListGroup vertical="true">
         
         <ListGroup.Item className='d-flex flex-row justify-content-between'><a>todo1</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
         <ListGroup.Item className='d-flex flex-row justify-content-between'><a>todo2</a><FaEquals></FaEquals></ListGroup.Item>
