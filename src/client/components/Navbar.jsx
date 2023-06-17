@@ -63,7 +63,7 @@ const OffcanvasExample = (props) => {
   }
 
   return (
-    <Navbar bg="light" expand={false} className="mt-auto navbar">
+    <Navbar bg="light" expand={false} className="mt-auto navbar bg-transparent">
       <Container fluid className='d-flex flex-row'>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
         {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/daily' onClick={navclose}>Swipe Up</Link>}
