@@ -10,10 +10,10 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import ManTab from '../components/ManTab';
 
-function Mana() {
+function Man() {
   return (
     <ManTab></ManTab>
   );
 }
 
-export default Mana;
+export default Man;
