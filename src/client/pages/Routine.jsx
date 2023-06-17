@@ -6,7 +6,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import { addMessage, cleanMessage } from '../store/posts/actions';
 
 
-const TagsTodo = () => {
+const Routine = () => {
   const [user, authStatus] = useOutletContext();
   const posts = useSelector((state) => state.post.messages);
   const dispatch = useDispatch();
@@ -28,9 +28,9 @@ const TagsTodo = () => {
   return (
     <div>
       <h1>Settings</h1>
-      <p>This is tags todo page</p>
+      <p>This is tags routine page</p>
     </div>
   );
 };
 
-export default TagsTodo;
+export default Routine;

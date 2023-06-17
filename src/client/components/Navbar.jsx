@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Routes, Route, useLocation} from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import { useEffect } from 'react';
@@ -18,6 +18,7 @@ import { addToggle as addToggle_management } from "../store/management/action"
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const currentLocation = useLocation();
 
   const {
     navshow,
@@ -38,10 +39,10 @@ const OffcanvasExample = (props) => {
   // })
 
   let handleAddClick = () => {
-    if (/management$/.test(document.URL)) {
+    if (/management$/.test(currentLocation.pathname)) {
       dispatch(addToggle_management());
     }
-    else if (/tags$/.test(document.URL)) {
+    else if (/tags$/.test(currentLocation.pathname)) {
 
     }
     else {
