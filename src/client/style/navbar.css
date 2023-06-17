@@ -1,0 +1,16 @@
+.write-down-sth{
+  height: 100% !important; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.write-down-sth>br{
+  display: none;
+}
+.write-down-sth-wrapper{
+  height: 100%;
+}
+.write-down-sth-wrapper>textarea{
+  height: 100% !important;
+}
