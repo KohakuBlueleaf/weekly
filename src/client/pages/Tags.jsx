@@ -30,8 +30,7 @@ const Tags = () => {
 
   return (
     <div>
-      <h1>Welcome to the React App!</h1>
-      <p>This is tags page.</p>
+      <TagList></TagList>
 
       <Modal
         show={tagsThemeModalShow}
