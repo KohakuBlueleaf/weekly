@@ -9,3 +9,15 @@ export function addClose() {
     type: 'HOME_ADD_CLOSE'
   }
 }
+
+export function filterToggle() {
+  return {
+    type: 'HOME_FILTER_TOGGLE'
+  }
+}
+
+export function filterClose() {
+  return {
+    type: 'HOME_FILTER_CLOSE'
+  }
+}

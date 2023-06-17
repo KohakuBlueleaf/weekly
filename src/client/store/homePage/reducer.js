@@ -1,5 +1,6 @@
 const initHomePageState = {
     addModalShow: false,
+    filterModalShow: false,
 };
 
 const homePageReducer = (state = initHomePageState, action) => {
@@ -13,6 +14,16 @@ const homePageReducer = (state = initHomePageState, action) => {
       return {
         ...state,
         addModalShow: false,
+      }
+    case 'HOME_FILTER_TOGGLE':
+      return {
+        ...state,
+        filterModalShow: true,
+      }
+    case 'HOME_FILTER_CLOSE':
+      return {
+        ...state,
+        filterModalShow: false,
       }
     default:
       return state;
