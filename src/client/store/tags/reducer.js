@@ -1,5 +1,6 @@
 const initTagsState = {
     tagsAddModalShow: false,
+    tagsThemeModalShow: false,
 };
 
 const tagsReducer = (state = initTagsState, action) => {
@@ -13,6 +14,16 @@ const tagsReducer = (state = initTagsState, action) => {
         return {
           ...state,
           tagsAddModalShow: false,
+        }
+      case 'TAGS_THEME_TOGGLE':
+        return {
+          ...state,
+          tagsThemeModalShow: true,
+        }
+      case 'TAGS_THEME_CLOSE':
+        return {
+          ...state,
+          tagsThemeModalShow: false,
         }
       default:
         return state;
