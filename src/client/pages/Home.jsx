@@ -41,11 +41,9 @@ const Home = () => {
   
   return (
     <div>
-
       <TimeLine/>
       <HomeAddModal/>
       <HomeFilterModal/>
-
     </div>
   );
 };
