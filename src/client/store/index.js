@@ -4,6 +4,7 @@ import userReducer from './users/reducer';
 import homePageReducer from './homePage/reducer';
 import managementReducer from './management/reducer';
 import navbarReducer from "./navbar/reducer";
+import tagsReducer from './tags/reducer';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     homePage: homePageReducer,
     management: managementReducer,
     navbar: navbarReducer,
+    tags: tagsReducer,
   },
 });
 

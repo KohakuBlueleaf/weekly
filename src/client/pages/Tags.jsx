@@ -7,9 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { addMessage, cleanMessage } from '../store/posts/actions';
-
-import { addToggle, addClose } from "../store/management/action"
+import { tagsAddToggle, tagsAddClose, tagsThemeClose } from "../store/tags/action"
 
 
 const Tags = () => {
@@ -18,19 +16,10 @@ const Tags = () => {
   const dispatch = useDispatch();
 
   const {
-    addModalShow,
+    tagsAddModalShow,
   } = useSelector((state) => ({
-    addModalShow: state.management.addModalShow,
+    tagsAddModalShow: state.tags.tagsAddModalShow,
   }));
-
-  const handleSendMessage = () => {
-    const newMessage = 'New message'; // 在實際應用中，這裡可以根據實際需求獲取使用者輸入等
-    dispatch(addMessage(newMessage));
-  };
-
-  const handleCleanMessage = () => {
-    dispatch(cleanMessage());
-  }
 
   //Will be executed when this component be rendered
   useEffect(()=>{
@@ -40,17 +29,10 @@ const Tags = () => {
   return (
     <div>
       <h1>Welcome to the React App!</h1>
-      <p>This is a simple chat room web app.</p>
-      <button onClick={handleSendMessage}>Send Message</button>
-      <button onClick={handleCleanMessage}>Clean Message</button>
-      <ul>
-        {posts.map((message, index) => (
-          <li key={index}>{message}</li>
-        ))}
-      </ul>
+      <p>This is tags page.</p>
       <Modal
-        show={addModalShow}
-        onHide={() => dispatch(addClose())}
+        show={tagsAddModalShow}
+        onHide={() => dispatch(tagsAddClose())}
         size="sm"
         aria-labelledby="contained-modal-title-vcenter"
         centered
