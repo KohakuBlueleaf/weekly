@@ -19,12 +19,12 @@ const eventReducer = (state = initManagementState, action) => {
       case 'EVENT_FILTER_TOGGLE':
         return {
           ...state,
-          addModalShow: true,
+          filterModalShow: true,
         }
       case 'EVENT_FILTER_CLOSE':
         return {
           ...state,
-          addModalShow: false,
+          filterModalShow: false,
         }
       case 'EVENT_TO_EVENT_PAGE':
         return {
