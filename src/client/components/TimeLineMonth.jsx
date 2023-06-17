@@ -9,7 +9,7 @@ const TimeLineMonth = (props) => {
 
   return (
     <div className='d-flex TimeLineMonth-col p-0 align-items-end'>
-        <p className='p-0 m-0'>{props.month}</p>
+      <p className='p-0 m-0'>{props.month}</p>
     </div>
   );
 };
