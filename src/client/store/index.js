@@ -6,6 +6,7 @@ import eventReducer from './event/reducer';
 import navbarReducer from "./navbar/reducer";
 import tagsReducer from './tags/reducer';
 import todoReducer from './todo/reducer';
+import helpReducer from './help/reducer';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     navbar: navbarReducer,
     tags: tagsReducer,
     todo: todoReducer,
+    help: helpReducer,
   },
 });
 

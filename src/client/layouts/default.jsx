@@ -9,6 +9,7 @@ import TitleBar from '../components/TitleBar';
 
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import '../style/default.css';
+import HelpModal from '../components/HelpModal';
 
 
 const DefaultLayout = () => {
@@ -48,6 +49,7 @@ const DefaultLayout = () => {
       <div className='m-4'>
         <Outlet context={[user, authStatus]}/>
       </div>
+      <HelpModal/>
       <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
     </Container>
   )
