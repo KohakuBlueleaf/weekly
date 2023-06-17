@@ -10,7 +10,7 @@ import { filterToggle as eventFilterToggle } from '../store/event/action';
 import { filterToggle as todoFilterToggle } from '../store/todo/action'; 
 import { tagsThemeToggle } from '../store/tags/action';
 
-import "../style/TitleBar.css"
+import "../style/titlebar.css"
 
 function TitleBar() {
     const navigate = useNavigate();
@@ -40,16 +40,15 @@ function TitleBar() {
     }
 
     return (
-       
-        <Navbar variant="light" bg="light">
-            <Container fluid className='title-bar'>
-              
-                <Navbar.Brand href="#" className='brand-weekly'>Weekly</Navbar.Brand>
-                {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-success" type="submit" onClick={handleFilterClick}>Filter</button>}
-                {/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-warning" type="submit" onClick={() => dispatch(tagsThemeToggle())}>Theme</button>}
-            </Container>
-        </Navbar>
-       
+        <Container fluid className='titlebar'>
+          <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar bg-transparent'>
+              <Container fluid>
+                  <Navbar.Brand href="#" className='brand'>Weekly</Navbar.Brand>
+                  {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-success" type="submit" onClick={handleFilterClick}>Filter</button>}
+                  {/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-warning" type="submit" onClick={() => dispatch(tagsThemeToggle())}>Theme</button>}
+                  </Container>
+          </Navbar>
+        </Container>
     );
 }
 

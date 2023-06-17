@@ -62,15 +62,12 @@ const OffcanvasExample = (props) => {
   }
 
   return (
-    <Navbar bg="light" expand={false} className="mt-auto navbar">
-      <Container fluid>
-        <Container fluid className='d-flex flex-row bottom-bar'>
-          <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
-          {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/daily' onClick={navclose}>Swipe Up</Link>}
-          {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
-          {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
-        </Container>
-        
+    <Navbar bg="light" expand={false} className="mt-auto navbar bg-transparent">
+      <Container fluid className='d-flex flex-row'>
+        <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
+        {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/daily' onClick={navclose}>Swipe Up</Link>}
+        {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
+        {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
           className='smoffcanvas'
           show={navshow}
