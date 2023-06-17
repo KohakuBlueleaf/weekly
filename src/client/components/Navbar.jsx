@@ -19,7 +19,9 @@ import { addToggle } from '../store/homePage/action';
 import { addToggle as addToggle_event } from "../store/event/action"
 import { tagsAddToggle } from '../store/tags/action';
 import { addToggle as todoAddToggle } from '../store/todo/action';
+import { helpToggle } from '../store/help/action';
 import ManTab from './ManTab';
+import HelpModal from './HelpModal';
 
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
@@ -63,11 +65,15 @@ const OffcanvasExample = (props) => {
     dispatch(navClose());
   }
 
+  const hadleHelpClick = () => {
+    dispatch(helpToggle());
+  }
+
   return (
     <Navbar bg="light" expand={false} className="mt-auto navbar">
       <Container fluid className='d-flex flex-row'>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
-        {/\/$/.test(currentLocation.pathname) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
+        {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/tags' onClick={navclose}>Swipe Up</Link>}
         {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
         {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
@@ -96,7 +102,7 @@ const OffcanvasExample = (props) => {
               <Link className="nav-link" to='/' onClick={navclose}>Home</Link>
               <Link className="nav-link" to='/management' onClick={navclose}>Management</Link>
               <Link className="nav-link" to='/tags' onClick={navclose}>Tags</Link>
-              <Link className="nav-link" to='/helps' onClick={navclose}>Helps</Link>
+              <Link className="nav-link" onClick={hadleHelpClick}>Helps</Link>
               <Link className="nav-link" to='/settings' onClick={navclose}>Settings</Link>
             </Nav>
             {button}
