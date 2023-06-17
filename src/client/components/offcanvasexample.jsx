@@ -30,6 +30,7 @@ const OffcanvasExample = (props) => {
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
         {/$/.test(document.URL) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
         {!/settings$/.test(document.URL) && <button className="rounded-circle btn btn-outline-danger" type="submit">Add</button>}
+        
         <Navbar.Offcanvas
           id={`offcanvasNavbar`}
           aria-labelledby={`offcanvasNavbarLabel`}
