@@ -11,7 +11,7 @@ import Nav from 'react-bootstrap/Nav';
 import ManTab from '../components/ManTab';
 
 function Routine() {
-  
+  return (<h1>this is routine</h1>)
 }
 
 export default Routine;

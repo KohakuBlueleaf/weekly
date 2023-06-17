@@ -46,7 +46,6 @@ const DefaultLayout = () => {
 
       <TitleBar></TitleBar>
       <div className='m-4'>
-        <h1>Default Layout</h1>
         <Outlet context={[user, authStatus]}/>
       </div>
       <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>

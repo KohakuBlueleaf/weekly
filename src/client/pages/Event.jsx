@@ -9,9 +9,14 @@ import Button from 'react-bootstrap/Button';
 
 import Nav from 'react-bootstrap/Nav';
 import ManTab from '../components/ManTab';
+import EventList from '../components/EventList';
 
 function Event() {
-  
+  return (
+    <div>
+      <EventList></EventList>
+    </div>
+  )
 }
 
 export default Event;
