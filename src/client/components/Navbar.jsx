@@ -14,6 +14,7 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 
 import { addToggle } from '../store/homePage/action';
 import { addToggle as addToggle_management } from "../store/management/action"
+import { tagsAddToggle } from '../store/tags/action';
 import ManTab from './ManTab';
 
 const OffcanvasExample = (props) => {
@@ -44,7 +45,7 @@ const OffcanvasExample = (props) => {
       dispatch(addToggle_management());
     }
     else if (/tags$/.test(currentLocation.pathname)) {
-
+      dispatch(tagsAddToggle())
     }
     else {
       dispatch(addToggle());

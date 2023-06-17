@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import { useOutletContext } from "react-router-dom";
 import TimeLine from "../components/TimeLine";
 
-import { addToggle, addClose } from '../store/homePage/action';
+import { addToggle, addClose, filterToggle, filterClose } from '../store/homePage/action';
 
 
 /**
@@ -25,8 +25,10 @@ const Home = () => {
   
   const {
     addModalShow,
+    filterModalShow,
   } = useSelector((state) => ({
     addModalShow: state.homePage.addModalShow,
+    filterModalShow: state.homePage.filterModalShow,
   }));
 
   //Will be executed when this component be rendered
@@ -105,6 +107,50 @@ const Home = () => {
             </Button>
           </Modal.Footer>
         </Modal.Body>
+      </Modal>
+      <Modal
+          show={filterModalShow}
+          onHide={() => dispatch(filterClose())}
+          size="md"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+      >
+          <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+              Filter
+          </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <Form className=''>
+                  <Form.Check
+                      className='lgcheckbox d-flex flex-row mb-3'
+                      type={'checkbox'}
+                      id={`default-checkbox`}
+                      label={`Routine`}
+                  />
+
+                  <Form.Check
+                      className='lgcheckbox d-flex flex-row mb-3'
+                      type={'checkbox'}
+                      id={`default-checkbox`}
+                      label={`Event`}
+                  />
+
+                  <Form.Check
+                      className='lgcheckbox d-flex flex-row mb-3'
+                      type={'checkbox'}
+                      id={`default-checkbox`}
+                      label={`Completed`}
+                  />
+
+
+              </Form>
+          <Modal.Footer>
+              <Button variant="primary" type="submit">
+                  Ok
+              </Button>
+          </Modal.Footer>
+          </Modal.Body>
       </Modal>
     </div>
   );
