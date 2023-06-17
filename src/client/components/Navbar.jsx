@@ -60,7 +60,7 @@ const OffcanvasExample = (props) => {
       <Container fluid className='d-flex flex-row'>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
         {/\/$/.test(currentLocation.pathname) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
-        {/management|.$/.test(currentLocation.pathname) && <ManTab></ManTab>}
+        {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
         {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
           show={navshow}
