@@ -1,0 +1,6 @@
+Table thead tr th{
+    position: sticky;
+    top: 0px;
+    margin: 0 0 0 0;
+    width: 13.33333% !important;
+}

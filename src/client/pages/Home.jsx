@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 import { useOutletContext } from "react-router-dom";
 import TimeLine from "../components/TimeLine";
+import Schedule from '../components/schedule';
 
 import { addToggle, addClose, filterToggle, filterClose } from '../store/homePage/action';
 
@@ -40,9 +41,11 @@ const Home = () => {
   
   return (
     <div>
+
       <TimeLine/>
       <HomeAddModal/>
       <HomeFilterModal/>
+
     </div>
   );
 };
