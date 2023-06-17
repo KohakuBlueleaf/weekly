@@ -14,6 +14,7 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 
 import { addToggle } from '../store/homePage/action';
 import { addToggle as addToggle_management } from "../store/management/action"
+import ManTab from './ManTab';
 
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
@@ -56,9 +57,10 @@ const OffcanvasExample = (props) => {
 
   return (
     <Navbar bg="light" expand={false} className="mt-auto navbar">
-      <Container fluid>
+      <Container fluid className='d-flex flex-row'>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
         {/\/$/.test(currentLocation.pathname) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
+        {/management$/.test(currentLocation.pathname) && <ManTab></ManTab>}
         {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
           show={navshow}

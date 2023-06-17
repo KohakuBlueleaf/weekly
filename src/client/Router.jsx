@@ -3,7 +3,7 @@ import { Routes, BrowserRouter, Route } from 'react-router-dom';
 
 import DefaultLayout from './layouts/default';
 import EmptyLayout from './layouts/empty';
-import Event from './pages/Event';
+import Management from './pages/Management';
 import Home from './pages/Home';
 import Login from './pages/Login'
 import Settings from './pages/Settings';
@@ -17,12 +17,13 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<DefaultLayout/>}>
+
+        <Route element={<DefaultLayout/>}>
           <Route index={true} path="" element={<Home />} />
-          <Route path="management" element={<Event/>} />
-          <Route path="routine" element={<Routine/>} />
-          <Route path="todo" element={<Todo/>} />
-          <Route path="tags" element={<Tags/>} />
+          <Route path="/management" element={<Management/>} />
+            <Route path="/routine" element={<Routine/>} />
+            <Route path="/todo" element={<Todo/>} />
+          <Route path="/tags" element={<Tags/>} />
           {/* <Route path="/helps" element={<Help />} /> */}
           <Route path="settings" element={<Settings />} />
           
