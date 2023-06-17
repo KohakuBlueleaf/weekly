@@ -4,6 +4,7 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Carousel from 'react-bootstrap/Carousel';
 
 import { helpClose } from '../store/help/action';
 
@@ -25,19 +26,71 @@ const HelpModal = () => {
           centered
         >
             <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-                Filter
-            </Modal.Title>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Filter
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form cassName=''>
-
-                </Form>
-            <Modal.Footer>
-                <Button variant="primary" type="submit">
-                    Ok
-                </Button>
-            </Modal.Footer>
+            <Carousel
+                interval={null}
+                touch
+            >
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src="./img/help1.png"
+                    alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src="./img/help2.png"
+                    alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src="./img/help3.png"
+                    alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src="./img/help4.png"
+                    alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src="./img/help5.png"
+                    alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                </Carousel>
             </Modal.Body>
         </Modal>
     );
