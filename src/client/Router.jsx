@@ -10,8 +10,7 @@ import Event from './pages/Event';
 import Routine from './pages/Routine';
 import Todo from './pages/Todo';
 import Tags from './pages/Tags';
-
-
+import Daily from './pages/Daily';
 
 const Router = () => {
   return (
@@ -25,7 +24,7 @@ const Router = () => {
             <Route path="/management/todo" element={<Todo/>} />
           <Route path="/tags" element={<Tags/>} />
           {/* <Route path="/helps" element={<Help />} /> */}
-          <Route path="settings" element={<Settings />} />
+          <Route path="settings" element={<Settings/>} />
           
           {/* Example for nested routes */}
           <Route path="test">
