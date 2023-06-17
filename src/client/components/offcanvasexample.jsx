@@ -9,8 +9,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
 
+import { connect, useSelector, useDispatch } from 'react-redux';
+
+import { addToggle } from '../store/homePage/action';
+import { addToggle as addToggle_management } from "../store/management/action"
+
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let button;
   if(props.authStatus==='authenticated'){
@@ -24,13 +30,24 @@ const OffcanvasExample = (props) => {
   //   console.log('regular exp: ', /settings$/.test(document.URL));
   // })
 
+  let handleAddClick = () => {
+    if (/management$/.test(document.URL)) {
+      dispatch(addToggle_management());
+    }
+    else if (/tags$/.test(document.URL)) {
+
+    }
+    else {
+      dispatch(addToggle());
+    }
+  }
+
   return (
     <Navbar bg="light" expand={false} className="mt-auto navbar">
       <Container fluid>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} />
         {/$/.test(document.URL) && <button className=" btn btn-outline-primary" type="submit">(SwipeUp)</button>}
-        {!/settings$/.test(document.URL) && <button className="rounded-circle btn btn-outline-danger" type="submit">Add</button>}
-        
+        {!/settings$/.test(document.URL) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
           id={`offcanvasNavbar`}
           aria-labelledby={`offcanvasNavbarLabel`}
@@ -44,7 +61,7 @@ const OffcanvasExample = (props) => {
           <Offcanvas.Body className='d-flex flex-column'>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Link className="nav-link" to='/'>Home</Link>
-              <Link className="nav-link" to='/post'>Management</Link>
+              <Link className="nav-link" to='/management'>Management</Link>
               <Link className="nav-link" to='/tags'>Tags</Link>
               <Link className="nav-link" to='/helps'>Helps</Link>
               <Link className="nav-link" to='/settings'>Settings</Link>
