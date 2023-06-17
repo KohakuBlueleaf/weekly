@@ -9,9 +9,18 @@ const TimeLineItem = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className='d-flex flex-column TimeLineItem-col p-0'>
-        <p className='p-0 m-0 align-self-center'>{props.week}</p>
-        <p className='p-0 m-0 align-self-center'>{props.date}</p>
+    <div className='d-flex flex-column TimeLineItem-col p-0 border'>
+      <div className='d-flex flex-column border TimeLine'>
+        {props.data.map((item) => {
+          return (
+            <div
+              key={item.time + props.date}
+              className={'border-bottom ' + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
+              style={{height: 30*item.duration + 'px'}}
+            >{item.type=='empty' ? '' :item.name}</div>
+          )
+        })}
+      </div>
     </div>
   );
 };
