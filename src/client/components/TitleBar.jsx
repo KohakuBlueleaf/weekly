@@ -9,8 +9,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { filterToggle, filterClose } from '../store/homePage/action';
-import { tagsAddToggle, tagsThemeToggle } from '../store/tags/action';
+import { filterToggle } from '../store/homePage/action';
+import { tagsThemeToggle } from '../store/tags/action';
 
 import "../style/homePage.css"
 

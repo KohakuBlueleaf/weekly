@@ -7,7 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { tagsAddToggle, tagsAddClose, tagsThemeClose } from "../store/tags/action"
+import { tagsAddToggle, tagsAddClose, tagsThemeToggle, tagsThemeClose } from "../store/tags/action"
 
 
 const Tags = () => {
@@ -17,8 +17,10 @@ const Tags = () => {
 
   const {
     tagsAddModalShow,
+    tagsThemeModalShow
   } = useSelector((state) => ({
     tagsAddModalShow: state.tags.tagsAddModalShow,
+    tagsThemeModalShow: state.tags.tagsThemeModalShow,
   }));
 
   //Will be executed when this component be rendered
@@ -30,6 +32,36 @@ const Tags = () => {
     <div>
       <h1>Welcome to the React App!</h1>
       <p>This is tags page.</p>
+
+      <Modal
+        show={tagsThemeModalShow}
+        onHide={() => dispatch(tagsThemeClose())}
+        size="sm"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Theme
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+              <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
+              <div className='col-10'>
+                <Form.Control type="text" placeholder="Enter event title" />
+              </div>
+            </Form.Group>
+          </Form>
+          <Modal.Footer>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Modal.Body>
+      </Modal>
+
       <Modal
         show={tagsAddModalShow}
         onHide={() => dispatch(tagsAddClose())}
