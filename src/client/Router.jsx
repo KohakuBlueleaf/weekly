@@ -10,8 +10,7 @@ import Event from './pages/Event';
 import Routine from './pages/Routine';
 import Todo from './pages/Todo';
 import Tags from './pages/Tags';
-
-
+import Daily from './pages/Daily';
 
 const Router = () => {
   return (
@@ -19,7 +18,7 @@ const Router = () => {
       <Routes>
         <Route element={<DefaultLayout/>}>
           <Route index={true} path="" element={<Home />} />
-          {/* <Route path="/daily" element={<Daily/>} /> */}
+          <Route path="/daily" element={<Daily/>} />
           <Route path="/management" element={<Event/>} />
           <Route path="/management/routine" element={<Routine/>} />
           <Route path="/management/todo" element={<Todo/>} />
