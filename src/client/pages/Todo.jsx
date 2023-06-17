@@ -9,9 +9,14 @@ import Button from 'react-bootstrap/Button';
 
 import Nav from 'react-bootstrap/Nav';
 import ManTab from '../components/ManTab';
+import TodoList from '../components/TodoList';
 
 function Todo() {
-  
+  return (
+    <div>
+      <TodoList></TodoList>
+    </div>
+  )
 }
 
 export default Todo;
