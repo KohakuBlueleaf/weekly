@@ -15,6 +15,8 @@ import config from '../aws-exports';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@aws-amplify/ui-react/styles.css';
 
+import "./style/index.css"
+
 
 Amplify.configure(config)
 

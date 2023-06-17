@@ -8,7 +8,6 @@ import OffcanvasExample from '../components/Navbar'
 import TitleBar from '../components/TitleBar';
 
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import '../style/default.css';
 import HelpModal from '../components/HelpModal';
 
 

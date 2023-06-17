@@ -15,6 +15,8 @@ import { addToggle, addClose, filterToggle, filterClose } from '../store/homePag
 import HomeAddModal from '../components/HomeAddModal';
 import HomeFilterModal from '../components/HomeFilterModal';
 
+import "../style/homepage.css"
+
 /**
  * Renders a Home component with a title "Home page" 
  * and logs the user and authentication status on mount.
@@ -40,7 +42,7 @@ const Home = () => {
   })
   
   return (
-    <div>
+    <div className='homepage'>
       <TimeLine/>
       <HomeAddModal/>
       <HomeFilterModal/>
