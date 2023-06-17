@@ -11,6 +11,7 @@ import SetMore from '../components/SetMore';
 const Settings = () => {
   return (
     <div>
+      <SetCalendarStyle></SetCalendarStyle>
       <SetMore></SetMore>
     </div>
   )

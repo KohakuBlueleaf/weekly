@@ -13,7 +13,7 @@ import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 function EventList() {
   return (
-    <ListGroup vertical>
+    <ListGroup vertical="true">
         
         <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>event1</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
         <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>event2</a><FaEquals></FaEquals></ListGroup.Item>

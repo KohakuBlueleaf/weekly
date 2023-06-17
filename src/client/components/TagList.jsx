@@ -13,7 +13,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { from } from 'webpack-sources/lib/CompatSource';
 function TagList() {
   return (
-    <ListGroup vertical>
+    <ListGroup vertical="true">
         
         <ListGroup.Item className='d-flex flex-row justify-content-between'><a><FaCircle color="#BE6464"></FaCircle>tag1</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
         <ListGroup.Item className='d-flex flex-row justify-content-between'><a><FaCircle color="#BE6464"></FaCircle>tag2</a><FaEquals></FaEquals></ListGroup.Item>
