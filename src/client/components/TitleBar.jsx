@@ -39,7 +39,7 @@ function TitleBar() {
         dispatch(tagsFilterToggle())
       }
       else {
-        dispatch(filtertoggle());
+        dispatch(filterToggle());
       }
     }
 
