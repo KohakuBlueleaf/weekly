@@ -17,17 +17,25 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<DefaultLayout/>}>
-          <Route path="/" element={<Home />} />
-          <Route path="/management" element={<Event/>} />
-            <Route path="/routine" element={<Routine/>} />
-            <Route path="/todo" element={<Todo/>} />
-          <Route path="/tags" element={<Tags/>} />
+        <Route path="/" element={<DefaultLayout/>}>
+          <Route index={true} path="" element={<Home />} />
+          <Route path="management" element={<Event/>} />
+          <Route path="routine" element={<Routine/>} />
+          <Route path="todo" element={<Todo/>} />
+          <Route path="tags" element={<Tags/>} />
           {/* <Route path="/helps" element={<Help />} /> */}
-          <Route path="/settings" element={<Settings />} />
+          <Route path="settings" element={<Settings />} />
+          
+          {/* Example for nested routes */}
+          <Route path="test">
+            {/* /test */}
+            <Route index={true} element={<Event />} /> 
+            {/* /test/event */}
+            <Route index={false} path="event" element={<Event />} />
+          </Route>
         </Route>
-        <Route element={<EmptyLayout/>}>
-          <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<EmptyLayout/>}>
+          <Route index={true} element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
