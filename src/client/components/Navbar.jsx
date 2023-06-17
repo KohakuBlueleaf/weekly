@@ -8,12 +8,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
+import { EditText, EditTextarea } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
+import '../style/navbar.css'
 
 import { navToggle, navClose } from '../store/navbar/action';
 import { connect, useSelector, useDispatch } from 'react-redux';
 
 import { addToggle } from '../store/homePage/action';
 import { addToggle as addToggle_management } from "../store/management/action"
+import { tagsAddToggle } from '../store/tags/action';
 import ManTab from './ManTab';
 
 const OffcanvasExample = (props) => {
@@ -44,7 +48,7 @@ const OffcanvasExample = (props) => {
       dispatch(addToggle_management());
     }
     else if (/tags$/.test(currentLocation.pathname)) {
-
+      dispatch(tagsAddToggle())
     }
     else {
       dispatch(addToggle());
@@ -75,6 +79,15 @@ const OffcanvasExample = (props) => {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body className='d-flex flex-column'>
+            <div className='write-down-sth-wrapper'>
+              <EditTextarea
+                className='write-down-sth'
+                placeholder='write down something!'
+                onChange={(content)=>{console.log('edit', content)}}
+                onSave={(content)=>{console.log('save', content)}}
+                onClick={()=>{console.log('click')}}
+              />
+            </div>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Link className="nav-link" to='/' onClick={navclose}>Home</Link>
               <Link className="nav-link" to='/management' onClick={navclose}>Management</Link>
