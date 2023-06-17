@@ -12,7 +12,7 @@ import { addMessage, cleanMessage } from '../store/posts/actions';
 import { addToggle, addClose } from "../store/management/action"
 
 
-const Post = () => {
+const Event = () => {
   const [user, authStatus] = useOutletContext();
   const posts = useSelector((state) => state.post.messages);
   const dispatch = useDispatch();
@@ -121,4 +121,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Event;

@@ -3,13 +3,13 @@ import { Routes, BrowserRouter, Route } from 'react-router-dom';
 
 import DefaultLayout from './layouts/default';
 import EmptyLayout from './layouts/empty';
-import Post from './pages/Post';
+import Event from './pages/Event';
 import Home from './pages/Home';
 import Login from './pages/Login'
 import Settings from './pages/Settings';
-import TagsEvent from './pages/TagsEvent';
-import TagsRoutine from './pages/TagsRoutine';
-import TagsTodo from './pages/TagsTodo';
+import Routine from './pages/Routine';
+import Todo from './pages/Todo';
+import Tags from './pages/Tags';
 
 
 
@@ -19,10 +19,10 @@ const Router = () => {
       <Routes>
         <Route element={<DefaultLayout/>}>
           <Route path="/" element={<Home />} />
-          <Route path="/management" element={<Post />} />
-          <Route path="/tags" element={<TagsEvent />} />
-          <Route path="/routine" element={<TagsRoutine />} />
-          <Route path="/todo" element={<TagsTodo />} />
+          <Route path="/management" element={<Event/>} />
+          <Route path="/tags" element={<Tags/>} />
+          <Route path="/routine" element={<Routine/>} />
+          <Route path="/todo" element={<Todo/>} />
           {/* <Route path="/helps" element={<Help />} /> */}
           <Route path="/settings" element={<Settings />} />
         </Route>
