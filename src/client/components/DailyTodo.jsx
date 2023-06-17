@@ -14,7 +14,6 @@ const DailyTodo= () => {
                 />
 
                 <Form.Check
-                    disabled
                     type={'checkbox'}
                     id={`disabled-default`}
                     label={`disabled`}
