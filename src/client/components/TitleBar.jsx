@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation, Route, Routes} from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -16,6 +16,7 @@ import "../style/homePage.css"
 function TitleBar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const currentLocation = useLocation();
 
     const {
       filterModalShow,
@@ -28,7 +29,8 @@ function TitleBar() {
         <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar'>
             <Container fluid>
                 <Navbar.Brand href="#">Weekly</Navbar.Brand>
-                {!/settings$/.test(document.URL) && !/tags$/.test(document.URL) && <button className="rounded-circle btn btn-outline-success" type="submit" onClick={() => dispatch(filterToggle())}>Filter</button>}
+                {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-success" type="submit" onClick={() => dispatch(filterToggle())}>Filter</button>}
+                {/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-warning" type="submit">Theme</button>}
                 <Modal
                     show={filterModalShow}
                     onHide={() => dispatch(filterClose())}
@@ -73,7 +75,7 @@ function TitleBar() {
                     </Modal.Footer>
                     </Modal.Body>
                 </Modal>
-            </Container>
+                </Container>
         </Navbar>
         </Container>
     );
