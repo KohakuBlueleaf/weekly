@@ -11,9 +11,7 @@ import Nav from 'react-bootstrap/Nav';
 import ManTab from '../components/ManTab';
 
 function Management() {
-  return (
-    <ManTab></ManTab>
-  );
+  
 }
 
 export default Management;
