@@ -5,9 +5,10 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import TimeLineItem from './TimeLineItem';
 import TimeLineMonth from './TimeLineMonth';
 
+import "../style/TimeLine.css"
+
 const TimeLine = () => {
   const [user, authStatus] = useOutletContext();
-  const posts = useSelector((state) => state.post.messages);
   const dispatch = useDispatch();
 
   //Will be executed when this component be rendered
