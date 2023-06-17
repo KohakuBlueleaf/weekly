@@ -17,14 +17,13 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route element={<DefaultLayout/>}>
           <Route index={true} path="" element={<Home />} />
+          {/* <Route path="/daily" element={<Daily/>} /> */}
           <Route path="/management" element={<Event/>} />
-            <Route path="/management/routine" element={<Routine/>} />
-            <Route path="/management/todo" element={<Todo/>} />
+          <Route path="/management/routine" element={<Routine/>} />
+          <Route path="/management/todo" element={<Todo/>} />
           <Route path="/tags" element={<Tags/>} />
-          {/* <Route path="/helps" element={<Help />} /> */}
           <Route path="settings" element={<Settings />} />
           
           {/* Example for nested routes */}
