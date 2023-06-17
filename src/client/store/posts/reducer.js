@@ -1,20 +1,26 @@
-import {ADD_MESSAGE, CLEAN_MESSAGE} from './action_type';
-
-const initialState = {
-  messages: [],
+const initialPostState = {
+  event: [],
+  routine: [],
+  todo: [],
+  filter: {
+    searchText: '',
+    routine: false,
+    event: false,
+    completed: false
+  }
 };
 
-const postReducer = (state = initialState, action) => {
+const postReducer = (state = initialPostState, action) => {
   switch (action.type) {
-    case ADD_MESSAGE:
+    case 'ADD_MESSAGE':
       return {
         ...state,
-        messages: [...state.messages, action.payload],
+        event: [...state.post, action.payload],
       };
-    case CLEAN_MESSAGE:
+    case 'CLEAN_MESSAGE':
       return {
         ...state,
-        messages: [],
+        event: [],
       }
     default:
       return state;
