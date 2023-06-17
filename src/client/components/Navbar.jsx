@@ -10,8 +10,6 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
 import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
-import '../style/navbar.css'
-
 import { navToggle, navClose } from '../store/navbar/action';
 import { connect, useSelector, useDispatch } from 'react-redux';
 
@@ -22,6 +20,7 @@ import { addToggle as todoAddToggle } from '../store/todo/action';
 import { helpToggle } from '../store/help/action';
 import ManTab from './ManTab';
 import NavbarProfile from './NavbarProfile';
+import '../style/Navbar.css'
 
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
@@ -64,11 +63,14 @@ const OffcanvasExample = (props) => {
 
   return (
     <Navbar bg="light" expand={false} className="mt-auto navbar">
-      <Container fluid className='d-flex flex-row'>
-        <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
-        {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/daily' onClick={navclose}>Swipe Up</Link>}
-        {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
-        {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
+      <Container fluid>
+        <div  className='d-flex flex-row'>
+          <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
+          {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/daily' onClick={navclose}>Swipe Up</Link>}
+          {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
+          {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
+        </div>
+        
         <Navbar.Offcanvas
           className='smoffcanvas'
           show={navshow}
