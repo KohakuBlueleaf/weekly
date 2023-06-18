@@ -103,18 +103,6 @@ const HomeAddModal = () => {
                   <Form.Check className='col-2' type="checkbox" label="todo" />
                   <Form.Check className='col-2' type="checkbox" label="event" />
                 </Form.Group>
-  
-                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-                  <Form.Label className='col-2 align-self-center m-0'>Repeat:</Form.Label>
-                  <div className='col-10'>
-                      <Form.Select aria-label="Default select example">
-                      <option>selece a tag</option>
-                      <option>daily</option>
-                      <option>weekly</option>
-                      <option>monthly</option>
-                      </Form.Select>
-                  </div>
-                </Form.Group>
               <Modal.Footer>
                   <Button variant="primary" type="submit">
                       Submit
