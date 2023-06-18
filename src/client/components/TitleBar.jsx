@@ -15,14 +15,6 @@ import { FiFilter } from "react-icons/fi";
 import "../style/titlebar.css"
 
 function TitleBar() {
-<<<<<<< HEAD
-  return (
-    <Container>
-      <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar'>
-        <Container fluid>
-          <Navbar.Brand href="#">Weekly</Navbar.Brand>
-          {!/settings$/.test(document.URL) && !/tags$/.test(document.URL) && <button className=" btn btn-outline-success" type="submit">(SwipeUp)</button>}
-=======
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const currentLocation = useLocation();
@@ -60,7 +52,6 @@ function TitleBar() {
                   {/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-warning" type="submit" onClick={() => dispatch(tagsThemeToggle())}>Theme</button>}
               </Container>
           </Navbar>
->>>>>>> irisPush
         </Container>
     );
 }
