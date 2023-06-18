@@ -42,13 +42,13 @@ const DefaultLayout = () => {
 
   return (
 
-    <Container fluid className='m-0 p-0 h-100 d-flex flex-column flex-row max-h-100 justify-content-between'>
+    <Container fluid className='m-0 p-0 h-100 d-flex flex-column flex-row max-h-100'>
 
       <TitleBar className='flex-shrink-0 w-100'></TitleBar>
       <div className='flex-shrink-1 overflow-auto m-2'>
         <Outlet context={[user, authStatus]}/>
       </div>
-      <div className='flex-shrink-0 w-100'>
+      <div className='flex-shrink-0 w-100 mt-auto'>
         <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
       </div>
       
