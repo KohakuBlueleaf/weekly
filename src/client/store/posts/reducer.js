@@ -17,7 +17,6 @@ export const addModalReducer = (state = initAddModalState, action) => {
         return {
           ...state,
           title: action.input.title,
-          tag: action.input.tag,
           date_year: action.input.date_year,
           date_month: action.input.date_month,
           date_day: action.input.date_day,
