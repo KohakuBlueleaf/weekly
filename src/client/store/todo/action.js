@@ -49,7 +49,7 @@ export function listTodos() {
 export function createTodo(tododata/*, filter*/) {
   return (dispatch, getState) => {
       // dispatch(startLoading());
-      return createTodoFromApi(eventdata).then(posts => {
+      return createTodoFromApi(eventdata).then(todos => {
           dispatch(listTodos());
       }).catch(err => {
           console.error('Error creating todos', err);

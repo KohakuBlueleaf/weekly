@@ -1,13 +1,3 @@
-/* .title-bar {
-    position: fixed !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin: 0 !important;
-    color: white;
-    background-color:antiquewhite;
-} */
-
 .titlebar {
   background-color: #17385B;
 }
@@ -17,6 +7,11 @@
 }
 
 .filter-icon {
+  cursor: pointer;
+  color: white;
+}
+
+.theme-icon {
   cursor: pointer;
   color: white;
 }
