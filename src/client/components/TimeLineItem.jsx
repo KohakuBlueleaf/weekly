@@ -9,7 +9,7 @@ const TimeLineItem = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className='d-flex flex-column TimeLineItem-col p-0 border'>
+    <div className='d-flex flex-column TimeLineItem-col p-0'>
       <div className='d-flex flex-column border TimeLine'>
         {props.data.map((item) => {
           return (

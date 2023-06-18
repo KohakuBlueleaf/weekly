@@ -35,7 +35,7 @@ const Tags = () => {
       <Modal
         show={tagsThemeModalShow}
         onHide={() => dispatch(tagsThemeClose())}
-        size="sm"
+        size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
@@ -70,7 +70,7 @@ const Tags = () => {
       <Modal
         show={tagsAddModalShow}
         onHide={() => dispatch(tagsAddClose())}
-        size="sm"
+        size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >

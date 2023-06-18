@@ -88,8 +88,8 @@ const TimeLine = () => {
   
 
   return (
-    <div className='container'>
-      <div className='row'>
+    <div className='container d-flex flex-column h-100'>
+      <div className='row flex-shrink-0'>
         <TimeLineMonth month={'MAY'}/>
         <TimeLineTitle week={'SUN'} date={21}/>
         <TimeLineTitle week={'MON'} date={22}/>
@@ -99,8 +99,8 @@ const TimeLine = () => {
         <TimeLineTitle week={'FRI'} date={26}/>
         <TimeLineTitle week={'SAT'} date={27}/>
       </div>
-      <div className='row main-time-line'>
-        <div className='d-flex flex-column TimeLineMonth-col p-0 border'>
+      <div className='row flex-shrink-1 main-time-line'>
+        <div className='d-flex flex-column TimeLineMonth-col p-0'>
           <div className='d-flex flex-column border TimeLine'>
             {timestamp.map((item) => {
               return (
