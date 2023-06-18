@@ -24,7 +24,7 @@ const EventAddModal = () => {
         <Modal
           show={addModalShow}
           onHide={() => dispatch(addClose())}
-          size="sm"
+          size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
