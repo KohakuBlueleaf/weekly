@@ -10,7 +10,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/homePage/action"
-import { title } from 'process';
 
 
 const HomeAddModal = () => {
