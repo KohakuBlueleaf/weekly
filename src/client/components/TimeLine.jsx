@@ -5,8 +5,8 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import TimeLineItem from './TimeLineItem';
 import TimeLineMonth from './TimeLineMonth';
 import TimeLineTitle from './TimeLineTitle';
+import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
-
 
 function addEvent(timeline, event, date) {
   //has bug, need fix
@@ -14,17 +14,34 @@ function addEvent(timeline, event, date) {
   let newTimeline = [];
   let nowTime = 0;
   timeline[date].forEach((element, index) => {
+    if(nowTime == targetTimeStamp){
+      newTimeline.push(event);
+      if(element.duration > event.duration){
+        nowTime += element.duration;
+        element.duration -= event.duration;
+        element.time += event.duration;
+        newTimeline.push(element);
+      }else{
+        nowTime += event.duration;
+      }
+      targetTimeStamp = 1000;
+      return
+    }
     if(nowTime > element.time){
       let timeReduce = nowTime - element.time;
       if(timeReduce >= element.duration) return;
       element.time = nowTime;
       element.duration = element.duration - timeReduce;
-    }
-    if(nowTime == targetTimeStamp){
-      newTimeline.push(event);
-      nowTime += event.duration;
-      targetTimeStamp = 1000;
-      return
+    }else if(nowTime < element.time){
+      for(let i=0; i<element.time-nowTime; i++){
+        newTimeline.push({
+          name: '',
+          time: nowTime + i,
+          type: 'empty',
+          duration: 1
+        });
+      }
+      nowTime = element.time;
     }
     nowTime += element.duration;
     if(nowTime > targetTimeStamp){
@@ -33,15 +50,127 @@ function addEvent(timeline, event, date) {
     }
     newTimeline.push(element);
   });
+  if(nowTime < 48){
+    for(let i=0; i<48-nowTime; i++){
+      newTimeline.push({
+        name: '',
+        time: nowTime + i,
+        type: 'empty',
+        duration: 1
+      });
+    }
+  }
   timeline[date] = newTimeline;
 }
 
+//回傳本周日期
+function getPageDate() {
+  
+  let pageDates = [{},{},{},{},{},{},{}];
+  let constraintDay = 31;
+  let preveiosDay = 31;
+  let today = new Date();
+  const thisYear = today.getFullYear();
+  const thisWeek = today.getDay();
+  const thisMonth = today.getMonth()+1;
+  const thisDate = today.getDate();
+
+  switch (thisMonth) {
+    case 2:
+      constraintDay = 28;
+      break;
+    case 1, 3, 5, 7, 8, 10, 12: constraintDay = 31;
+      break;
+    default: constraintDay = 30;
+      break;
+  }
+
+  switch (thisMonth) {
+    case 3:
+      preveiosDay = 28;
+      break;
+    case 1, 2, 4, 6, 8, 9, 11: preveiosDay = 31;
+      break;
+    default: preveiosDay = 30;
+      break;
+  }
+
+  //pageDates[thisWeek] = {thisMonth, thisDate};
+  for(let i=thisWeek,j=0; i<7; i++,j++) {
+    let theDay = {};
+    if(thisDate+j>constraintDay) {
+      theDay = {
+        year: thisYear,
+        month: thisMonth<12 ? thisMonth+1 : 1,
+        day: thisDate+j-constraintDay,
+        week: i        
+      }
+    }
+    else {
+      theDay = {
+        year: thisYear,
+        month: thisMonth,
+        day: thisDate+j,
+        week: i
+      }
+    }
+    pageDates[i] = theDay;
+  }
+
+  for(let i=thisWeek-1,j=1; i>=0; i--,j++) {
+    let theDay = {};
+    if(thisDate-j<=0) {
+      theDay = {
+        year: thisYear,
+        month: thisMonth-1>=0 ? thisMonth-1 : 12,
+        day: preveiosDay+(thisDate-j),
+        week: i
+      }
+    }
+    else {
+      theDay = {
+        year: thisYear,
+        month: thisMonth,
+        day: thisDate-j,
+        week: i
+      }
+    }
+    pageDates[i] = theDay;
+
+  }
+
+  // {
+  //   year: 
+  //   month:
+  //   day:
+  //   week:
+  // }
+  return pageDates;
+}
+
+//回傳本周資料(routine, event, todo)
+function getPageData(PageDate) {
+  let PageData = [];
+  //let PageEvent = [];
+  //let PageTodo = [];
+  let PageEvents = listEvents(PageDate); //array[array[obj, ...], array, ...]
+  PageData = PageEvents;
+
+  return PageEvents;
+}
+
+
+
 
 import "../style/TimeLine.css"
+import { from } from 'webpack-sources/lib/CompatSource';
 
 const TimeLine = () => {
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
+  let PageDate = getPageDate();
+  let PageData = getPageData(PageDate);
+  console.log(PageDate);
 
   //Will be executed when this component be rendered
   useEffect(()=>{
@@ -69,15 +198,15 @@ const TimeLine = () => {
     }
   }
   
-  for(let i=0; i<12; i++){
+  for(let i=0; i<60; i++){
     let date = Math.floor(Math.random() * 7);
-    let time = Math.floor(Math.random() * 24);
-    let duration = Math.floor(Math.random() * (24-time)) + 1;
+    let time = Math.floor(Math.random() * 48);
+    let duration = Math.floor(Math.random() * 16) + 1;
     if(duration<=0){
       duration = 1;
     }
-    if(duration>=7){
-      duration = 7;
+    if(duration>=(48-time)){
+      duration = (48-time);
     }
     addEvent(data, {
       name: 'test' + i,
@@ -100,9 +229,11 @@ const TimeLine = () => {
         <TimeLineTitle week={'FRI'} date={26}/>
         <TimeLineTitle week={'SAT'} date={27}/>
       </div>
+
       <div>
         框框
       </div>
+
       <div className='row flex-shrink-1 main-time-line'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
           <div className='d-flex flex-column border TimeLine'>

@@ -37,7 +37,10 @@ function _createTodo(todoData) {
         id: uuid(),
         completed: todoData.completed,     //bool
         title: todoData.title,             //string
-        date: todoData.date,               //string, eg:06/18
+        year: todoData.year,               //number
+        month: todoData.month,             //number
+        day: todoData.day,                 //number
+        week: todoData.week,               //number
         day: todoData.day,                 //number
         tags: todoData.tags,               //array[obj, obj, ...]
         location: todoData.location        //string
