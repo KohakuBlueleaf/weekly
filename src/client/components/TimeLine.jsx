@@ -129,7 +129,7 @@ function getPageData(PageDate) {
   let PageEvents = listEvents(PageDate); //array[array[obj, ...], array, ...]
   PageData = PageEvents;
 
-  return PageEvents;
+  return PageData;
 }
 
 
@@ -144,6 +144,7 @@ const TimeLine = () => {
   let PageDate = getPageDate();
   let PageData = getPageData(PageDate);
   console.log(PageDate);
+  console.log(PageData);
 
   //Will be executed when this component be rendered
   useEffect(()=>{

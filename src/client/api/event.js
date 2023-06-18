@@ -14,7 +14,7 @@ export function listEvents() {
     // });
 
     //test
-    return testEvent = [[{
+    return [[{
         id: uuid(),
         title: 'title',             //string
         date_year: 2023,          //number
