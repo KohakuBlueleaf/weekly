@@ -166,11 +166,11 @@ export function createEvent(eventData) {
 function local_createEvent(eventData) {
     const newEvent = {
         id: uuid(),
-        type: eventData.type,               //string
+        type: 'event',               //string
         title: eventData.title,             //string
-        date_year: eventData.year,          //number
-        date_month: eventData.month,        //number
-        date_day: eventData.day,            //number
+        year: eventData.year,               //number
+        month: eventData.month,             //number
+        day: eventData.day,            //number
         week: eventData.week,               //number
         timeStart: eventData.timeStart,     //number, 0~47, 奇數為半小
         timeEnd: eventData.timeEnd,         //number, 0~47, 奇數為半小
