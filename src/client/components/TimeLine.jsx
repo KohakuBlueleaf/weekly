@@ -7,7 +7,6 @@ import TimeLineMonth from './TimeLineMonth';
 import TimeLineTitle from './TimeLineTitle';
 import '../style/TimeLine.css'
 
-
 function addEvent(timeline, event, date) {
   //has bug, need fix
   let targetTimeStamp = event.time;
@@ -65,6 +64,7 @@ function addEvent(timeline, event, date) {
 
 
 import "../style/TimeLine.css"
+import { from } from 'webpack-sources/lib/CompatSource';
 
 const TimeLine = () => {
   const [user, authStatus] = useOutletContext();
@@ -127,9 +127,11 @@ const TimeLine = () => {
         <TimeLineTitle week={'FRI'} date={26}/>
         <TimeLineTitle week={'SAT'} date={27}/>
       </div>
+
       <div>
         框框
       </div>
+
       <div className='row flex-shrink-1 main-time-line'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
           <div className='d-flex flex-column border TimeLine'>

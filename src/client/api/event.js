@@ -36,8 +36,10 @@ function _createEvent(eventData) {
     const newEvent = {
         id: uuid(),
         title: eventData.title,             //string
-        date: eventData.date,               //string, eg:06/18
-        day: eventData.day,                 //number
+        date_year: eventData.year,          //number
+        date_month: eventData.month,        //number
+        date_day: eventData.day,            //number
+        week: eventData.week,                 //number
         timeStart: eventData.timeStart,     //number, 0~47, 奇數為半小
         timeEnd: eventData.timeEnd,         //number, 0~47, 奇數為半小
         tags: eventData.tags,               //array

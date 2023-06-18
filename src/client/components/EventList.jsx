@@ -11,6 +11,9 @@ import {FaEquals, FaGripLinesVertical} from 'react-icons/fa';
 import {TbMinusVertical} from "react-icons/tb";
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
+
+import {listEvents, createEvent} from '../api/event.js'
+
 function EventList() {
   return (
     <ListGroup vertical="true">
