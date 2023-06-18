@@ -45,11 +45,11 @@ export function listTags() {
   };
 };
 
-export function createTag(information, filter) {
+export function createTag(information/*, filter*/) {
   return (dispatch, getState) => {
       // dispatch(startLoading());
-      return createTagFromApi(tagdata).then(posts => {
-          dispatch(listTags(filter));
+      return createTagFromApi(tagdata).then(tags => {
+          dispatch(listTags());
       }).catch(err => {
           console.error('Error creating tag', err);
       }).then(() => {
