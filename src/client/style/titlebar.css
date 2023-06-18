@@ -1,10 +1,17 @@
-.title-bar {
+/* .title-bar {
     position: fixed !important;
     flex-direction: row !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: 1rem !important;
     margin: 0 !important;
-
+    color: white;
     background-color:antiquewhite;
+} */
+
+.titlebar {
+    background-color: #17385B;
+}
+
+.navbar-brand {
+    color: white !important;
 }
