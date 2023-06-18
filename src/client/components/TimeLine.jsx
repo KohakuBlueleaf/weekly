@@ -49,16 +49,17 @@ const TimeLine = () => {
   })
   
   let timestamp = [];
-  for(let i=0; i<24; i++){
+  for(let i=0; i<48; i++){
     //先用一個小時為單位，好開發
-    timestamp.push(i + ':00');
+    if(i%2) timestamp.push('')
+    else timestamp.push(i/2 + '.');
     // timestamp.push(i + ':30');
   }
-  
+
   let data = [];
   for(let j=0; j<7; j++){
     data.push([]);
-    for(let i=0; i<24; i++){
+    for(let i=0; i<48; i++){
       data[j].push({
         name: i,
         time: i,
@@ -98,6 +99,9 @@ const TimeLine = () => {
         <TimeLineTitle week={'THU'} date={25}/>
         <TimeLineTitle week={'FRI'} date={26}/>
         <TimeLineTitle week={'SAT'} date={27}/>
+      </div>
+      <div>
+        框框
       </div>
       <div className='row flex-shrink-1 main-time-line'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
