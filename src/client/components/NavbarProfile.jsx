@@ -8,7 +8,7 @@ import { navClose } from '../store/navbar/action';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import '../style/Navbar.css'
+import '../style/navbar.css'
 
 const NavbarProfile = (props) => {
     const navigate = useNavigate();
