@@ -36,8 +36,8 @@ export function endListTodos(todos) {
 export function listTodos() {
   return (dispatch, getState) => {
     // dispatch(startLoading());
-    return listTodosFromApi(/*searchText*/).then(posts => {
-        dispatch(endListTodos(posts));
+    return listTodosFromApi(/*searchText*/).then(todos => {
+        dispatch(endListTodos(todos));
     }).catch(err => {
         console.error('Error listing todos', err);
     }).then(() => {

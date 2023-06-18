@@ -1,3 +1,6 @@
+import { createTag as createTagFromApi } from "../../api/tag";
+import { listTags as listTagsFromApi } from "../../api/tag";
+
 export function tagsAddToggle() {
   return {
     type: 'TAGS_ADD_TOGGLE'
@@ -22,11 +25,18 @@ export function tagsThemeClose() {
   }
 }
 
-export function listTags(filter) {
+export function endListTags(tags) {
+  return {
+    type: 'END_LIST_TODOS',
+    tags
+  }
+}
+
+export function listTags() {
   return (dispatch, getState) => {
       // dispatch(startLoading());
-      return listTagsFromApi(filter).then(posts => {
-          // dispatch(endListPosts(posts));
+      return listTagsFromApi(/*filter*/).then(tags => {
+          dispatch(endListTags(tags));
       }).catch(err => {
           console.error('Error listing tags', err);
       }).then(() => {
@@ -38,7 +48,7 @@ export function listTags(filter) {
 export function createTag(information, filter) {
   return (dispatch, getState) => {
       // dispatch(startLoading());
-      return createTagFromApi(title, tag, time, type, repeat, filter).then(posts => {
+      return createTagFromApi(tagdata).then(posts => {
           dispatch(listTags(filter));
       }).catch(err => {
           console.error('Error creating tag', err);
@@ -47,3 +57,10 @@ export function createTag(information, filter) {
       });
   };
 };
+
+export function setInput(input) {
+  return {
+    type: 'SET_INPUT',
+    input
+  }
+}

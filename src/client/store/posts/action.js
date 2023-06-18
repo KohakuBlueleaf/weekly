@@ -23,7 +23,7 @@ export function listEvents() {
   return (dispatch, getState) => {
     // dispatch(startLoading());
     return listPostsFromApi(/*searchText*/).then(posts => {
-        dispatch(endListPosts(posts));
+        dispatch(endListEvents(posts));
     }).catch(err => {
         console.error('Error listing posts', err);
     }).then(() => {
