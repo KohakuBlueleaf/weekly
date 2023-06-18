@@ -20,7 +20,7 @@ import { addToggle as todoAddToggle } from '../store/todo/action';
 import { helpToggle } from '../store/help/action';
 import ManTab from './ManTab';
 import NavbarProfile from './NavbarProfile';
-import '../style/navbar.css'
+import '../style/navbar.css';
 
 import { RxHome, RxQuestionMarkCircled } from "react-icons/rx";
 import { GrTag, GrAddCircle } from "react-icons/gr";
