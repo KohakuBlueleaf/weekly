@@ -17,7 +17,7 @@ const TimeLineItem = (props) => {
               key={item.time + props.date}
               className={'border-bottom ' + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
               style={{height: 30*item.duration + 'px'}}
-            >{item.type=='empty' ? '' :item.name}</div>
+            >{item.type=='empty' ? '' :item.name} {item.time} {item.duration}</div>
           )
         })}
       </div>

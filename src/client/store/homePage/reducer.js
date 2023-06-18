@@ -30,4 +30,17 @@ const homePageReducer = (state = initHomePageState, action) => {
   }
 };
 
+const initAddModalState = {
+  title: '',
+  date: '',
+  timeStart: -1,
+  timeEnd: -1,
+  tags: '',
+  location: '',
+}
+
+export const addModalReducer = (state = initAddModalState, action) => {
+  
+}
+
 export default homePageReducer;
