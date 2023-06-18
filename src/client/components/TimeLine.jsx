@@ -150,22 +150,6 @@ function getPageDate() {
   return pageDates;
 }
 
-//回傳本周資料(routine, event, todo)
-function getPageData(PageDate) {
-  let PageData = [];
-  //let PageEvent = [];
-  //let PageTodo = [];
-  let PageEvents = listEvents(PageDate); //array[array[obj, ...], array, ...]
-
-  //PageEvents.then(()=>{PageData = PageEvents}).then(()=> {console.log(PageData); return PageData})
-  PageData = PageEvents;
-  console.log(PageData);
-
-  return PageData;
-}
-
-
-
 function getPageEvent(PageDate) {
   return listEvents(PageDate);
 }

@@ -13,7 +13,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { addClose } from "../store/homePage/action"
 
 import { setInput } from '../store/posts/action';
-import { createEvent } from '../store/posts/action';
+// import { createEvent } from '../store/posts/action';
+import { createEvent } from '../api/event';
 
 import '../style/homePage.css';
 
