@@ -174,6 +174,29 @@ function getPageRoutine(PageDate) {
   return listRoutines();
 }
 
+function pushPageData(PageData, data) {
+  if(PageData.length !== 0) {
+    for(let j=0; j<7; j++) {
+      PageData[j].map(element => {
+        for(let k=element.timeStart+1; k<element.timeEnd; k++) {
+          data[j][k] = {
+            name: 'non',
+            time: k,
+            type: 'empty',
+            duration: 0
+          }
+        }
+        data[j][element.timeStart] = {
+          name: element.title,
+          time: element.timeStart,
+          type: element.type,
+          duration: element.timeEnd-element.timeStart
+        }
+      })
+    }
+  }
+}
+
 
 
 import "../style/TimeLine.css"
@@ -234,48 +257,10 @@ const TimeLine = () => {
   // });
 
   let PageData = getPageEvent();
-  if(PageData.length !== 0) {
-    for(let j=0; j<7; j++) {
-      PageData[j].map(element => {
-        for(let k=element.timeStart+1; k<element.timeEnd; k++) {
-          data[j][k] = {
-            name: 'non',
-            time: k,
-            type: 'empty',
-            duration: 0
-          }
-        }
-        data[j][element.timeStart] = {
-          name: element.title,
-          time: element.timeStart,
-          type: element.type,
-          duration: element.timeEnd-element.timeStart
-        }
-      })
-    }
-  }
+  pushPageData(PageData, data);
   
   PageData = getPageRoutine();
-  if(PageData.length !== 0) {
-    for(let j=0; j<7; j++) {
-      PageData[j].map(element => {
-        for(let k=element.timeStart+1; k<element.timeEnd; k++) {
-          data[j][k] = {
-            name: 'non',
-            time: k,
-            type: 'empty',
-            duration: 0
-          }
-        }
-        data[j][element.timeStart] = {
-          name: element.title,
-          time: element.timeStart,
-          type: element.type,
-          duration: element.timeEnd-element.timeStart
-        }
-      })
-    }
-  }
+  pushPageData(PageData, data);
 
   return (
     <div className='container d-flex flex-column h-100'>
