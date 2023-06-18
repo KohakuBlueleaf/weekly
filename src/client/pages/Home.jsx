@@ -15,7 +15,7 @@ import { addToggle, addClose, filterToggle, filterClose } from '../store/homePag
 import HomeAddModal from '../components/HomeAddModal';
 import HomeFilterModal from '../components/HomeFilterModal';
 
-import "../style/homepage.css"
+import "../style/homePage.css"
 
 /**
  * Renders a Home component with a title "Home page" 
