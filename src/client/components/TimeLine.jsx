@@ -14,17 +14,22 @@ function addEvent(timeline, event, date) {
   let newTimeline = [];
   let nowTime = 0;
   timeline[date].forEach((element, index) => {
+    if(nowTime == targetTimeStamp){
+      newTimeline.push(event);
+      nowTime += event.duration;
+      if(element.duration > event.duration){
+        element.duration -= event.duration;
+        element.time += event.duration;
+        nowTimeline.push(element);
+      }
+      targetTimeStamp = 1000;
+      return
+    }
     if(nowTime > element.time){
       let timeReduce = nowTime - element.time;
       if(timeReduce >= element.duration) return;
       element.time = nowTime;
       element.duration = element.duration - timeReduce;
-    }
-    if(nowTime == targetTimeStamp){
-      newTimeline.push(event);
-      nowTime += event.duration;
-      targetTimeStamp = 1000;
-      return
     }
     nowTime += element.duration;
     if(nowTime > targetTimeStamp){
