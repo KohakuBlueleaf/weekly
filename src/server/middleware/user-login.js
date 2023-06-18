@@ -25,7 +25,8 @@ module.exports = async function (req, res, next) {
       user = await database.User.create({
         uid: uid, 
         username: username,
-        email: email
+        email: email,
+        memo: '',
       });
     }
     req.userData = user;
