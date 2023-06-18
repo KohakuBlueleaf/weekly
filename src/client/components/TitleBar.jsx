@@ -43,7 +43,7 @@ function TitleBar() {
         <Container fluid className='titlebar'>
           <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar bg-transparent'>
               <Container fluid>
-                  <Navbar.Brand href="#" className='brand'>Weekly</Navbar.Brand>
+                  <Navbar.Brand href="#" className='navbar-brand'>Weekly</Navbar.Brand>
                   {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-success" type="submit" onClick={handleFilterClick}>Filter</button>}
                   {/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-warning" type="submit" onClick={() => dispatch(tagsThemeToggle())}>Theme</button>}
                   </Container>
