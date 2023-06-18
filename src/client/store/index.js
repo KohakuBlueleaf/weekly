@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postReducer from './posts/reducer';
+import addModalReducer from './posts/reducer';
 import userReducer from './users/reducer';
 import homePageReducer from './homePage/reducer';
 import eventReducer from './event/reducer';
@@ -10,7 +10,7 @@ import helpReducer from './help/reducer';
 
 const store = configureStore({
   reducer: {
-    post: postReducer,
+    // post: eventReducer,
     user: userReducer,
     homePage: homePageReducer,
     event: eventReducer,
@@ -18,6 +18,7 @@ const store = configureStore({
     tags: tagsReducer,
     todo: todoReducer,
     help: helpReducer,
+    addModal: addModalReducer,
   },
 });
 
