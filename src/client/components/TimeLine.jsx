@@ -6,6 +6,7 @@ import TimeLineItem from './TimeLineItem';
 import TimeLineMonth from './TimeLineMonth';
 import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
+import { listRoutines } from '../api/routine';
 import '../style/TimeLine.css'
 
 //for display
@@ -157,16 +158,22 @@ function getPageData(PageDate) {
   let PageEvents = listEvents(PageDate); //array[array[obj, ...], array, ...]
 
   //PageEvents.then(()=>{PageData = PageEvents}).then(()=> {console.log(PageData); return PageData})
-
   PageData = PageEvents;
   console.log(PageData);
 
   return PageData;
 }
 
+
+
 function getPageEvent(PageDate) {
   return listEvents();
 }
+
+function getPageRoutine(PageDate) {
+  return listRoutines();
+}
+
 
 
 import "../style/TimeLine.css"
@@ -226,7 +233,7 @@ const TimeLine = () => {
      
   // });
 
-  let PageData = getPageData();
+  let PageData = getPageEvent();
   if(PageData.length !== 0) {
     for(let j=0; j<7; j++) {
       PageData[j].map(element => {
@@ -248,19 +255,41 @@ const TimeLine = () => {
     }
   }
   
+  PageData = getPageRoutine();
+  if(PageData.length !== 0) {
+    for(let j=0; j<7; j++) {
+      PageData[j].map(element => {
+        for(let k=element.timeStart+1; k<element.timeEnd; k++) {
+          data[j][k] = {
+            name: 'non',
+            time: k,
+            type: 'empty',
+            duration: 0
+          }
+        }
+        data[j][element.timeStart] = {
+          name: element.title,
+          time: element.timeStart,
+          type: element.type,
+          duration: element.timeEnd-element.timeStart
+        }
+      })
+    }
+  }
+
   return (
     <div className='container d-flex flex-column h-100'>
       {/* {console.log(data)}
       {console.log('render')} */}
       <div className='row flex-shrink-0'>
         <TimeLineMonth month={'MAY'}/>
-        <TimeLineTitle week={'SUN'} date={21}/>
-        <TimeLineTitle week={'MON'} date={22}/>
-        <TimeLineTitle week={'TUE'} date={23}/>
-        <TimeLineTitle week={'WED'} date={24}/>
-        <TimeLineTitle week={'THU'} date={25}/>
-        <TimeLineTitle week={'FRI'} date={26}/>
-        <TimeLineTitle week={'SAT'} date={27}/>
+        <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
+        <TimeLineTitle week={'MON'} date={PageDate[1].day}/>
+        <TimeLineTitle week={'TUE'} date={PageDate[2].day}/>
+        <TimeLineTitle week={'WED'} date={PageDate[3].day}/>
+        <TimeLineTitle week={'THU'} date={PageDate[4].day}/>
+        <TimeLineTitle week={'FRI'} date={PageDate[5].day}/>
+        <TimeLineTitle week={'SAT'} date={PageDate[6].day}/>
       </div>
 
       <div>
@@ -281,13 +310,13 @@ const TimeLine = () => {
             })}
           </div>
         </div>
-        <TimeLineItem week={'SUN'} date={21} data={data[0]}/>
-        <TimeLineItem week={'MON'} date={22} data={data[1]}/>
-        <TimeLineItem week={'TUE'} date={23} data={data[2]}/>
-        <TimeLineItem week={'WED'} date={24} data={data[3]}/>
-        <TimeLineItem week={'THU'} date={25} data={data[4]}/>
-        <TimeLineItem week={'FRI'} date={26} data={data[5]}/>
-        <TimeLineItem week={'SAT'} date={27} data={data[6]}/>
+        <TimeLineItem week={'SUN'} date={PageDate[0].week} data={data[0]}/>
+        <TimeLineItem week={'MON'} date={PageDate[1].week} data={data[1]}/>
+        <TimeLineItem week={'TUE'} date={PageDate[2].week} data={data[2]}/>
+        <TimeLineItem week={'WED'} date={PageDate[3].week} data={data[3]}/>
+        <TimeLineItem week={'THU'} date={PageDate[4].week} data={data[4]}/>
+        <TimeLineItem week={'FRI'} date={PageDate[5].week} data={data[5]}/>
+        <TimeLineItem week={'SAT'} date={PageDate[6].week} data={data[6]}/>
       </div>
     </div>
   );
