@@ -11,7 +11,6 @@ import { filterClose } from "../store/homePage/action"
 
 const HomeFilterModal = () => {
     const [user, authStatus] = useOutletContext();
-    const posts = useSelector((state) => state.post.messages);
     const dispatch = useDispatch();
   
     const {

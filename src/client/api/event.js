@@ -27,7 +27,31 @@ export function listEvents() {
         timeEnd: 8,                 //number, 0~47, 奇數為半小
         tags: ['eventData.tags'],               //array[obj, obj, ...]
         location: 'eventData.location'        //string
-    }],[],[],[],[],[],[]]);
+    }],[{
+        id: uuid(),
+        type: 'event',              //string
+        title: 'title',             //string
+        year: 2023,            //number
+        month: 6,              //number
+        day: 19,               //number
+        week: 0,                    //number
+        timeStart: 10,               //number, 0~47, 奇數為半小
+        timeEnd: 20,                 //number, 0~47, 奇數為半小
+        tags: ['eventData.tags'],               //array[obj, obj, ...]
+        location: 'eventData.location'        //string
+    }],[{
+        id: uuid(),
+        type: 'event',              //string
+        title: 'title',             //string
+        year: 2023,            //number
+        month: 6,              //number
+        day: 18,               //number
+        week: 0,                    //number
+        timeStart: 40,               //number, 0~47, 奇數為半小
+        timeEnd: 48,                 //number, 0~47, 奇數為半小
+        tags: ['eventData.tags'],               //array[obj, obj, ...]
+        location: 'eventData.location'        //string
+    }],[],[],[],[]]);
 }
 
 
