@@ -68,3 +68,9 @@
   background-size: 10rem !important; */
   font-size: 2rem;
 }
+
+.navbar-add-icon {
+  cursor: pointer;
+  color: #BE6464;
+  font-size: 2.5rem;
+}
