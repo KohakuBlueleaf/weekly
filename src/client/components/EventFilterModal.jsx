@@ -11,7 +11,6 @@ import { filterClose } from "../store/event/action"
 
 const EventFilterModal = () => {
     const [user, authStatus] = useOutletContext();
-    const posts = useSelector((state) => state.post.messages);
     const dispatch = useDispatch();
   
     const {

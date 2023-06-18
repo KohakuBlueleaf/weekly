@@ -71,7 +71,7 @@ const HomeAddModal = () => {
               onSubmit={(e) => {
                 updateInput();
                 e.preventDefault();
-                // createEvent(inputState);
+                createEvent(inputState);
                 //call api at here
               }}
             >
