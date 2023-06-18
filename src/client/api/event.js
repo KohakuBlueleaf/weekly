@@ -14,7 +14,9 @@ export function listEvents() {
     // });
 
     //test
-    return [[{
+
+    let testEvent;
+    return (testEvent = [[{
         id: uuid(),
         type: 'event',              //string
         title: 'title',             //string
@@ -26,7 +28,7 @@ export function listEvents() {
         timeEnd: 8,         //number, 0~47, 奇數為半小
         tags: ['eventData.tags'],               //array
         location: 'eventData.location'        //string
-    }],[],[],[],[],[],[]];
+    }],[],[],[],[],[],[]]);
 }
 
 
