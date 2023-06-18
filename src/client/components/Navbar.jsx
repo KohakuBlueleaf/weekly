@@ -22,6 +22,10 @@ import ManTab from './ManTab';
 import NavbarProfile from './NavbarProfile';
 import '../style/Navbar.css'
 
+import { RxHome, RxQuestionMarkCircled } from "react-icons/rx";
+import { GrTag } from "react-icons/gr";
+import { FiSettings } from "react-icons/fi";
+
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -92,12 +96,12 @@ const OffcanvasExample = (props) => {
                 onClick={()=>{console.log('click')}}
               />
             </div>
-            <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Link className="nav-link" to='/' onClick={navclose}>Home</Link>
+            <Nav className="justify-content-end flex-grow-1 pe-3 nav-link-wrapper">
+              <Link className="nav-link" to='/' onClick={navclose}><RxHome className='nav-link-icon'/>Home</Link>
               <Link className="nav-link" to='/management' onClick={navclose}>Management</Link>
-              <Link className="nav-link" to='/tags' onClick={navclose}>Tags</Link>
-              <Link className="nav-link" onClick={hadleHelpClick}>Helps</Link>
-              <Link className="nav-link" to='/settings' onClick={navclose}>Settings</Link>
+              <Link className="nav-link" to='/tags' onClick={navclose}><GrTag className='nav-link-icon'/>Tags</Link>
+              <Link className="nav-link" onClick={hadleHelpClick}><RxQuestionMarkCircled className='nav-link-icon'/>Helps</Link>
+              <Link className="nav-link" to='/settings' onClick={navclose}><FiSettings className='nav-link-icon'/>Settings</Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

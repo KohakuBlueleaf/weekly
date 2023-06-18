@@ -11,9 +11,11 @@
 .write-down-sth-wrapper{
   height: 100%;
   background-color: #FFF8F0;
+  border-radius: 0.5rem;
 }
 .write-down-sth-wrapper>textarea{
   height: 100% !important;
+  background-color: #FFF8F0;
 
 }
 
@@ -34,6 +36,7 @@
   color: black !important;
   background-color: #FFF8F0 !important;
   border-color: rgba(178, 182, 187, 0) !important;
+  border-radius: 0.5rem !important;
 }
 
 .signInButton {
@@ -44,9 +47,20 @@
   text-align: center;
 }
 
+
+.nav-link-wrapper {
+  margin-top: 0.25rem;
+  margin-left: 20% !important;
+  margin-bottom: 2rem !important;
+}
+
+.nav-link-icon {
+  margin-right: 0.25rem;
+
 /* 248,249,250 */
 
 .bottom-bar {
   flex-direction: row;
   justify-content: space-between;
+
 }
