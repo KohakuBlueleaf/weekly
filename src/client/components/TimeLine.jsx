@@ -167,11 +167,11 @@ function getPageData(PageDate) {
 
 
 function getPageEvent(PageDate) {
-  return listEvents();
+  return listEvents(PageDate);
 }
 
 function getPageRoutine(PageDate) {
-  return listRoutines();
+  return listRoutines(PageDate);
 }
 
 function pushPageData(PageData, data) {
@@ -207,6 +207,7 @@ const TimeLine = () => {
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
   let PageDate = getPageDate();
+  let PageData = [];
   let data = [];
   //Will be executed when this component be rendered
   useEffect(()=>{
@@ -231,36 +232,11 @@ const TimeLine = () => {
     }
   }
 
-  //非同步
-  // getPageData(PageDate).then((PageData) => {
-  //   if(PageData.length !== 0) {
-  //     for(let j=0; j<7; j++) {
-  //       PageData[j].map(element => {
-  //         for(let k=element.timeStart+1; k<element.timeEnd; k++) {
-  //           data[j][k] = {
-  //             name: 'non',
-  //             time: k,
-  //             type: 'empty',
-  //             duration: 0
-  //           }
-  //         }
-  //         data[j][element.timeStart] = {
-  //           name: element.title,
-  //           time: element.timeStart,
-  //           type: element.type,
-  //           duration: element.timeEnd-element.timeStart
-  //         }
-  //       })
-  //     }
-  //   }
-     
-  // });
-
-  let PageData = getPageEvent();
-  pushPageData(PageData, data);
+  PageData = getPageEvent(PageDate);
+  if(PageData.length !== 0) pushPageData(PageData, data);
   
-  PageData = getPageRoutine();
-  pushPageData(PageData, data);
+  PageData = getPageRoutine(PageDate);
+  if(PageData.length !== 0) pushPageData(PageData, data);
 
   return (
     <div className='container d-flex flex-column h-100'>
