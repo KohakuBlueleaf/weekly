@@ -14,18 +14,18 @@ export function listEvents() {
     // });
 
     //test
-
     let testEvent;
     return (testEvent = [[{
         id: uuid(),
+        type: 'event',              //string
         title: 'title',             //string
-        date_year: 2023,          //number
-        date_month: 6,        //number
-        date_day: 18,            //number
-        week: 0,                 //number
-        timeStart: 3,     //number, 0~47, 奇數為半小
-        timeEnd: 8,         //number, 0~47, 奇數為半小
-        tags: ['eventData.tags'],               //array
+        year: 2023,            //number
+        month: 6,              //number
+        day: 18,               //number
+        week: 0,                    //number
+        timeStart: 3,               //number, 0~47, 奇數為半小
+        timeEnd: 8,                 //number, 0~47, 奇數為半小
+        tags: ['eventData.tags'],               //array[obj, obj, ...]
         location: 'eventData.location'        //string
     }],[],[],[],[],[],[]]);
 }
@@ -52,11 +52,12 @@ export function createEvent(eventData) {
 function _createEvent(eventData) {
     const newEvent = {
         id: uuid(),
+        type: eventData.type,               //string
         title: eventData.title,             //string
         date_year: eventData.year,          //number
         date_month: eventData.month,        //number
         date_day: eventData.day,            //number
-        week: eventData.week,                 //number
+        week: eventData.week,               //number
         timeStart: eventData.timeStart,     //number, 0~47, 奇數為半小
         timeEnd: eventData.timeEnd,         //number, 0~47, 奇數為半小
         tags: eventData.tags,               //array

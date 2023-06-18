@@ -8,6 +8,7 @@ import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
 
+//for display
 function addEvent(timeline, event, date) {
   //has bug, need fix
   let targetTimeStamp = event.time;
@@ -164,6 +165,7 @@ function getPageData(PageDate) {
 
 import "../style/TimeLine.css"
 import { from } from 'webpack-sources/lib/CompatSource';
+import { element } from 'prop-types';
 
 const TimeLine = () => {
   const [user, authStatus] = useOutletContext();
@@ -180,7 +182,7 @@ const TimeLine = () => {
   
   let timestamp = [];
   for(let i=0; i<48; i++){
-    //先用一個小時為單位，好開發
+    //先用半個小時為單位，好開發
     if(i%2) timestamp.push('')
     else timestamp.push(i/2 + '.');
     // timestamp.push(i + ':30');
@@ -198,25 +200,26 @@ const TimeLine = () => {
       })
     }
   }
-  
-  for(let i=0; i<60; i++){
-    let date = Math.floor(Math.random() * 7);
-    let time = Math.floor(Math.random() * 48);
-    let duration = Math.floor(Math.random() * 16) + 1;
-    if(duration<=0){
-      duration = 1;
-    }
-    if(duration>=(48-time)){
-      duration = (48-time);
-    }
-    addEvent(data, {
-      name: 'test' + i,
-      time: time,
-      type: 'thing',
-      duration: duration
-    }, date)
+
+  for(let j=0; j<7; j++) {
+    PageData[j].map(element => {
+      for(let k=element.timeStart+1; k<element.timeEnd; k++) {
+        data[j][k] = {
+          name: 'non',
+          time: k,
+          type: 'empty',
+          duration: 0
+        }
+      }
+      data[j][element.timeStart] = {
+        name: element.title,
+        time: element.timeStart,
+        type: element.type,
+        duration: element.timeEnd-element.timeStart
+      }
+    })
   }
-  
+  console.log(data);
 
   return (
     <div className='container d-flex flex-column h-100'>

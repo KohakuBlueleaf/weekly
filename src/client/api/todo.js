@@ -40,10 +40,8 @@ function _createTodo(todoData) {
         year: todoData.year,               //number
         month: todoData.month,             //number
         day: todoData.day,                 //number
-        week: todoData.week,               //number
-        day: todoData.day,                 //number
+        weekday: todoData.week,               //number
         tags: todoData.tags,               //array[obj, obj, ...]
-        location: todoData.location        //string
     };
 
     const todos = [

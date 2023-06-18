@@ -13,11 +13,12 @@ const TimeLineItem = (props) => {
       <div className='d-flex flex-column border TimeLine'>
         {props.data.map((item, index) => {
           return (
+            item.duration === 0? '' :
             <div
               key={index + props.date}
               className={'border-bottom ' + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
               style={{height: 30*item.duration + 'px'}}
-            >{item.type=='empty' ? '' :item.name} {item.time} {item.duration}</div>
+            >{item.type=='empty' ? '' :item.name}</div>
           )
         })}
       </div>
