@@ -20,15 +20,3 @@ export function listPosts(filter) {
   };
 };
 
-export function createPost(information, filter) {
-  return (dispatch, getState) => {
-      // dispatch(startLoading());
-      return createPostFromApi(title, tag, time, type, repeat, filter).then(posts => {
-          dispatch(listPosts(filter));
-      }).catch(err => {
-          console.error('Error creating posts', err);
-      }).then(() => {
-          // dispatch(endLoading())
-      });
-  };
-};
