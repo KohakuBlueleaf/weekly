@@ -6,7 +6,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 const DailyBar = () => {
     const date = new Date();
     let display_year = date.getFullYear();
-    let display_month = date.getMonth();
+    let display_month = date.getMonth()+1;
     let display_day = date.getDate(); 
     const now = 60;
     return (
