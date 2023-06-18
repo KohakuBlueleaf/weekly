@@ -16,11 +16,13 @@ function addEvent(timeline, event, date) {
   timeline[date].forEach((element, index) => {
     if(nowTime == targetTimeStamp){
       newTimeline.push(event);
-      nowTime += event.duration;
       if(element.duration > event.duration){
+        nowTime += element.duration;
         element.duration -= event.duration;
         element.time += event.duration;
-        nowTimeline.push(element);
+        newTimeline.push(element);
+      }else{
+        nowTime += event.duration;
       }
       targetTimeStamp = 1000;
       return
@@ -30,6 +32,16 @@ function addEvent(timeline, event, date) {
       if(timeReduce >= element.duration) return;
       element.time = nowTime;
       element.duration = element.duration - timeReduce;
+    }else if(nowTime < element.time){
+      for(let i=0; i<element.time-nowTime; i++){
+        newTimeline.push({
+          name: '',
+          time: nowTime + i,
+          type: 'empty',
+          duration: 1
+        });
+      }
+      nowTime = element.time;
     }
     nowTime += element.duration;
     if(nowTime > targetTimeStamp){
@@ -38,6 +50,16 @@ function addEvent(timeline, event, date) {
     }
     newTimeline.push(element);
   });
+  if(nowTime < 48){
+    for(let i=0; i<48-nowTime; i++){
+      newTimeline.push({
+        name: '',
+        time: nowTime + i,
+        type: 'empty',
+        duration: 1
+      });
+    }
+  }
   timeline[date] = newTimeline;
 }
 
@@ -74,15 +96,15 @@ const TimeLine = () => {
     }
   }
   
-  for(let i=0; i<12; i++){
+  for(let i=0; i<60; i++){
     let date = Math.floor(Math.random() * 7);
-    let time = Math.floor(Math.random() * 24);
-    let duration = Math.floor(Math.random() * (24-time)) + 1;
+    let time = Math.floor(Math.random() * 48);
+    let duration = Math.floor(Math.random() * 16) + 1;
     if(duration<=0){
       duration = 1;
     }
-    if(duration>=7){
-      duration = 7;
+    if(duration>=(48-time)){
+      duration = (48-time);
     }
     addEvent(data, {
       name: 'test' + i,
