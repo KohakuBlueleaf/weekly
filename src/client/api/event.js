@@ -62,7 +62,7 @@ function local_listEvents(searchText = '') {
 
 export function createEvent(eventData) {
     return new Promise((resolve, reject) => {
-        resolve(_createEvent(eventData));
+        resolve(local_createEvent(eventData));
     });
 }
 
@@ -89,5 +89,4 @@ function local_createEvent(eventData) {
 
     localStorage.setItem(eventKey, JSON.stringify(events));
     return newEvent;
-
 }
