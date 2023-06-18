@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOutletContext, useNavigate } from "react-router-dom";
 import TimeLineItem from './TimeLineItem';
@@ -200,6 +200,7 @@ const TimeLine = () => {
       })
     }
   }
+
   getPageData(PageDate).then((PageData) => {
     if(PageData.length !== 0) {
       for(let j=0; j<7; j++) {
@@ -221,13 +222,14 @@ const TimeLine = () => {
         })
       }
     }
-    console.log(data);
-    
+     
   });
 
   
   return (
     <div className='container d-flex flex-column h-100'>
+      {/* {console.log(data)}
+      {console.log('render')} */}
       <div className='row flex-shrink-0'>
         <TimeLineMonth month={'MAY'}/>
         <TimeLineTitle week={'SUN'} date={21}/>
@@ -258,12 +260,12 @@ const TimeLine = () => {
           </div>
         </div>
         <TimeLineItem week={'SUN'} date={21} data={data[0]}/>
-        <TimeLineItem week={'MON'} date={22} data={data[1]}/>
+        {/* <TimeLineItem week={'MON'} date={22} data={data[1]}/>
         <TimeLineItem week={'TUE'} date={23} data={data[2]}/>
         <TimeLineItem week={'WED'} date={24} data={data[3]}/>
         <TimeLineItem week={'THU'} date={25} data={data[4]}/>
         <TimeLineItem week={'FRI'} date={26} data={data[5]}/>
-        <TimeLineItem week={'SAT'} date={27} data={data[6]}/>
+        <TimeLineItem week={'SAT'} date={27} data={data[6]}/> */}
       </div>
     </div>
   );
