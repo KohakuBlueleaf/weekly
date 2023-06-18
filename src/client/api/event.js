@@ -5,12 +5,27 @@ import '@babel/polyfill';
 
 const eventKey = 'events';
 
+//datatype: array[array[obj, obj,...],array,...] 以星期日到六為index的array為那天所有的event,event為obj
 export function listEvents() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(_listEvents());
-        }, 500);
-    });
+    // return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         resolve(_listEvents());
+    //     }, 500);
+    // });
+
+    //test
+    return testEvent = [[{
+        id: uuid(),
+        title: 'title',             //string
+        date_year: 2023,          //number
+        date_month: 6,        //number
+        date_day: 18,            //number
+        week: 0,                 //number
+        timeStart: 3,     //number, 0~47, 奇數為半小
+        timeEnd: 8,         //number, 0~47, 奇數為半小
+        tags: ['eventData.tags'],               //array
+        location: 'eventData.location'        //string
+    }],[],[],[],[],[],[]];
 }
 
 

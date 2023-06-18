@@ -5,6 +5,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import TimeLineItem from './TimeLineItem';
 import TimeLineMonth from './TimeLineMonth';
 import TimeLineTitle from './TimeLineTitle';
+import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
 
 function addEvent(timeline, event, date) {
@@ -35,6 +36,7 @@ function addEvent(timeline, event, date) {
   timeline[date] = newTimeline;
 }
 
+//回傳本周日期
 function getPageDate() {
   
   let pageDates = [{},{},{},{},{},{},{}];
@@ -65,7 +67,6 @@ function getPageDate() {
     default: preveiosDay = 30;
       break;
   }
-
 
   //pageDates[thisWeek] = {thisMonth, thisDate};
   for(let i=thisWeek,j=0; i<7; i++,j++) {
@@ -111,7 +112,6 @@ function getPageDate() {
 
   }
 
-
   // {
   //   year: 
   //   month:
@@ -121,6 +121,19 @@ function getPageDate() {
   return pageDates;
 }
 
+//回傳本周資料(routine, event, todo)
+function getPageData(PageDate) {
+  let PageData = [];
+  //let PageEvent = [];
+  //let PageTodo = [];
+  let PageEvents = listEvents(PageDate); //array[array[obj, ...], array, ...]
+  PageData = PageEvents;
+
+  return PageEvents;
+}
+
+
+
 
 import "../style/TimeLine.css"
 import { from } from 'webpack-sources/lib/CompatSource';
@@ -128,6 +141,9 @@ import { from } from 'webpack-sources/lib/CompatSource';
 const TimeLine = () => {
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
+  let PageDate = getPageDate();
+  let PageData = getPageData(PageDate);
+  console.log(PageDate);
 
   //Will be executed when this component be rendered
   useEffect(()=>{
