@@ -8,6 +8,7 @@ import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
 
+//for display
 function addEvent(timeline, event, date) {
   //has bug, need fix
   let targetTimeStamp = event.time;
@@ -180,7 +181,7 @@ const TimeLine = () => {
   
   let timestamp = [];
   for(let i=0; i<48; i++){
-    //先用一個小時為單位，好開發
+    //先用半個小時為單位，好開發
     if(i%2) timestamp.push('')
     else timestamp.push(i/2 + '.');
     // timestamp.push(i + ':30');
@@ -188,33 +189,46 @@ const TimeLine = () => {
 
   let data = [];
   for(let j=0; j<7; j++){
-    data.push([]);
-    for(let i=0; i<48; i++){
-      data[j].push({
-        name: i,
-        time: i,
-        type: 'empty',
-        duration: 1
+    // data.push([]);
+    // for(let i=0; i<48; i++){
+    //   data[j].push({
+    //     name: i,
+    //     time: i,
+    //     type: 'empty',
+    //     duration: 1
+    //   })
+    // }
+    data = PageData.map((element)=>{
+      let ColData = element.map(el=>{
+        let initData = {
+          name: el.title,
+          time: el.timeStart,
+          type: el.type,
+          duration: el.timeEnd-el.timeStart
+        }
+        return initData;
       })
-    }
+      return ColData;
+    })
   }
+  console.log(data);
   
-  for(let i=0; i<60; i++){
-    let date = Math.floor(Math.random() * 7);
-    let time = Math.floor(Math.random() * 48);
-    let duration = Math.floor(Math.random() * 16) + 1;
-    if(duration<=0){
-      duration = 1;
-    }
-    if(duration>=(48-time)){
-      duration = (48-time);
-    }
-    addEvent(data, {
-      name: 'test' + i,
-      time: time,
-      type: 'thing',
-      duration: duration
-    }, date)
+  for(let i=0; i<10; i++){
+    // let date = Math.floor(Math.random() * 7);
+    // let time = Math.floor(Math.random() * 48);
+    // let duration = Math.floor(Math.random() * (48-time)) + 1;
+    // if(duration<=1){
+    //   duration = 1;
+    // }
+    // if(duration>=(48-time)){
+    //   duration = (48-time);
+    // }
+    // addEvent(data, {
+    //   name: 'test' + i,
+    //   time: time,
+    //   type: 'thing',
+    //   duration: duration
+    // }, date)
   }
   
 

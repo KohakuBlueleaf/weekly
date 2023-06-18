@@ -16,6 +16,7 @@ export function listEvents() {
     //test
     return [[{
         id: uuid(),
+        type: 'event',              //string
         title: 'title',             //string
         date_year: 2023,          //number
         date_month: 6,        //number
@@ -50,11 +51,12 @@ export function createEvent(eventData) {
 function _createEvent(eventData) {
     const newEvent = {
         id: uuid(),
+        type: eventData.type,               //string
         title: eventData.title,             //string
         date_year: eventData.year,          //number
         date_month: eventData.month,        //number
         date_day: eventData.day,            //number
-        week: eventData.week,                 //number
+        week: eventData.week,               //number
         timeStart: eventData.timeStart,     //number, 0~47, 奇數為半小
         timeEnd: eventData.timeEnd,         //number, 0~47, 奇數為半小
         tags: eventData.tags,               //array
