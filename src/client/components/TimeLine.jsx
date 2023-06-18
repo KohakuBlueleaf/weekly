@@ -237,10 +237,10 @@ const TimeLine = () => {
       <div className='row flex-shrink-1 main-time-line'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
           <div className='d-flex flex-column border TimeLine'>
-            {timestamp.map((item) => {
+            {timestamp.map((item, index) => {
               return (
                 <div
-                  key={'timestamp' + item}
+                  key={'timestamp' + index}
                   className={'border-bottom'}
                   style={{height: '30px'}}
                 >{item}</div>
