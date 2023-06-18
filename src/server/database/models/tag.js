@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'taggedEvents',
       })
       Tag.hasMany(models.Event_Tag)
+      Tag.belongsToMany(models.Todo, {
+        through: models.Todo_Tag,
+        as: 'taggedTodos',
+      })
+      Tag.hasMany(models.Todo_Tag)
       Tag.belongsTo(models.User, {
         as: 'owner',
         foreignKey: 'ownerId',
@@ -25,8 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   Tag.init({
     ownerId: DataTypes.INTEGER,
     name: DataTypes.STRING,
-    desc: DataTypes.STRING,
-    type: DataTypes.STRING
+    color: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Tag',
