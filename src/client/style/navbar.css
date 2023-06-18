@@ -47,7 +47,6 @@
   text-align: center;
 }
 
-
 .nav-link-wrapper {
   margin-top: 0.25rem;
   margin-left: 20% !important;
@@ -62,5 +61,10 @@
 .bottom-bar {
   flex-direction: row;
   justify-content: space-between;
+}
 
+.navbar-arrow {
+  /* width: 10rem !important;
+  background-size: 10rem !important; */
+  font-size: 2rem;
 }

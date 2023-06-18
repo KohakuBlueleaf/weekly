@@ -20,11 +20,12 @@ import { addToggle as todoAddToggle } from '../store/todo/action';
 import { helpToggle } from '../store/help/action';
 import ManTab from './ManTab';
 import NavbarProfile from './NavbarProfile';
-import '../style/Navbar.css'
+import '../style/navbar.css'
 
 import { RxHome, RxQuestionMarkCircled } from "react-icons/rx";
 import { GrTag } from "react-icons/gr";
 import { FiSettings } from "react-icons/fi";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
@@ -69,7 +70,8 @@ const OffcanvasExample = (props) => {
     <Navbar bg="light" expand={false} className="mt-auto navbar bg-transparent">
       <Container fluid className='d-flex flex-row'>
         <Navbar.Toggle aria-controls={`offcanvasNavbar`} onClick={() => dispatch(navToggle())} />
-        {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/daily' onClick={navclose}>Swipe Up</Link>}
+        {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/daily' onClick={navclose}><IoIosArrowUp className='navbar-arrow'/></Link>}
+        {/\/daily$/.test(currentLocation.pathname) && <Link className="nav-link" to='/' onClick={navclose}><IoIosArrowDown className='navbar-arrow'/></Link>}
         {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
         {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
         <Navbar.Offcanvas
