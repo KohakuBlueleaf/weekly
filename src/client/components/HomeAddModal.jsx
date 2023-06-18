@@ -15,7 +15,6 @@ import { addClose } from "../store/homePage/action"
 const HomeAddModal = () => {
     const [user, authStatus] = useOutletContext();
     const posts = useSelector((state) => state.post.messages);
-    const [startDate, setStartDate] = useState(new Date());
     const dispatch = useDispatch();
   
     const {
@@ -23,51 +22,21 @@ const HomeAddModal = () => {
     } = useSelector((state) => ({
         addModalShow: state.homePage.addModalShow
     }));
-
-    // const {
-    //   title,
-    //   date_year,
-    //   date_month,
-    //   date_day,
-    //   week,
-    //   timeStart,
-    //   timeEnd,
-    //   tags,
-    //   location,
-    // } = useSelector((state) => ({
-    //     title: state.addModal.title,
-    //     date_year: state.addModal.date_year,
-    //     date_month: state.addModal.date_month,
-    //     date_day: state.addModal.date_day,
-    //     week: state.addModal.week,
-    //     timeStart: state.addModal.timeStart,
-    //     timeEnd: state.addModal.titimeEndtle,
-    //     tags: state.addModal.tags,
-    //     location: state.addModal.location,
-    // }));
-
-    const titleChange = (text) => {
-      // console.log("ihihihihih~!~~~~~~~~~~~~");
-      // console.log(text);
-    }
-
-    const handleAddEvent = () => {
-      // let temp = {
+    
+    const updateInput = () => {
+      // dispatch(setInput({
       //   title: title,
-      //   date_year: date_year,
-      //   date_month: date_month,
-      //   date_day: date_day,
-      //   week: week,
-      //   timeStart: timeStart,
-      //   timeEnd: timeEnd,
-      //   tags: tags,
-      //   location: location,
-      // }
-      // dispatch(createEvent(temp))
+      //   tag: tag,
+      //   time: time,
+      //   repeat: repeat
+      // }))
     }
-
-    // console.log("hi~~~~\n", startDate);
-  
+    
+    const [title, setTitle] = useState("");
+    const [tag, setTag] = useState("");
+    const [time, setTime] = useState("");
+    const [repeat, setRepeat] = useState("");
+    const [startDate, setStartDate] = useState(new Date());
     return (
         <Modal
           show={addModalShow}
@@ -82,25 +51,33 @@ const HomeAddModal = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                //call api at here
+              }}
+            >
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
                     <div className='col-10'>
-                    <Form.Control type="text" name='title' placeholder="Enter event title" onChange={() => titleChange("fuck you")}/>
+                    <Form.Control type="text" name='title' placeholder="Enter event title" 
+                      onChange={(e) => {setTitle(e.target.value); updateInput()}}/>
                     </div>
                 </Form.Group>
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
                     <div className='col-10'>
-                      <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                      <DatePicker selected={startDate} 
+                      onChange={(date) => {setStartDate(date); updateInput()}} />
                     </div>
                 </Form.Group>
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
                   <div className='col-10'>
-                      <Form.Select aria-label="Default select example">
+                      <Form.Select aria-label="Default select example" 
+                      onChange={(e) => {setTag(e.target.value); updateInput()}}>
                         <option>selece a tag</option>
                         <option>Math</option>
                         <option>Algo</option>
@@ -112,7 +89,8 @@ const HomeAddModal = () => {
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Time:</Form.Label>
                   <div className='col-10'>
-                      <Form.Select aria-label="Default select example">
+                      <Form.Select aria-label="Default select example" 
+                      onChange={(e) => {setTime(e.target.value); updateInput()}}>
                       <option>selece a tag</option>
                       <option>Math</option>
                       <option>Algo</option>
@@ -137,13 +115,12 @@ const HomeAddModal = () => {
                       </Form.Select>
                   </div>
                 </Form.Group>
-
-            </Form>
               <Modal.Footer>
-                  <Button variant="primary" type="submit" onClick={handleAddEvent}>
+                  <Button variant="primary" type="submit">
                       Submit
                   </Button>
               </Modal.Footer>
+            </Form>
             </Modal.Body>
         </Modal>
     );
