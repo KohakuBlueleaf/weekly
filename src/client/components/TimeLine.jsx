@@ -203,13 +203,19 @@ const TimeLine = () => {
 
   for(let j=0; j<7; j++) {
     PageData[j].map(element => {
-      for(let k=element.timeStart; k<=element.timeEnd; k++) {
+      for(let k=element.timeStart+1; k<element.timeEnd; k++) {
         data[j][k] = {
-          name: element.title,
+          name: 'non',
           time: k,
-          type: element.type,
-          duration: 1
+          type: 'empty',
+          duration: 0
         }
+      }
+      data[j][element.timeStart] = {
+        name: element.title,
+        time: element.timeStart,
+        type: element.type,
+        duration: element.timeEnd-element.timeStart
       }
     })
   }
