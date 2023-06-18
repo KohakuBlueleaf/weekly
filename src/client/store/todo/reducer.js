@@ -1,10 +1,32 @@
 const initTodoState = {
-    addModalShow: false,
-    filterModalShow: false,
+  todo: [],
+  title: '',
+  year: -1,
+  month: -1,
+  day: -1,
+  weekday: -1,
+  tags: '',
+  addModalShow: false,
+  filterModalShow: false,
 };
 
 const todoReducer = (state = initTodoState, action) => {
     switch (action.type) {
+      case 'SET_INPUT':
+        return {
+          ...state,
+          title: action.input.title,
+          year: action.input.date_year,
+          month: action.input.date_month,
+          day: action.input.date_day,
+          weekday: action.input.week,
+          tags: action.input.tags,
+        }
+      case 'END_LIST_TODOS':
+        return {
+          ...state,
+          todo: action.todos
+        }
       case 'TODO_ADD_TOGGLE':
         return {
           ...state,

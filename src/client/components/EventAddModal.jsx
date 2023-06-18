@@ -12,6 +12,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/event/action"
 
+import { setInput } from '../store/posts/action';
+import { createEvent } from '../store/posts/action';
+
 import "../style/event.css"
 
 const EventAddModal = () => {
@@ -37,7 +40,7 @@ const EventAddModal = () => {
         tags: tag,
         location: location,
       }
-      // dispatch(setInput(inputState));
+      dispatch(setInput(inputState));
     }
   
     const [title, setTitle] = useState("");
@@ -60,11 +63,18 @@ const EventAddModal = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            <Form
+              onSubmit={(e) => {
+                updateInput();
+                // e.preventDefault();
+                createEvent(inputState)
+              }}
+            >
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
+                  <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
                     <div className='col-10'>
-                    <Form.Control type="text" placeholder="Enter event title" />
+                    <Form.Control type="text" name='title' placeholder="Enter event title" 
+                      onChange={(e) => {setTitle(e.target.value); updateInput()}}/>
                     </div>
                 </Form.Group>
 
@@ -98,11 +108,12 @@ const EventAddModal = () => {
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
                   <div className='col-10'>
-                      <Form.Select aria-label="Default select example">
-                      <option>selece a tag</option>
-                      <option>Math</option>
-                      <option>Algo</option>
-                      <option>OS</option>
+                      <Form.Select aria-label="Default select example" 
+                      onChange={(e) => {setTag(e.target.value); updateInput()}}>
+                        <option>selece a tag</option>
+                        <option>Math</option>
+                        <option>Algo</option>
+                        <option>OS</option>
                       </Form.Select>
                   </div>
                 </Form.Group>
