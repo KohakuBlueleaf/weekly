@@ -155,12 +155,18 @@ function getPageData(PageDate) {
   //let PageEvent = [];
   //let PageTodo = [];
   let PageEvents = listEvents(PageDate); //array[array[obj, ...], array, ...]
+
+  //PageEvents.then(()=>{PageData = PageEvents}).then(()=> {console.log(PageData); return PageData})
+
   PageData = PageEvents;
+  console.log(PageData);
 
   return PageData;
 }
 
-
+function getPageEvent(PageDate) {
+  return listEvents();
+}
 
 
 import "../style/TimeLine.css"
@@ -171,15 +177,11 @@ const TimeLine = () => {
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
   let PageDate = getPageDate();
-  let PageData = getPageData(PageDate);
-  console.log(PageDate);
-  console.log(PageData);
-
+  let data = [];
   //Will be executed when this component be rendered
   useEffect(()=>{
     console.log(user, authStatus);
   })
-  
   let timestamp = [];
   for(let i=0; i<48; i++){
     //先用半個小時為單位，好開發
@@ -187,8 +189,6 @@ const TimeLine = () => {
     else timestamp.push(i/2 + '.');
     // timestamp.push(i + ':30');
   }
-
-  let data = [];
   for(let j=0; j<7; j++){
     data.push([]);
     for(let i=0; i<48; i++){
@@ -200,27 +200,32 @@ const TimeLine = () => {
       })
     }
   }
-
-  for(let j=0; j<7; j++) {
-    PageData[j].map(element => {
-      for(let k=element.timeStart+1; k<element.timeEnd; k++) {
-        data[j][k] = {
-          name: 'non',
-          time: k,
-          type: 'empty',
-          duration: 0
-        }
+  getPageData(PageDate).then((PageData) => {
+    if(PageData.length !== 0) {
+      for(let j=0; j<7; j++) {
+        PageData[j].map(element => {
+          for(let k=element.timeStart+1; k<element.timeEnd; k++) {
+            data[j][k] = {
+              name: 'non',
+              time: k,
+              type: 'empty',
+              duration: 0
+            }
+          }
+          data[j][element.timeStart] = {
+            name: element.title,
+            time: element.timeStart,
+            type: element.type,
+            duration: element.timeEnd-element.timeStart
+          }
+        })
       }
-      data[j][element.timeStart] = {
-        name: element.title,
-        time: element.timeStart,
-        type: element.type,
-        duration: element.timeEnd-element.timeStart
-      }
-    })
-  }
-  console.log(data);
+    }
+    console.log(data);
+    
+  });
 
+  
   return (
     <div className='container d-flex flex-column h-100'>
       <div className='row flex-shrink-0'>
@@ -262,6 +267,8 @@ const TimeLine = () => {
       </div>
     </div>
   );
+
+  
 };
 
 export default TimeLine;
