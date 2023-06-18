@@ -74,3 +74,11 @@
   color: #BE6464;
   font-size: 2.5rem;
 }
+
+.navbar-add-icon:hover .add-1,
+.navbar-add-icon .add-2 {
+  display: none;
+}
+.navbar-add-icon:hover .add-2 {
+  display: inline;
+}
