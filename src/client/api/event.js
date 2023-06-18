@@ -6,13 +6,20 @@ import '@babel/polyfill';
 const eventKey = 'events';
 
 //datatype: array[array[obj, obj,...],array,...] 以星期日到六為index的array為那天所有的event,event為obj
-export function listEvents() {
+/*
+filter = {
+    eventDisplay:      //bool
+    routineDisplay:    //bool
+    completedDisplay   //bool
+    tags:              //array
+}
+*/
+
+export function listEvents(filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: false}) {
     // return new Promise((resolve, reject) => {
     //     setTimeout(() => {
-    //         resolve(local_listEvents());
+    //         resolve(local_listEvents(filter));
     //     }, 500);
-    //     // console.log(resolve(local_listEvents()));
-    //     // return resolve(local_listEvents());
     // });
     // test
     let testEvent;
