@@ -7,13 +7,41 @@ const eventKey = 'events';
 
 //datatype: array[array[obj, obj,...],array,...] 以星期日到六為index的array為那天所有的event,event為obj
 export function listEvents() {
-    // return new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //         resolve(_listEvents());
-    //     }, 500);
-    // });
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(local_listEvents());
+        }, 500);
+        // console.log(resolve(local_listEvents()));
+        // return resolve(local_listEvents());
+    });
 
-    //test
+    // test
+    // let testEvent;
+    // return (testEvent = [[{
+    //     id: uuid(),
+    //     type: 'event',              //string
+    //     title: 'title',             //string
+    //     year: 2023,            //number
+    //     month: 6,              //number
+    //     day: 18,               //number
+    //     week: 0,                    //number
+    //     timeStart: 3,               //number, 0~47, 奇數為半小
+    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
+    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
+    //     location: 'eventData.location'        //string
+    // }],[],[],[],[],[],[]]);
+}
+
+
+function local_listEvents(searchText = '') {
+    let eventString = localStorage.getItem(eventKey);
+    let events = eventString ? JSON.parse(eventString) : [];
+    // console.log(events);
+    // if(events.lengh > 0) {
+    //     events = events.filter(e => {
+    //         return e.title.toLocaleLowerCase().indexOf(searchText.toLowerCase()) !== -1
+    //     });
+    // }
     let testEvent;
     return (testEvent = [[{
         id: uuid(),
@@ -24,46 +52,12 @@ export function listEvents() {
         day: 18,               //number
         week: 0,                    //number
         timeStart: 3,               //number, 0~47, 奇數為半小
-        timeEnd: 8,                 //number, 0~47, 奇數為半小
+        timeEnd: 8,                 //number, 1~48, 奇數為半小
         tags: ['eventData.tags'],               //array[obj, obj, ...]
         location: 'eventData.location'        //string
-    }],[{
-        id: uuid(),
-        type: 'event',              //string
-        title: 'title',             //string
-        year: 2023,            //number
-        month: 6,              //number
-        day: 19,               //number
-        week: 0,                    //number
-        timeStart: 10,               //number, 0~47, 奇數為半小
-        timeEnd: 20,                 //number, 0~47, 奇數為半小
-        tags: ['eventData.tags'],               //array[obj, obj, ...]
-        location: 'eventData.location'        //string
-    }],[{
-        id: uuid(),
-        type: 'event',              //string
-        title: 'title',             //string
-        year: 2023,            //number
-        month: 6,              //number
-        day: 18,               //number
-        week: 0,                    //number
-        timeStart: 40,               //number, 0~47, 奇數為半小
-        timeEnd: 48,                 //number, 0~47, 奇數為半小
-        tags: ['eventData.tags'],               //array[obj, obj, ...]
-        location: 'eventData.location'        //string
-    }],[],[],[],[]]);
-}
+    }],[],[],[],[],[],[]]);
+    //return events;
 
-
-function _listEvents(searchText = '') {
-    let eventString = localStorage.getItem(eventKey);
-    let events = eventString ? JSON.parse(eventString) : [];
-    // if(events.lengh > 0) {
-    //     events = events.filter(e => {
-    //         return e.title.toLocaleLowerCase().indexOf(searchText.toLowerCase()) !== -1
-    //     });
-    // }
-    return events;
 }
 
 export function createEvent(eventData) {
@@ -73,7 +67,7 @@ export function createEvent(eventData) {
 }
 
 
-function _createEvent(eventData) {
+function local_createEvent(eventData) {
     const newEvent = {
         id: uuid(),
         type: eventData.type,               //string
