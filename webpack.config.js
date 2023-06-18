@@ -28,7 +28,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'], // 處理檔案的副檔名
+    extensions: ['.js', '.jsx'], // 處理檔案的副檔名npm
   },
   devServer: {
     static: {
