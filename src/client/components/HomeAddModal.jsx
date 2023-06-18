@@ -10,11 +10,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/homePage/action"
+import { title } from 'process';
 
 
 const HomeAddModal = () => {
     const [user, authStatus] = useOutletContext();
     const posts = useSelector((state) => state.post.messages);
+    const [startDate, setStartDate] = useState(new Date());
     const dispatch = useDispatch();
   
     const {
@@ -23,11 +25,46 @@ const HomeAddModal = () => {
         addModalShow: state.homePage.addModalShow
     }));
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [addTag, setAddTag] = useState();
+    // const {
+    //   title,
+    //   date_year,
+    //   date_month,
+    //   date_day,
+    //   week,
+    //   timeStart,
+    //   timeEnd,
+    //   tags,
+    //   location,
+    // } = useSelector((state) => ({
+    //     title: state.addModal.title,
+    //     date_year: state.addModal.date_year,
+    //     date_month: state.addModal.date_month,
+    //     date_day: state.addModal.date_day,
+    //     week: state.addModal.week,
+    //     timeStart: state.addModal.timeStart,
+    //     timeEnd: state.addModal.titimeEndtle,
+    //     tags: state.addModal.tags,
+    //     location: state.addModal.location,
+    // }));
+
+    const titleChange = (text) => {
+      // console.log("ihihihihih~!~~~~~~~~~~~~");
+      // console.log(text);
+    }
 
     const handleAddEvent = () => {
-
+      // let temp = {
+      //   title: title,
+      //   date_year: date_year,
+      //   date_month: date_month,
+      //   date_day: date_day,
+      //   week: week,
+      //   timeStart: timeStart,
+      //   timeEnd: timeEnd,
+      //   tags: tags,
+      //   location: location,
+      // }
+      // dispatch(createEvent(temp))
     }
 
     // console.log("hi~~~~\n", startDate);
@@ -50,7 +87,7 @@ const HomeAddModal = () => {
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
                     <div className='col-10'>
-                    <Form.Control type="text" placeholder="Enter event title" />
+                    <Form.Control type="text" name='title' placeholder="Enter event title" onChange={() => titleChange("fuck you")}/>
                     </div>
                 </Form.Group>
 
