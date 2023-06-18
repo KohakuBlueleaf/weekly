@@ -42,14 +42,17 @@ const DefaultLayout = () => {
 
   return (
 
-    <Container fluid className='m-0 p-0 h-100 d-flex flex-column flex-row'>
+    <Container fluid className='m-0 p-0 h-100 d-flex flex-column flex-row max-h-100 justify-content-between'>
 
-      <TitleBar></TitleBar>
-      <div className='m-4'>
+      <TitleBar className='flex-shrink-0 w-100'></TitleBar>
+      <div className='flex-shrink-1 overflow-auto'>
         <Outlet context={[user, authStatus]}/>
       </div>
+      <div className='flex-shrink-0 w-100'>
+        <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
+      </div>
+      
       <HelpModal/>
-      <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
     </Container>
   )
 };
