@@ -11,7 +11,6 @@ import { addClose } from "../store/todo/action"
 
 const TodoAddModal = () => {
     const [user, authStatus] = useOutletContext();
-    const posts = useSelector((state) => state.post.messages);
     const dispatch = useDispatch();
   
     const {

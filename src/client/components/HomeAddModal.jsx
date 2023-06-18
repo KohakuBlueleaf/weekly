@@ -11,10 +11,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/homePage/action"
 
+import { setInput } from '../store/posts/action';
+import { createEvent } from '../store/posts/action';
+
 
 const HomeAddModal = () => {
     const [user, authStatus] = useOutletContext();
-    const posts = useSelector((state) => state.post.messages);
     const dispatch = useDispatch();
   
     const {
@@ -23,19 +25,33 @@ const HomeAddModal = () => {
         addModalShow: state.homePage.addModalShow
     }));
     
+    let inputState;
+
     const updateInput = () => {
-      // dispatch(setInput({
+      // console.log({
       //   title: title,
       //   tag: tag,
       //   time: time,
-      //   repeat: repeat
-      // }))
+      // })
+      // console.log(startDate.getDate());
+      inputState = {
+        title: title,
+        date_year: startDate.getFullYear(),
+        date_month: startDate.getMonth() + 1,
+        date_day: startDate.getDate(),
+        week: startDate.getDay(),
+        timeStart: -1,
+        timeEnd: -1,
+        tags: tag,
+        location: location,
+      }
+      dispatch(setInput(inputState))
     }
     
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
     const [time, setTime] = useState("");
-    const [repeat, setRepeat] = useState("");
+    const [location, setLocation] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     return (
         <Modal
@@ -53,7 +69,9 @@ const HomeAddModal = () => {
           <Modal.Body>
             <Form
               onSubmit={(e) => {
+                updateInput();
                 e.preventDefault();
+                createEvent(inputState);
                 //call api at here
               }}
             >
@@ -98,22 +116,18 @@ const HomeAddModal = () => {
                       </Form.Select>
                   </div>
                 </Form.Group>
+
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                  <Form.Label className='col-2 align-self-center m-0'>Location:</Form.Label>
+                    <div className='col-10'>
+                    <Form.Control type="text" name='title' placeholder="Enter event location" 
+                      onChange={(e) => {setLocation(e.target.value); updateInput()}}/>
+                    </div>
+                </Form.Group>
   
                 <Form.Group className="d-flex flex-row row mb-3" controlId="formBasicCheckbox">
                   <Form.Check className='col-2' type="checkbox" label="todo" />
                   <Form.Check className='col-2' type="checkbox" label="event" />
-                </Form.Group>
-  
-                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-                  <Form.Label className='col-2 align-self-center m-0'>Repeat:</Form.Label>
-                  <div className='col-10'>
-                      <Form.Select aria-label="Default select example">
-                      <option>selece a tag</option>
-                      <option>daily</option>
-                      <option>weekly</option>
-                      <option>monthly</option>
-                      </Form.Select>
-                  </div>
                 </Form.Group>
               <Modal.Footer>
                   <Button variant="primary" type="submit">

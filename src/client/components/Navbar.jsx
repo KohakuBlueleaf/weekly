@@ -27,6 +27,7 @@ import { GrTag, GrAddCircle } from "react-icons/gr";
 import { FiSettings } from "react-icons/fi";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io"; 
 import { MdAddCircleOutline, MdAddCircle } from "react-icons/md";
+import { ImNewspaper } from "react-icons/im";
 
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
@@ -106,7 +107,7 @@ const OffcanvasExample = (props) => {
             </div>
             <Nav className="justify-content-end flex-grow-1 pe-3 nav-link-wrapper">
               <Link className="nav-link" to='/' onClick={navclose}><RxHome className='nav-link-icon'/>Home</Link>
-              <Link className="nav-link" to='/management' onClick={navclose}>Management</Link>
+              <Link className="nav-link" to='/management' onClick={navclose}><ImNewspaper className='nav-link-icon'/>Management</Link>
               <Link className="nav-link" to='/tags' onClick={navclose}><GrTag className='nav-link-icon'/>Tags</Link>
               <Link className="nav-link" onClick={hadleHelpClick}><RxQuestionMarkCircled className='nav-link-icon'/>Helps</Link>
               <Link className="nav-link" to='/settings' onClick={navclose}><FiSettings className='nav-link-icon'/>Settings</Link>

@@ -57,6 +57,7 @@ function local_listEvents(searchText = '') {
         location: 'eventData.location'        //string
     }],[],[],[],[],[],[]]);
     //return events;
+
 }
 
 export function createEvent(eventData) {

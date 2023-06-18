@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Event extends Model {
+  class Todo extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,31 +11,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Event.belongsToMany(models.Tag, {
-        through: models.Event_Tag,
+      Todo.belongsToMany(models.Tag, {
+        through: models.Todo_Tag,
         as: 'tags',
       })
-      Event.hasMany(models.Event_Tag)
-      Event.belongsTo(models.User, {
+      Todo.hasMany(models.Todo_Tag)
+      Todo.belongsTo(models.User, {
         as: 'owner',
         foreignKey: 'ownerId',
       })
     }
   }
-  Event.init({
-    ownerId: DataTypes.INTEGER,
-    type: DataTypes.STRING,
-    title: DataTypes.STRING,
+  Todo.init({
+    content: DataTypes.STRING,
+    completed: DataTypes.BOOLEAN,
     year: DataTypes.INTEGER,
     month: DataTypes.INTEGER,
     day: DataTypes.INTEGER,
-    weekday: DataTypes.INTEGER,
-    timeStart: DataTypes.INTEGER,
-    timeEnd: DataTypes.INTEGER,
-    location: DataTypes.STRING,
+    weekday: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Event',
+    modelName: 'Todo',
   });
-  return Event;
+  return Todo;
 };
