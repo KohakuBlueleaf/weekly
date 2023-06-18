@@ -1,13 +1,16 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/homePage/action"
+
 
 const HomeAddModal = () => {
     const [user, authStatus] = useOutletContext();
@@ -19,6 +22,15 @@ const HomeAddModal = () => {
     } = useSelector((state) => ({
         addModalShow: state.homePage.addModalShow
     }));
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [addTag, setAddTag] = useState();
+
+    const handleAddEvent = () => {
+
+    }
+
+    // console.log("hi~~~~\n", startDate);
   
     return (
         <Modal
@@ -36,24 +48,32 @@ const HomeAddModal = () => {
           <Modal.Body>
             <Form>
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
+                  <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
                     <div className='col-10'>
                     <Form.Control type="text" placeholder="Enter event title" />
                     </div>
                 </Form.Group>
-                  <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
+
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                  <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
+                    <div className='col-10'>
+                      <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                    </div>
+                </Form.Group>
+
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
                   <div className='col-10'>
                       <Form.Select aria-label="Default select example">
-                      <option>selece a tag</option>
-                      <option>Math</option>
-                      <option>Algo</option>
-                      <option>OS</option>
+                        <option>selece a tag</option>
+                        <option>Math</option>
+                        <option>Algo</option>
+                        <option>OS</option>
                       </Form.Select>
                   </div>
-                  </Form.Group>
+                </Form.Group>
   
-                  <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Time:</Form.Label>
                   <div className='col-10'>
                       <Form.Select aria-label="Default select example">
@@ -63,14 +83,14 @@ const HomeAddModal = () => {
                       <option>OS</option>
                       </Form.Select>
                   </div>
-                  </Form.Group>
+                </Form.Group>
   
-                  <Form.Group className="d-flex flex-row row mb-3" controlId="formBasicCheckbox">
+                <Form.Group className="d-flex flex-row row mb-3" controlId="formBasicCheckbox">
                   <Form.Check className='col-2' type="checkbox" label="todo" />
                   <Form.Check className='col-2' type="checkbox" label="event" />
-                  </Form.Group>
+                </Form.Group>
   
-                  <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Repeat:</Form.Label>
                   <div className='col-10'>
                       <Form.Select aria-label="Default select example">
@@ -80,13 +100,14 @@ const HomeAddModal = () => {
                       <option>monthly</option>
                       </Form.Select>
                   </div>
-                  </Form.Group>
-                </Form>
-                <Modal.Footer>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Modal.Footer>
+                </Form.Group>
+
+            </Form>
+              <Modal.Footer>
+                  <Button variant="primary" type="submit" onClick={handleAddEvent}>
+                      Submit
+                  </Button>
+              </Modal.Footer>
             </Modal.Body>
         </Modal>
     );

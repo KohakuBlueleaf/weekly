@@ -21,3 +21,4 @@ export function filterClose() {
     type: 'HOME_FILTER_CLOSE'
   }
 }
+
