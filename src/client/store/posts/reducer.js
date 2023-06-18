@@ -1,5 +1,6 @@
 const initAddModalState = {
   event: [],
+  type: 'events',
   title: '',
   date_year: -1,
   date_month: -1,
@@ -16,6 +17,7 @@ export const addModalReducer = (state = initAddModalState, action) => {
       case 'SET_INPUT':
         return {
           ...state,
+          type: action.input.type,
           title: action.input.title,
           date_year: action.input.date_year,
           date_month: action.input.date_month,
@@ -29,7 +31,7 @@ export const addModalReducer = (state = initAddModalState, action) => {
       case 'END_LIST_POSTS':
         return {
           ...state,
-          post: action.posts
+          event: action.event,
         }
     // case 'SET_TITLE':
     //   return {

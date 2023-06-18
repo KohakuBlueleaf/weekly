@@ -12,18 +12,18 @@ export const cleanMessage = () => ({
 
 
 
-export function endListEvents(posts) {
+export function endListEvents(events) {
   return {
     type: 'END_LIST_POSTS',
-    posts
+    events
   }
 }
 
 export function listEvents() {
   return (dispatch, getState) => {
     // dispatch(startLoading());
-    return listPostsFromApi(/*searchText*/).then(posts => {
-        dispatch(endListEvents(posts));
+    return listPostsFromApi(/*searchText*/).then(events => {
+        dispatch(endListEvents(events));
     }).catch(err => {
         console.error('Error listing posts', err);
     }).then(() => {
@@ -35,7 +35,7 @@ export function listEvents() {
 export function createEvent(eventdata/*, filter*/) {
   return (dispatch, getState) => {
       // dispatch(startLoading());
-      return createEventFromApi(eventdata).then(posts => {
+      return createEventFromApi(eventdata).then(events => {
           dispatch(listEvents());
       }).catch(err => {
           console.error('Error creating posts', err);
