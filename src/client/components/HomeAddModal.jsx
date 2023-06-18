@@ -53,6 +53,7 @@ const HomeAddModal = () => {
       dispatch(setInput(inputState))
     }
     
+    const [todoSelect, setTodoSelect] = useState(false);
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
     const [timeStart, setTimeStart] = useState("");
@@ -101,7 +102,7 @@ const HomeAddModal = () => {
                   <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
                     <div className='col-10 date-picker'>
                     <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
-                      <MobileDatePicker onChange={(date) => {setStartDate(date.$d); updateInput()}}/>
+                      <MobileDatePicker onChange={(date) => {if (date) {setStartDate(date.$d); updateInput()}}}/>
                     </LocalizationProvider>
                     </div>
                 </Form.Group>
@@ -110,7 +111,7 @@ const HomeAddModal = () => {
                   <Form.Label className='col-2 align-self-center m-0'>Start: </Form.Label>
                     <div className='col-10 date-picker'>
                     <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
-                      <MobileTimePicker onChange={(e) => {setTimeStart(e.$d); updateInput()}}/>
+                      <MobileTimePicker disabled={todoSelect ? true : false} onChange={(e) => {if (e) {setTimeStart(e.$d); updateInput()}}}/>
                     </LocalizationProvider>
                     </div>
                 </Form.Group>
@@ -119,7 +120,7 @@ const HomeAddModal = () => {
                   <Form.Label className='col-2 align-self-center m-0'>End: </Form.Label>
                     <div className='col-10 date-picker'>
                     <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
-                      <MobileTimePicker onChange={(e) => {setTimeEnd(e.$d); updateInput()}}/>
+                      <MobileTimePicker disabled={todoSelect ? true : false} onChange={(e) => {if (e) {setTimeEnd(e.$d); updateInput()}}}/>
                     </LocalizationProvider>
                     </div>
                 </Form.Group>
@@ -136,19 +137,6 @@ const HomeAddModal = () => {
                       </Form.Select>
                   </div>
                 </Form.Group>
-  
-                {/* <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-                  <Form.Label className='col-2 align-self-center m-0'>Time:</Form.Label>
-                  <div className='col-10'>
-                      <Form.Select aria-label="Default select example" 
-                      onChange={(e) => {setTime(e.target.value); updateInput()}}>
-                      <option>selece a tag</option>
-                      <option>Math</option>
-                      <option>Algo</option>
-                      <option>OS</option>
-                      </Form.Select>
-                  </div>
-                </Form.Group> */}
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Location:</Form.Label>
@@ -159,8 +147,10 @@ const HomeAddModal = () => {
                 </Form.Group>
   
                 <Form.Group className="d-flex flex-row row mb-3" controlId="formBasicCheckbox">
-                  <Form.Check className='col-2' type="checkbox" label="todo" />
-                  <Form.Check className='col-2' type="checkbox" label="event" />
+                  <div>
+                    <Form.Check className='col-2 form-check-inline' name='group1' type="radio" label="Event" checked onClick={() => setTodoSelect(false)}/>
+                    <Form.Check className='col-2 form-check-inline' name='group1' type="radio" label="Todo" onClick={() => setTodoSelect(true)}/>
+                  </div>
                 </Form.Group>
               <Modal.Footer>
                   <Button variant="primary" type="submit">
