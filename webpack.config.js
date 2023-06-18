@@ -18,6 +18,7 @@ module.exports = {
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'], // Babel 預設設定
           },
+          
         },
       },
       { //for import 'xxx.css'

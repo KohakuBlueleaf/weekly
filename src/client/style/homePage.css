@@ -1,0 +1,14 @@
+.lgcheckbox input {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin-right: 0.5rem;
+}
+
+.lgcheckbox label {
+    align-self: center !important;
+}
+
+.homepage{
+    height: 100%;
+    max-height: 100%;
+}

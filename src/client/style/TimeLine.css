@@ -1,0 +1,19 @@
+.TimeLineItem-col {
+    width: 13.3333333334% !important;
+}
+
+.TimeLineMonth-col {
+    width: 6.6666666667% !important;
+}
+
+.main-time-line{
+    height: 80vh !important;
+    overflow-y: auto;
+}
+.main-time-line::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.TimeLineItemEvent{
+    background-color: grey;
+}

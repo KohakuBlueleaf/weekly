@@ -3,31 +3,38 @@ import { Routes, BrowserRouter, Route } from 'react-router-dom';
 
 import DefaultLayout from './layouts/default';
 import EmptyLayout from './layouts/empty';
-import Post from './pages/Post';
 import Home from './pages/Home';
 import Login from './pages/Login'
 import Settings from './pages/Settings';
-import TagsEvent from './pages/TagsEvent';
-import TagsRoutine from './pages/TagsRoutine';
-import TagsTodo from './pages/TagsTodo';
-
-
+import Event from './pages/Event';
+import Routine from './pages/Routine';
+import Todo from './pages/Todo';
+import Tags from './pages/Tags';
+import Daily from './pages/Daily';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<DefaultLayout/>}>
-          <Route path="/" element={<Home />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/tags" element={<TagsEvent />} />
-          <Route path="/routine" element={<TagsRoutine />} />
-          <Route path="/todo" element={<TagsTodo />} />
-          {/* <Route path="/helps" element={<Help />} /> */}
-          <Route path="/settings" element={<Settings />} />
+          <Route index={true} path="" element={<Home />} />
+          <Route path="/daily" element={<Daily/>} />
+          <Route path="/management" element={<Event/>} />
+          <Route path="/management/routine" element={<Routine/>} />
+          <Route path="/management/todo" element={<Todo/>} />
+          <Route path="/tags" element={<Tags/>} />
+          <Route path="settings" element={<Settings />} />
+          
+          {/* Example for nested routes */}
+          <Route path="test">
+            {/* /test */}
+            <Route index={true} element={<Event />} /> 
+            {/* /test/event */}
+            <Route index={false} path="event" element={<Event />} />
+          </Route>
         </Route>
-        <Route element={<EmptyLayout/>}>
-          <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<EmptyLayout/>}>
+          <Route index={true} element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
