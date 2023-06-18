@@ -10,8 +10,6 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Button } from 'react-bootstrap';
 import { EditText, EditTextarea } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
-import '../style/navbar.css'
-
 import { navToggle, navClose } from '../store/navbar/action';
 import { connect, useSelector, useDispatch } from 'react-redux';
 
@@ -22,6 +20,7 @@ import { addToggle as todoAddToggle } from '../store/todo/action';
 import { helpToggle } from '../store/help/action';
 import ManTab from './ManTab';
 import NavbarProfile from './NavbarProfile';
+import '../style/Navbar.css'
 
 import { RxHome, RxQuestionMarkCircled } from "react-icons/rx";
 import { GrTag } from "react-icons/gr";

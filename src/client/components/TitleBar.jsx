@@ -4,11 +4,7 @@ import { Link, useNavigate, useLocation, Route, Routes} from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { filterToggle } from '../store/homePage/action';
 import { filterToggle as eventFilterToggle } from '../store/event/action';
 import { filterToggle as todoFilterToggle } from '../store/todo/action'; 

@@ -16,6 +16,7 @@
 .write-down-sth-wrapper>textarea{
   height: 100% !important;
   background-color: #FFF8F0;
+
 }
 
 @media (max-width: 576px) {
@@ -46,6 +47,7 @@
   text-align: center;
 }
 
+
 .nav-link-wrapper {
   margin-top: 0.25rem;
   margin-left: 20% !important;
@@ -54,4 +56,11 @@
 
 .nav-link-icon {
   margin-right: 0.25rem;
+
+/* 248,249,250 */
+
+.bottom-bar {
+  flex-direction: row;
+  justify-content: space-between;
+
 }
