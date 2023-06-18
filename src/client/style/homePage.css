@@ -12,3 +12,7 @@
     height: 100%;
     max-height: 100%;
 }
+
+.date-picker div {
+    width: 100% !important;
+}

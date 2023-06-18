@@ -6,7 +6,10 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
+import { MobileDatePicker  } from '@mui/x-date-pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/homePage/action"
@@ -14,6 +17,7 @@ import { addClose } from "../store/homePage/action"
 import { setInput } from '../store/posts/action';
 import { createEvent } from '../store/posts/action';
 
+import '../style/homePage.css';
 
 const HomeAddModal = () => {
     const [user, authStatus] = useOutletContext();
@@ -83,11 +87,20 @@ const HomeAddModal = () => {
                     </div>
                 </Form.Group>
 
-                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                {/* <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
                     <div className='col-10'>
                       <DatePicker selected={startDate} 
                       onChange={(date) => {setStartDate(date); updateInput()}} />
+                    </div>
+                </Form.Group> */}
+
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                  <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
+                    <div className='col-10 date-picker'>
+                    <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
+                      <MobileDatePicker onChange={(date) => {setStartDate(date.$d); updateInput()}}/>
+                    </LocalizationProvider>
                     </div>
                 </Form.Group>
 
