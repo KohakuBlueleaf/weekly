@@ -14,19 +14,18 @@ export function listEvents() {
     // });
 
     //test
-
     let testEvent;
     return (testEvent = [[{
         id: uuid(),
         type: 'event',              //string
         title: 'title',             //string
-        date_year: 2023,          //number
-        date_month: 6,        //number
-        date_day: 18,            //number
-        week: 0,                 //number
-        timeStart: 3,     //number, 0~47, 奇數為半小
-        timeEnd: 8,         //number, 0~47, 奇數為半小
-        tags: ['eventData.tags'],               //array
+        year: 2023,            //number
+        month: 6,              //number
+        day: 18,               //number
+        week: 0,                    //number
+        timeStart: 3,               //number, 0~47, 奇數為半小
+        timeEnd: 8,                 //number, 0~47, 奇數為半小
+        tags: ['eventData.tags'],               //array[obj, obj, ...]
         location: 'eventData.location'        //string
     }],[],[],[],[],[],[]]);
 }

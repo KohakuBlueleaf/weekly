@@ -165,6 +165,7 @@ function getPageData(PageDate) {
 
 import "../style/TimeLine.css"
 import { from } from 'webpack-sources/lib/CompatSource';
+import { element } from 'prop-types';
 
 const TimeLine = () => {
   const [user, authStatus] = useOutletContext();
@@ -189,48 +190,30 @@ const TimeLine = () => {
 
   let data = [];
   for(let j=0; j<7; j++){
-    // data.push([]);
-    // for(let i=0; i<48; i++){
-    //   data[j].push({
-    //     name: i,
-    //     time: i,
-    //     type: 'empty',
-    //     duration: 1
-    //   })
-    // }
-    data = PageData.map((element)=>{
-      let ColData = element.map(el=>{
-        let initData = {
-          name: el.title,
-          time: el.timeStart,
-          type: el.type,
-          duration: el.timeEnd-el.timeStart
-        }
-        return initData;
+    data.push([]);
+    for(let i=0; i<48; i++){
+      data[j].push({
+        name: i,
+        time: i,
+        type: 'empty',
+        duration: 1
       })
-      return ColData;
+    }
+  }
+
+  for(let j=0; j<7; j++) {
+    PageData[j].map(element => {
+      for(let k=element.timeStart; k<=element.timeEnd; k++) {
+        data[j][k] = {
+          name: element.title,
+          time: k,
+          type: element.type,
+          duration: 1
+        }
+      }
     })
   }
   console.log(data);
-  
-  for(let i=0; i<10; i++){
-    // let date = Math.floor(Math.random() * 7);
-    // let time = Math.floor(Math.random() * 48);
-    // let duration = Math.floor(Math.random() * (48-time)) + 1;
-    // if(duration<=1){
-    //   duration = 1;
-    // }
-    // if(duration>=(48-time)){
-    //   duration = (48-time);
-    // }
-    // addEvent(data, {
-    //   name: 'test' + i,
-    //   time: time,
-    //   type: 'thing',
-    //   duration: duration
-    // }, date)
-  }
-  
 
   return (
     <div className='container d-flex flex-column h-100'>
