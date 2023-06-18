@@ -23,9 +23,10 @@ import NavbarProfile from './NavbarProfile';
 import '../style/navbar.css'
 
 import { RxHome, RxQuestionMarkCircled } from "react-icons/rx";
-import { GrTag } from "react-icons/gr";
+import { GrTag, GrAddCircle } from "react-icons/gr";
 import { FiSettings } from "react-icons/fi";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io"; 
+import { MdAddCircleOutline } from "react-icons/md";
 
 const OffcanvasExample = (props) => {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ const OffcanvasExample = (props) => {
         {/\/$/.test(currentLocation.pathname) && <Link className="nav-link" to='/daily' onClick={navclose}><IoIosArrowUp className='navbar-arrow'/></Link>}
         {/\/daily$/.test(currentLocation.pathname) && <Link className="nav-link" to='/' onClick={navclose}><IoIosArrowDown className='navbar-arrow'/></Link>}
         {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
-        {!/settings$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-danger" type="submit" onClick={handleAddClick}>Add</button>}
+        {!/settings$/.test(currentLocation.pathname) && <MdAddCircleOutline className='navbar-add-icon' onClick={handleAddClick}/>}
         <Navbar.Offcanvas
           className='smoffcanvas'
           show={navshow}
