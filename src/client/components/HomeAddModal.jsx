@@ -7,7 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import DatePicker from "react-datepicker";
-import { MobileDatePicker  } from '@mui/x-date-pickers';
+import { MobileDatePicker, MobileTimePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import "react-datepicker/dist/react-datepicker.css";
@@ -38,14 +38,15 @@ const HomeAddModal = () => {
       //   time: time,
       // })
       // console.log(startDate.getDate());
+      console.log("time start: ~~~~~~~~~", timeStart);
       inputState = {
         title: title,
         date_year: startDate.getFullYear(),
         date_month: startDate.getMonth() + 1,
         date_day: startDate.getDate(),
         week: startDate.getDay(),
-        timeStart: -1,
-        timeEnd: -1,
+        timeStart: timeStart ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
+        timeEnd: timeEnd ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
         tags: tag,
         location: location,
       }
@@ -54,7 +55,8 @@ const HomeAddModal = () => {
     
     const [title, setTitle] = useState("");
     const [tag, setTag] = useState("");
-    const [time, setTime] = useState("");
+    const [timeStart, setTimeStart] = useState("");
+    const [timeEnd, setTimeEnd] = useState("");
     const [location, setLocation] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     return (
@@ -104,6 +106,24 @@ const HomeAddModal = () => {
                     </div>
                 </Form.Group>
 
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                  <Form.Label className='col-2 align-self-center m-0'>Start: </Form.Label>
+                    <div className='col-10 date-picker'>
+                    <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
+                      <MobileTimePicker onChange={(e) => {setTimeStart(e.$d); updateInput()}}/>
+                    </LocalizationProvider>
+                    </div>
+                </Form.Group>
+
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                  <Form.Label className='col-2 align-self-center m-0'>End: </Form.Label>
+                    <div className='col-10 date-picker'>
+                    <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
+                      <MobileTimePicker onChange={(e) => {setTimeEnd(e.$d); updateInput()}}/>
+                    </LocalizationProvider>
+                    </div>
+                </Form.Group>
+
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
                   <div className='col-10'>
@@ -117,7 +137,7 @@ const HomeAddModal = () => {
                   </div>
                 </Form.Group>
   
-                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
+                {/* <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Time:</Form.Label>
                   <div className='col-10'>
                       <Form.Select aria-label="Default select example" 
@@ -128,7 +148,7 @@ const HomeAddModal = () => {
                       <option>OS</option>
                       </Form.Select>
                   </div>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Location:</Form.Label>
