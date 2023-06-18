@@ -10,6 +10,8 @@ import { filterToggle as eventFilterToggle } from '../store/event/action';
 import { filterToggle as todoFilterToggle } from '../store/todo/action'; 
 import { tagsThemeToggle } from '../store/tags/action';
 
+import { FiFilter } from "react-icons/fi";
+
 import "../style/titlebar.css"
 
 function TitleBar() {
@@ -44,9 +46,11 @@ function TitleBar() {
           <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar bg-transparent'>
               <Container fluid>
                   <Navbar.Brand href="#" className='navbar-brand'>Weekly</Navbar.Brand>
-                  {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-success" type="submit" onClick={handleFilterClick}>Filter</button>}
+                  <div className='ml-auto'>
+                    {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && <FiFilter className='filter-icon' onClick={handleFilterClick}/>}
+                  </div>
                   {/tags$/.test(currentLocation.pathname) && <button className="rounded-circle btn btn-outline-warning" type="submit" onClick={() => dispatch(tagsThemeToggle())}>Theme</button>}
-                  </Container>
+              </Container>
           </Navbar>
         </Container>
     );

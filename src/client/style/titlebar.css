@@ -15,3 +15,8 @@
 .navbar-brand {
     color: white !important;
 }
+
+.filter-icon {
+    cursor: pointer;
+    color: white;
+}
