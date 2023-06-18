@@ -30,7 +30,7 @@ const HomeAddModal = () => {
 
     const updateInput = () => {
       inputState = {
-        type: 'event',
+        type: 'events',
         title: title,
         date_year: startDate.getFullYear(),
         date_month: startDate.getMonth() + 1,
