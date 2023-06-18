@@ -37,7 +37,6 @@ function _createTag(tagData) {
         id: uuid(),
         title: tagData.title,             //string
         color: tagData.color              //string
-     
     };
 
     const tags = [

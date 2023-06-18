@@ -10,18 +10,18 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "react-datepicker/dist/react-datepicker.css";
 
-import { addClose } from "../store/todo/action"
+import { tagsAddClose } from "../store/tags/action"
 
-import { setInput } from '../store/todo/action';
-import { createTodo } from '../store/todo/action';
+import { setInput } from '../store/tags/action';
+import { createTag } from '../store/tags/action';
 
-const TodoAddModal = () => {
+const TagAddModal = () => {
     const dispatch = useDispatch();
   
     const {
-        addModalShow,
+      tagsAddModalShow,
     } = useSelector((state) => ({
-        addModalShow: state.todo.addModalShow
+      tagsAddModalShow: state.tags.tagsAddModalShow,
     }));
 
     let inputState;
@@ -29,22 +29,17 @@ const TodoAddModal = () => {
     const updateInput = () => {
       inputState = {
         title: title,
-        date_year: startDate.getFullYear(),
-        date_month: startDate.getMonth() + 1,
-        date_day: startDate.getDate(),
-        week: startDate.getDay(),
-        tags: tag,
+        color: color,
       }
       dispatch(setInput(inputState));
     }
     
     const [title, setTitle] = useState("");
-    const [tag, setTag] = useState("");
-    const [startDate, setStartDate] = useState(new Date());
+    const [color, setColor] = useState("");
     return (
         <Modal
-          show={addModalShow}
-          onHide={() => dispatch(addClose())}
+          show={tagsAddModalShow}
+          onHide={() => dispatch(tagsAddClose())}
           size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
@@ -57,41 +52,32 @@ const TodoAddModal = () => {
           <Modal.Body>
             <Form
               onSubmit={(e) => {
-                console.log("aslkdnaskldnaklsdn~~~~~~~~~~")
                 updateInput();
                 // e.preventDefault();
-                createTodo(inputState);
+                createTag(inputState);
               }}
             >
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                  <Form.Label className='col-2 align-self-center m-0'>Title:</Form.Label>
+                  <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
                     <div className='col-10'>
-                    <Form.Control type="text" name='title' placeholder="Enter event title" 
+                    <Form.Control type="text" name='title' placeholder="Enter Tag name" 
                       onChange={(e) => {setTitle(e.target.value); updateInput()}}/>
                     </div>
                 </Form.Group>
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                  <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
-                    <div className='col-10 date-picker'>
-                    <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
-                      <MobileDatePicker onChange={(date) => {if (date) {setStartDate(date.$d); updateInput()}}}/>
-                    </LocalizationProvider>
+                  <Form.Label htmlFor="col-2 align-self-center m-0">Color picker:</Form.Label>
+                    <div className='col-10'>
+                        <Form.Control
+                            className='m-0'
+                            type="color"
+                            defaultValue="#17385B"
+                            title="Choose tags color"
+                            onChange={(e) => {setColor(e.target.value)}}
+                        />
                     </div>
                 </Form.Group>
 
-                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-                  <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
-                  <div className='col-10'>
-                      <Form.Select aria-label="Default select example" 
-                      onChange={(e) => {setTag(e.target.value); updateInput()}}>
-                        <option>selece a tag</option>
-                        <option>Math</option>
-                        <option>Algo</option>
-                        <option>OS</option>
-                      </Form.Select>
-                  </div>
-                </Form.Group>
                 <Modal.Footer>
                   <Button variant="primary" type="submit">
                       Submit
@@ -103,4 +89,4 @@ const TodoAddModal = () => {
     );
   };
   
-  export default TodoAddModal;
+  export default TagAddModal;

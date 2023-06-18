@@ -1,10 +1,24 @@
 const initTagsState = {
-    tagsAddModalShow: false,
-    tagsThemeModalShow: false,
+  tags:[],
+  title: '',
+  color: '',
+  tagsAddModalShow: false,
+  tagsThemeModalShow: false,
 };
 
 const tagsReducer = (state = initTagsState, action) => {
     switch (action.type) {
+      case 'SET_INPUT':
+        return {
+          ...state,
+          title: action.input.title,
+          color: action.input.color,
+        }
+      case 'END_LIST_TAGS':
+        return {
+          ...state,
+          tags: action.tags
+        }
       case 'TAGS_ADD_TOGGLE':
         return {
           ...state,

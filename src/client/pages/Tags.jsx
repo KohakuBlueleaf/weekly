@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useOutletContext, useNavigate } from "react-router-dom";
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
@@ -9,9 +8,9 @@ import Button from 'react-bootstrap/Button';
 
 import { tagsAddToggle, tagsAddClose, tagsThemeToggle, tagsThemeClose } from "../store/tags/action"
 import TagList from '../components/TagList';
+import TagAddModal from '../components/TagAddModal';
 
 const Tags = () => {
-  const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
 
   const {
@@ -21,11 +20,6 @@ const Tags = () => {
     tagsAddModalShow: state.tags.tagsAddModalShow,
     tagsThemeModalShow: state.tags.tagsThemeModalShow,
   }));
-
-  //Will be executed when this component be rendered
-  useEffect(()=>{
-    console.log(user, authStatus);
-  })
 
   return (
     <div>
@@ -66,7 +60,9 @@ const Tags = () => {
         </Modal.Body>
       </Modal>
 
-      <Modal
+      <TagAddModal/>
+
+      {/* <Modal
         show={tagsAddModalShow}
         onHide={() => dispatch(tagsAddClose())}
         size="md"
@@ -133,7 +129,7 @@ const Tags = () => {
                 </Button>
             </Modal.Footer>
             </Modal.Body>
-        </Modal>
+        </Modal> */}
     </div>
   );
 };

@@ -1,15 +1,13 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useOutletContext, useNavigate } from "react-router-dom";
 
 import { connect, useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import DatePicker from "react-datepicker";
 import { MobileDatePicker, MobileTimePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/homePage/action"
@@ -20,7 +18,6 @@ import { createEvent } from '../store/posts/action';
 import '../style/homePage.css';
 
 const HomeAddModal = () => {
-    const [user, authStatus] = useOutletContext();
     const dispatch = useDispatch();
   
     const {
@@ -32,25 +29,18 @@ const HomeAddModal = () => {
     let inputState;
 
     const updateInput = () => {
-      // console.log({
-      //   title: title,
-      //   tag: tag,
-      //   time: time,
-      // })
-      // console.log(startDate.getDate());
-      console.log("time start: ~~~~~~~~~", timeStart);
       inputState = {
         title: title,
         date_year: startDate.getFullYear(),
         date_month: startDate.getMonth() + 1,
         date_day: startDate.getDate(),
         week: startDate.getDay(),
-        timeStart: timeStart ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
-        timeEnd: timeEnd ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
+        timeStart: timeStart && !todoSelect ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
+        timeEnd: timeEnd && !todoSelect ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
         tags: tag,
         location: location,
       }
-      dispatch(setInput(inputState))
+      dispatch(setInput(inputState));
     }
     
     const [todoSelect, setTodoSelect] = useState(false);
@@ -77,7 +67,7 @@ const HomeAddModal = () => {
             <Form
               onSubmit={(e) => {
                 updateInput();
-                e.preventDefault();
+                // e.preventDefault();
                 createEvent(inputState);
                 //call api at here
               }}
@@ -89,14 +79,6 @@ const HomeAddModal = () => {
                       onChange={(e) => {setTitle(e.target.value); updateInput()}}/>
                     </div>
                 </Form.Group>
-
-                {/* <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                  <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
-                    <div className='col-10'>
-                      <DatePicker selected={startDate} 
-                      onChange={(date) => {setStartDate(date); updateInput()}} />
-                    </div>
-                </Form.Group> */}
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
@@ -148,7 +130,7 @@ const HomeAddModal = () => {
   
                 <Form.Group className="d-flex flex-row row mb-3" controlId="formBasicCheckbox">
                   <div>
-                    <Form.Check className='col-2 form-check-inline' name='group1' type="radio" label="Event" checked onClick={() => setTodoSelect(false)}/>
+                    <Form.Check className='col-2 form-check-inline' name='group1' type="radio" label="Event" defaultChecked onClick={() => setTodoSelect(false)}/>
                     <Form.Check className='col-2 form-check-inline' name='group1' type="radio" label="Todo" onClick={() => setTodoSelect(true)}/>
                   </div>
                 </Form.Group>
