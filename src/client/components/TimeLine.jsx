@@ -6,8 +6,6 @@ import TimeLineItem from './TimeLineItem';
 import TimeLineMonth from './TimeLineMonth';
 import TimeLineTitle from './TimeLineTitle';
 import '../style/TimeLine.css'
-import {listEvents, createEvent} from '../api/event.js'
-
 
 function addEvent(timeline, event, date) {
   //has bug, need fix
@@ -102,9 +100,11 @@ const TimeLine = () => {
         <TimeLineTitle week={'FRI'} date={26}/>
         <TimeLineTitle week={'SAT'} date={27}/>
       </div>
+
       <div>
         框框
       </div>
+
       <div className='row flex-shrink-1 main-time-line'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
           <div className='d-flex flex-column border TimeLine'>

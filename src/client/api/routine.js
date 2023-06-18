@@ -37,8 +37,10 @@ function _createRoutine(routineData) {
         id: uuid(),
         completed: routineData.completed,     //bool
         title: routineData.title,             //string
-        date: routineData.date,               //string, eg:06/18
+        year: routineData.year,               //number
+        month: routineData.month,             //number
         day: routineData.day,                 //number
+        week: routineData.week,               //number
         timeStart: eventData.timeStart,     //number, 0~47, 奇數為半小
         timeEnd: eventData.timeEnd,         //number, 0~47, 奇數為半小
         tags: routineData.tags,               //array[obj, obj, ...]
