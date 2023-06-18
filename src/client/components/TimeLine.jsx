@@ -201,30 +201,52 @@ const TimeLine = () => {
     }
   }
 
-  getPageData(PageDate).then((PageData) => {
-    if(PageData.length !== 0) {
-      for(let j=0; j<7; j++) {
-        PageData[j].map(element => {
-          for(let k=element.timeStart+1; k<element.timeEnd; k++) {
-            data[j][k] = {
-              name: 'non',
-              time: k,
-              type: 'empty',
-              duration: 0
-            }
-          }
-          data[j][element.timeStart] = {
-            name: element.title,
-            time: element.timeStart,
-            type: element.type,
-            duration: element.timeEnd-element.timeStart
-          }
-        })
-      }
-    }
+  //非同步
+  // getPageData(PageDate).then((PageData) => {
+  //   if(PageData.length !== 0) {
+  //     for(let j=0; j<7; j++) {
+  //       PageData[j].map(element => {
+  //         for(let k=element.timeStart+1; k<element.timeEnd; k++) {
+  //           data[j][k] = {
+  //             name: 'non',
+  //             time: k,
+  //             type: 'empty',
+  //             duration: 0
+  //           }
+  //         }
+  //         data[j][element.timeStart] = {
+  //           name: element.title,
+  //           time: element.timeStart,
+  //           type: element.type,
+  //           duration: element.timeEnd-element.timeStart
+  //         }
+  //       })
+  //     }
+  //   }
      
-  });
+  // });
 
+  let PageData = getPageData();
+  if(PageData.length !== 0) {
+    for(let j=0; j<7; j++) {
+      PageData[j].map(element => {
+        for(let k=element.timeStart+1; k<element.timeEnd; k++) {
+          data[j][k] = {
+            name: 'non',
+            time: k,
+            type: 'empty',
+            duration: 0
+          }
+        }
+        data[j][element.timeStart] = {
+          name: element.title,
+          time: element.timeStart,
+          type: element.type,
+          duration: element.timeEnd-element.timeStart
+        }
+      })
+    }
+  }
   
   return (
     <div className='container d-flex flex-column h-100'>
@@ -260,12 +282,12 @@ const TimeLine = () => {
           </div>
         </div>
         <TimeLineItem week={'SUN'} date={21} data={data[0]}/>
-        {/* <TimeLineItem week={'MON'} date={22} data={data[1]}/>
+        <TimeLineItem week={'MON'} date={22} data={data[1]}/>
         <TimeLineItem week={'TUE'} date={23} data={data[2]}/>
         <TimeLineItem week={'WED'} date={24} data={data[3]}/>
         <TimeLineItem week={'THU'} date={25} data={data[4]}/>
         <TimeLineItem week={'FRI'} date={26} data={data[5]}/>
-        <TimeLineItem week={'SAT'} date={27} data={data[6]}/> */}
+        <TimeLineItem week={'SAT'} date={27} data={data[6]}/>
       </div>
     </div>
   );

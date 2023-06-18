@@ -11,14 +11,11 @@ const TimeLineItem = (props) => {
 
   return (
     <div className='d-flex flex-column TimeLineItem-col p-0'>
-      {/* {console.log(props.data)}
-      {console.log('render')} */}
+      {console.log(props.data)}
+      {console.log('render')}
       <div className='d-flex flex-column border TimeLine'>
-        {console.log(props.data)}
         
-        {props.data.forEach(item => {
-          console.log(item.type);
-        })}
+        {console.log(props.data)}
         
         {props.data.map((item, index) => {
           return(
@@ -28,7 +25,7 @@ const TimeLineItem = (props) => {
               className={'border-bottom ' + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
             
               style={{height: 30*item.duration + 'px'}}
-            >{console.log(item.type)}{item.type=='empty' ? '' :item.name}</div>
+            >{console.log(item.type)}{item.type==='empty' ? '' :item.name}</div>
           )
         })}
         

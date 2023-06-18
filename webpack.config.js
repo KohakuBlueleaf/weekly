@@ -28,13 +28,13 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'], // 處理檔案的副檔名
+    extensions: ['.js', '.jsx'], // 處理檔案的副檔名npm
   },
   devServer: {
     static: {
       directory: path.join(__dirname, 'src/public'),
     },
-    open_page: false,
+    //open_page: false,
     compress: false,
     port: 9000,
     historyApiFallback: {
