@@ -9,14 +9,14 @@
 } */
 
 .titlebar {
-    background-color: #17385B;
+  background-color: #17385B;
 }
 
 .navbar-brand {
-    color: white !important;
+  color: white !important;
 }
 
 .filter-icon {
-    cursor: pointer;
-    color: white;
+  cursor: pointer;
+  color: white;
 }
