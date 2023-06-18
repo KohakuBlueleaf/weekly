@@ -11,7 +11,6 @@ import { addClose } from "../store/event/action"
 
 const EventAddModal = () => {
     const [user, authStatus] = useOutletContext();
-    const posts = useSelector((state) => state.post.messages);
     const dispatch = useDispatch();
   
     const {
