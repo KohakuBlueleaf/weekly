@@ -14,10 +14,7 @@ const TimeLineItem = (props) => {
     <div className='d-flex flex-column TimeLineItem-col p-0'>
       {/* {console.log(props.data)}
       {console.log('render')} */}
-      <div className='d-flex flex-column TimeLine'>
-        
-        {console.log('timelineitem:     asdadasdas', props.data)}
-        
+      <div className='d-flex flex-column TimeLine'>        
         {props.data.map((item, index) => {
           return(
             item.duration === 0 ? '' :
@@ -35,10 +32,6 @@ const TimeLineItem = (props) => {
             >{item.type==='empty' ? '' :item.name}</div>
           )
         })}
-        
-
-        {}
-
       </div>
     </div>
   );
