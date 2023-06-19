@@ -27,11 +27,15 @@ function filterSort(UnorderEvents, filter, date){
     //先對日期做篩選
 
     let events = [[],[],[],[],[],[],[]];
+    let routines = [[],[],[],[],[],[],[]];
 
     UnorderEvents.forEach((element) => {
         date.forEach(d => {
-            if(element.year === d.year && element.month === d.month && element.day === d.day) {
+            if(element.year === d.year && element.month === d.month && element.day === d.day && element.type === 'event') {
                 events[element.week].push(element);
+            }
+            else if(element.year === d.year && element.month === d.month && element.day === d.day && element.type === 'routine') {
+                routines[element.week].push(element);
             }
         })
     });
@@ -42,6 +46,11 @@ function filterSort(UnorderEvents, filter, date){
     else if(filter.tags && filter.tags.length === 0) {
         return events
     }
+    else {
+        //寫tag篩選
+    }
+
+
     
     return events;
 }
