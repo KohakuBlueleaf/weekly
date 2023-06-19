@@ -55,8 +55,8 @@ const TagAddModal = () => {
                 updateInput();
                 e.preventDefault();
                 await createTagFromApi(inputState, loginStatus);
-                dispatch(endListTags(await listTagsFromApi(getPageDate(), loginStatus)));
-                dispatch(addClose())
+                dispatch(endListTags(await listTagsFromApi(loginStatus)));
+                dispatch(tagsAddClose())
               }}
             >
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
