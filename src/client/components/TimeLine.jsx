@@ -150,12 +150,12 @@ function getPageDate() {
   return pageDates;
 }
 
-function getPageEvent(PageDate) {
-  return listEvents(PageDate);
+function getPageEvent(PageDate, login) {
+  return listEvents(PageDate, login);
 }
 
-function getPageRoutine(PageDate) {
-  return listRoutines(PageDate);
+function getPageRoutine(PageDate, login) {
+  return listRoutines(PageDate, login);
 }
 
 function pushPageData(PageData, data) {
@@ -188,6 +188,7 @@ import { from } from 'webpack-sources/lib/CompatSource';
 import { element } from 'prop-types';
 
 const TimeLine = () => {
+  const loginStatus = useSelector((state) => state.user.token);
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
   let PageDate = getPageDate();
@@ -216,10 +217,10 @@ const TimeLine = () => {
     }
   }
 
-  PageData = getPageEvent(PageDate);
+  PageData = getPageEvent(PageDate, loginStatus);
   if(PageData.length !== 0) pushPageData(PageData, data);
   
-  PageData = getPageRoutine(PageDate);
+  PageData = getPageRoutine(PageDate, loginStatus);
   if(PageData.length !== 0) pushPageData(PageData, data);
 
   return (

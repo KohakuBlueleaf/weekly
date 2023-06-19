@@ -23,14 +23,7 @@ date = {
 }
 */
 
-export function listEvents(date, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: []}, all = false) {
-    return local_listEvents(filter,date, all);
-}
-
-
-function local_listEvents(filter, date, all) {
-    let eventString = localStorage.getItem(eventKey);
-    let UnorderEvents = eventString ? JSON.parse(eventString) : [];
+function filterSort(UnorderEvents, filter, date, all){
     console.log(UnorderEvents);
 
     if(all === true) return UnorderEvents;
@@ -50,11 +43,26 @@ function local_listEvents(filter, date, all) {
     //filter還沒寫完
     
     if(filter.eventDisplay === false) events = [];
-    else if(filter.tags.length !== 0) {
+    else if(filter.tags && filter.tags.length !== 0) {
 
     }
     
     return events;
+}
+
+export function listEvents(date, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: []}, all = false, login) {
+    if(!login){
+        return local_listEvents(filter,date, all);
+    }else{
+        return server_listEvents(filter,date, all, login);
+    }
+}
+
+
+function local_listEvents(filter, date, all) {
+    let eventString = localStorage.getItem(eventKey);
+    let UnorderEvents = eventString ? JSON.parse(eventString) : [];
+    return filterSort(UnorderEvents, filter, date, all);
 
     // let testEvent = [];
 
@@ -158,9 +166,26 @@ function local_listEvents(filter, date, all) {
 
 }
 
-export function createEvent(eventData) {
-    console.log("hi api: ", eventData);
-    return local_createEvent(eventData);
+
+async function server_listEvents(date, filter, all, login) {
+    let UnorderEvents = await fetch('/api/event', {
+        method: 'GET',
+        headers: {
+            'idToken': login
+        }
+    })
+    return filterSort(UnorderEvents, filter, date, all);
+}
+
+
+export async function createEvent(eventData, login) {
+    if(!login){
+        console.log("hi local: ", eventData);
+        return local_createEvent(eventData);
+    }else{
+        console.log("hi api: ", eventData);
+        return await server_createEvent(eventData, login);
+    }
 }
 
 
@@ -186,5 +211,33 @@ function local_createEvent(eventData) {
     ];
 
     localStorage.setItem(eventKey, JSON.stringify(events));
+    return newEvent;
+}
+
+
+async function server_createEvent(eventData, login) {
+    const newEvent = {
+        type: 'event',               //string
+        title: eventData.title,             //string
+        year: eventData.year,               //number
+        month: eventData.month,             //number
+        day: eventData.day,            //number
+        weekday: eventData.week,               //number
+        timeStart: eventData.timeStart,     //number, 0~47, 奇數為半小
+        timeEnd: eventData.timeEnd,         //number, 0~47, 奇數為半小
+        tags: eventData.tags,               //array
+        location: eventData.location        //string
+    };
+
+    let result = await fetch('/api/event',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'idToken': login
+        },
+        body: JSON.stringify(newEvent)
+    });
+
+    console.log('sent', result);
     return newEvent;
 }

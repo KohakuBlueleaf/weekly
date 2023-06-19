@@ -35,11 +35,6 @@ const Home = () => {
     addModalShow: state.homePage.addModalShow,
     filterModalShow: state.homePage.filterModalShow,
   }));
-
-  //Will be executed when this component be rendered
-  useEffect(()=>{
-    console.log(user, authStatus);
-  })
   
   return (
     <div className='homepage'>
