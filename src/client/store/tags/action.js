@@ -24,7 +24,7 @@ export function tagsThemeClose() {
 
 export function endListTags(tags) {
   return {
-    type: 'END_LIST_TODOS',
+    type: 'END_LIST_TAGS',
     tags
   }
 }

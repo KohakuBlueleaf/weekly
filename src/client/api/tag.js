@@ -24,7 +24,7 @@ export async function getTagById(id, login) {
 }
 
 export async function listTags(login) {
-    console.log('listTags', )
+    console.log('listTags', login)
     if(!login){
         return local_listTags();
     }else{
