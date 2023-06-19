@@ -61,6 +61,8 @@ function filterSort(UnorderEvents, filter, date){
         if(events[index])
             element.push(...events[index]);
     })
+
+    console.log('merge is', merge);
     
     return merge;
 }
