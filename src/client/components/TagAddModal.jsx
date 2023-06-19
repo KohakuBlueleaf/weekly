@@ -5,15 +5,14 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { MobileDatePicker, MobileTimePicker } from '@mui/x-date-pickers';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "react-datepicker/dist/react-datepicker.css";
 
 import { tagsAddClose } from "../store/tags/action"
 
 import { setInput } from '../store/tags/action';
-import { createTag } from '../store/tags/action';
+import { endListTags } from '../store/tags/action';
+
+import { createTag as createTagFromApi, listTags as listTagsFromApi } from '../api/tag';
 
 const TagAddModal = () => {
     const dispatch = useDispatch();
@@ -23,6 +22,7 @@ const TagAddModal = () => {
     } = useSelector((state) => ({
       tagsAddModalShow: state.tags.tagsAddModalShow,
     }));
+    const loginStatus = useSelector((state) => state.user.token);
 
     let inputState;
 
@@ -51,10 +51,12 @@ const TagAddModal = () => {
           </Modal.Header>
           <Modal.Body>
             <Form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 updateInput();
-                // e.preventDefault();
-                createTag(inputState);
+                e.preventDefault();
+                await createTagFromApi(inputState, loginStatus);
+                dispatch(endListTags(await listTagsFromApi(loginStatus)));
+                dispatch(tagsAddClose())
               }}
             >
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
