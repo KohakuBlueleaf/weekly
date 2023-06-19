@@ -23,9 +23,7 @@ date = {
 }
 */
 
-function filterSort(UnorderEvents, filter, date, all){
-    if(all === true) return UnorderEvents;
-
+function filterSort(UnorderEvents, filter, date){
     //先對日期做篩選
 
     let events = [[],[],[],[],[],[],[]];
@@ -41,132 +39,34 @@ function filterSort(UnorderEvents, filter, date, all){
     //filter還沒寫完
     
     if(filter.eventDisplay === false) events = [];
-    else if(filter.tags && filter.tags.length !== 0) {
-
+    else if(filter.tags && filter.tags.length === 0) {
+        return events
     }
     
     return events;
 }
 
-export async function listEvents(date, login, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: []}, all = false) {
-    console.log('list', date, filter, all)
+export async function listEvents(date, login, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: []}) {
+    console.log('list', date, filter)
     if(!login){
-        return local_listEvents(filter, date, all);
+        return local_listEvents(filter, date);
     }else{
-        return await server_listEvents(filter, date, all, login);
+        return await server_listEvents(filter, date, login);
     }
 }
 
 
-function local_listEvents(filter, date, all) {
+function local_listEvents(filter, date) {
     let eventString = localStorage.getItem(eventKey);
     let UnorderEvents = eventString ? JSON.parse(eventString) : [];
-    return filterSort(UnorderEvents, filter, date, all);
-
-    // let testEvent = [];
-
-    // if(filter.eventDisplay === false) testEvent = [];
-    // else {
-    //     let allEvent = [[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    //     }]]
-    //     if(filter.tags.length !== 0) {
-    //         testEvent = allEvent.filter((e) => {
-
-    //         })
-    //     }
-    //     else testEvent = allEvent;
-    // }
-
-    // return testEvent;
-    
+    console.log('this is local');
+    console.log(UnorderEvents);
+    return filterSort(UnorderEvents, filter, date);
 
 }
 
 
-async function server_listEvents(filter, date, all, login) {
+async function server_listEvents(filter, date, login) {
     let res = await fetch('/api/event', {
         method: 'GET',
         headers: {
@@ -179,7 +79,7 @@ async function server_listEvents(filter, date, all, login) {
         console.log(UnorderEvents, date)
         return [[],[],[],[],[],[],[]]
     }
-    return filterSort(UnorderEvents, filter, date, all);
+    return filterSort(UnorderEvents, filter, date);
 }
 
 
@@ -197,7 +97,7 @@ export async function createEvent(eventData, login) {
 function local_createEvent(eventData) {
     const newEvent = {
         id: uuid(),
-        type: 'event',               //string
+        type: eventData.type,               //string
         title: eventData.title,             //string
         year: eventData.year,               //number
         month: eventData.month,             //number
@@ -210,10 +110,12 @@ function local_createEvent(eventData) {
     };
 
     console.log('sent');
-    const events = [
-        newEvent,
-        ...listEvents([],{},true)
-    ];
+    
+    let eventString = localStorage.getItem(eventKey);
+    let old_Events = eventString ? JSON.parse(eventString) : [];
+    console.log(old_Events);
+
+    let events = [newEvent, ...old_Events];
 
     localStorage.setItem(eventKey, JSON.stringify(events));
     return newEvent;
@@ -222,7 +124,7 @@ function local_createEvent(eventData) {
 
 async function server_createEvent(eventData, login) {
     const newEvent = {
-        type: 'event',               //string
+        type: eventData.type,               //string
         title: eventData.title,             //string
         year: eventData.year,               //number
         month: eventData.month,             //number
