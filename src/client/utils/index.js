@@ -97,3 +97,18 @@ export function getPageDate() {
   // }
   return pageDates;
 }
+
+export function getToday() {
+  let today = new Date();
+  const thisYear = today.getFullYear();
+  const thisWeek = today.getDay();
+  const thisMonth = today.getMonth()+1;
+  const thisDate = today.getDate();
+
+  return {
+    year: thisYear,
+    month: thisMonth,
+    day: thisDate,
+    week: thisWeek
+  }
+}
