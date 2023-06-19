@@ -47,6 +47,18 @@ export function timeLineTitleModalClose() {
   }
 }
 
+export function homeEventFilterToggle() {
+  return {
+    type: 'HOME_EVENT_FILTER_TOGGLE',
+  }
+}
+
+export function homeRoutineFilterToggle() {
+  return {
+    type: 'HOME_ROUTINE_FILTER_TOGGLE',
+  }
+}
+
 // event action
 // export function setTitle(title) {
 //   return {

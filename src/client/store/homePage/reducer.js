@@ -13,6 +13,8 @@ const initHomePageState = {
     filterModalShow: false,
     timeLineModalShow: false,
     timeLineTitleModalShow: false,
+    eventFilter: true,
+    routineFilter: true,
 };
 
 const homePageReducer = (state = initHomePageState, action) => {
@@ -67,6 +69,16 @@ const homePageReducer = (state = initHomePageState, action) => {
       return {
         ...state,
         timeLineTitleModalShow: false,
+      }
+    case 'HOME_EVENT_FILTER_TOGGLE':
+      return {
+        ...state,
+        eventFilter: !state.eventFilter,
+      }
+    case 'HOME_ROUTINE_FILTER_TOGGLE':
+      return {
+        ...state,
+        routineFilter: !state.routineFilter,
       }
     default:
       return state;
