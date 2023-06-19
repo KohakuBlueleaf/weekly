@@ -10,9 +10,11 @@ import DailyBar from '../components/DailyBar';
 import DailyTree from '../components/DailyTree';
 import DailyTodo from '../components/DailyTodo';
 
+import "../style/daily.css";
+
 function Daily() {
   return (
-    <div>
+    <div className='d-flex flex-column daily-wrapper'>
         <DailyBar></DailyBar>
         <DailyTree></DailyTree>
         <DailyTodo></DailyTodo>
