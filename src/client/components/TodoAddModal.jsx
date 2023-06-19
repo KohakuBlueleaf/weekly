@@ -9,11 +9,14 @@ import { MobileDatePicker, MobileTimePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "react-datepicker/dist/react-datepicker.css";
+import HomeAddModalTag from './HomeaddModalTag';
 
 import { addClose } from "../store/todo/action"
 
 import { setInput } from '../store/todo/action';
-import { createTodo } from '../store/todo/action';
+import { endListTodos } from '../store/todo/action';
+
+import { listTodos as listTodosFromApi, createTodo as createTodoFromApi } from '../api/todo';
 
 const TodoAddModal = () => {
     const dispatch = useDispatch();
@@ -23,16 +26,18 @@ const TodoAddModal = () => {
     } = useSelector((state) => ({
         addModalShow: state.todo.addModalShow
     }));
+    const loginStatus = useSelector((state) => state.user.token);
 
     let inputState;
 
     const updateInput = () => {
       inputState = {
+        conpleted: false,
         title: title,
-        date_year: startDate.getFullYear(),
-        date_month: startDate.getMonth() + 1,
-        date_day: startDate.getDate(),
-        week: startDate.getDay(),
+        year: startDate.getFullYear(),
+        month: startDate.getMonth() + 1,
+        day: startDate.getDate(),
+        weekday: startDate.getDay(),
         tags: tag,
       }
       dispatch(setInput(inputState));
@@ -56,11 +61,13 @@ const TodoAddModal = () => {
           </Modal.Header>
           <Modal.Body>
             <Form
-              onSubmit={(e) => {
-                console.log("aslkdnaskldnaklsdn~~~~~~~~~~")
+              onSubmit={async (e) => {
                 updateInput();
-                // e.preventDefault();
-                createTodo(inputState);
+                e.preventDefault();
+                console.log("sent todosssss", inputState)
+                // await createTodoFromApi(inputState, loginStatus);
+                // dispatch(endListTodos(await listTodosFromApi(getPageDate(), loginStatus)));
+                dispatch(addClose());
               }}
             >
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
@@ -80,18 +87,8 @@ const TodoAddModal = () => {
                     </div>
                 </Form.Group>
 
-                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-                  <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
-                  <div className='col-10'>
-                      <Form.Select aria-label="Default select example" 
-                      onChange={(e) => {setTag(e.target.value); updateInput()}}>
-                        <option>selece a tag</option>
-                        <option>Math</option>
-                        <option>Algo</option>
-                        <option>OS</option>
-                      </Form.Select>
-                  </div>
-                </Form.Group>
+                <HomeAddModalTag setTag={setTag} updateInput={updateInput}/>
+                
                 <Modal.Footer>
                   <Button variant="primary" type="submit">
                       Submit

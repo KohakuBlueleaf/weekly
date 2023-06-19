@@ -1,5 +1,5 @@
 const initTagsState = {
-  tags:[{id: "1234", title: 'math'}, {id: "5678", title: 'ss'}],
+  tags:[],
   title: '',
   color: '',
   tagsAddModalShow: false,

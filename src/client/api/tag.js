@@ -50,7 +50,7 @@ async function server_listTags(login) {
 }
 
 export async function createTag(tagData, login) {
-    console.log('listTags', tagData)
+    console.log('createTags', tagData, login)
     if(!login){
         return local_createTag(tagData);
     }else{
@@ -79,7 +79,8 @@ function local_createTag(tagData) {
 
 }
 
-async function server_createTag(tagData, login) {
+async function server_createTags(tagData, login) {
+    console.log('sent', tagData, login);
     const newTag = {
         title: tagData.title,             //string
         color: tagData.color              //string
@@ -94,6 +95,5 @@ async function server_createTag(tagData, login) {
         body: JSON.stringify(newTag)
     });
 
-    console.log('sent', result);
     return newTag;
 }
