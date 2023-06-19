@@ -63,106 +63,6 @@ function local_listEvents(filter, date) {
     console.log(UnorderEvents);
     return filterSort(UnorderEvents, filter, date);
 
-    // let testEvent = [];
-
-    // if(filter.eventDisplay === false) testEvent = [];
-    // else {
-    //     let allEvent = [[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    // }],[{
-    //     id: uuid(),
-    //     type: 'event',              //string
-    //     title: 'title',             //string
-    //     year: 2023,            //number
-    //     month: 6,              //number
-    //     day: 18,               //number
-    //     week: 0,                    //number
-    //     timeStart: 3,               //number, 0~47, 奇數為半小
-    //     timeEnd: 8,                 //number, 1~48, 奇數為半小
-    //     tags: ['eventData.tags'],               //array[obj, obj, ...]
-    //     location: 'eventData.location'        //string
-    //     }]]
-    //     if(filter.tags.length !== 0) {
-    //         testEvent = allEvent.filter((e) => {
-
-    //         })
-    //     }
-    //     else testEvent = allEvent;
-    // }
-
-    // return testEvent;
-    
-
 }
 
 
@@ -197,7 +97,7 @@ export async function createEvent(eventData, login) {
 function local_createEvent(eventData) {
     const newEvent = {
         id: uuid(),
-        type: 'event',               //string
+        type: eventData.type,               //string
         title: eventData.title,             //string
         year: eventData.year,               //number
         month: eventData.month,             //number
@@ -215,13 +115,7 @@ function local_createEvent(eventData) {
     let old_Events = eventString ? JSON.parse(eventString) : [];
     console.log(old_Events);
 
-    let events = [newEvent];
-    old_Events.then((received_Events) => {
-        events = [
-            newEvent, ...received_Events
-        ]
-        localStorage.setItem(eventKey, JSON.stringify(events));
-    })
+    let events = [newEvent, ...old_Events];
 
     localStorage.setItem(eventKey, JSON.stringify(events));
     return newEvent;

@@ -165,6 +165,7 @@ function pushPageData(PageData, data) {
         return
       }
       for(let k=element.timeStart+1; k<element.timeEnd; k++) {
+        if(data[j][k].name === 'non') return;
         data[j][k] = {
           name: 'non',
           time: k,
@@ -172,6 +173,7 @@ function pushPageData(PageData, data) {
           duration: 0
         }
       }
+      if(data[j][element.timeStart].name === 'non') return;
       data[j][element.timeStart] = {
         name: element.title,
         time: element.timeStart,
@@ -220,6 +222,7 @@ const TimeLine = () => {
   useEffect(()=>{
     console.log('get events', loginStatus);
     (async()=>{
+      PageDate = getPageDate();
       PageData = await getPageEvent(PageDate, loginStatus);
       console.log('get events', PageData);
       pushPageData(PageData, temp);
