@@ -88,7 +88,10 @@ const TimeLineModal = () => {
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-3 align-self-center m-0'>Date:</Form.Label>
                     <div className='col'>
-                      {`${year}/${month}/${day} ${weekday(week)}`}
+                      {type === 'event' ? 
+                      `${year}/${month}/${day} ${weekday(week)}`
+                      : `${weekday(week)}`
+                    }
                     </div>
                 </Form.Group>
 
