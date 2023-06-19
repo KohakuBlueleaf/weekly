@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { MobileDatePicker, MobileTimePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import HomeAddModalTag from './HomeaddModalTag';
 import "react-datepicker/dist/react-datepicker.css";
 import { getPageDate } from '../utils';
 
@@ -113,7 +114,9 @@ const HomeAddModal = () => {
                     </div>
                 </Form.Group>
 
-                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
+                <HomeAddModalTag setTag={setTag} updateInput={updateInput}/>
+
+                {/* <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
                   <div className='col-10'>
                       <Form.Select aria-label="Default select example" 
@@ -124,7 +127,7 @@ const HomeAddModal = () => {
                         <option>OS</option>
                       </Form.Select>
                   </div>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Location:</Form.Label>

@@ -1,6 +1,3 @@
-import { createTag as createTagFromApi } from "../../api/tag";
-import { listTags as listTagsFromApi } from "../../api/tag";
-
 export function tagsAddToggle() {
   return {
     type: 'TAGS_ADD_TOGGLE'
@@ -31,32 +28,6 @@ export function endListTags(tags) {
     tags
   }
 }
-
-export function listTags() {
-  return (dispatch, getState) => {
-      // dispatch(startLoading());
-      return listTagsFromApi(/*filter*/).then(tags => {
-          dispatch(endListTags(tags));
-      }).catch(err => {
-          console.error('Error listing tags', err);
-      }).then(() => {
-          // dispatch(endLoading())
-      });
-  };
-};
-
-export function createTag(information/*, filter*/) {
-  return (dispatch, getState) => {
-      // dispatch(startLoading());
-      return createTagFromApi(tagdata).then(tags => {
-          dispatch(listTags());
-      }).catch(err => {
-          console.error('Error creating tag', err);
-      }).then(() => {
-          // dispatch(endLoading())
-      });
-  };
-};
 
 export function setInput(input) {
   return {
