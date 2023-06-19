@@ -7,7 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import {FaEquals} from 'react-icons/fa';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import endListTodos from '../store/todo/action'
+import {endListTodos} from '../store/todo/action'
 import { listTodos } from '../api/todo';
 import getToday from '../utils/index';
 
