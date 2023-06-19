@@ -7,6 +7,7 @@ import navbarReducer from "./navbar/reducer";
 import tagsReducer from './tags/reducer';
 import todoReducer from './todo/reducer';
 import helpReducer from './help/reducer';
+import routineReducer from './routine/reducer';
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
     todo: todoReducer,
     help: helpReducer,
     addModal: addModalReducer,
+    routine: routineReducer,
   },
 });
 

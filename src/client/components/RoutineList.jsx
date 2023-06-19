@@ -8,8 +8,6 @@ import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
 import TimeLineModal from './TimeLineModal';
-import { timeLineTitleModalToggle } from '../store/homePage/action';
-import TimeLineTitleModal from './TimeLineTitleModal';
 import { getPageDate } from '../utils';
 
 
@@ -105,10 +103,7 @@ const TimeLineRoutine = () => {
       {/* {console.log(data)}
       {console.log('render')} */}
       <TimeLineModal/>
-        <TimeLineTitleModal/>
-        <div className='row flex-shrink-0'
-          onClick={() => {dispatch(timeLineTitleModalToggle()); console.log("title click")}}
-        >
+        <div className='row flex-shrink-0'>
           <TimeLineMonth month={PageDate[0].month}/>
           <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
           <TimeLineTitle week={'MON'} date={PageDate[1].day}/>
