@@ -39,3 +39,10 @@ export function toTodo() {
     type: 'EVENT_TO_TODO_PAGE'
   }
 }
+
+export function endListEventAll(eventData) {
+  return {
+    type: "END_LIST_EVENT_ALL",
+    eventData
+  }
+}
