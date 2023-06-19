@@ -30,18 +30,18 @@ export function listEvents() {
 };
 }
 
-export function createEvent(eventdata/*, filter*/) {
-  return (dispatch, getState) => {
-      // dispatch(startLoading());
-      return createEventFromApi(eventdata).then(events => {
-          dispatch(listEvents());
-      }).catch(err => {
-          console.error('Error creating posts', err);
-      }).then(() => {
-          // dispatch(endLoading())
-      });
-  };
-};
+// export function createEvent(eventdata/*, filter*/) {
+//   return (dispatch, getState) => {
+//       // dispatch(startLoading());
+//       return createEventFromApi(eventdata).then(events => {
+//           dispatch(listEvents());
+//       }).catch(err => {
+//           console.error('Error creating posts', err);
+//       }).then(() => {
+//           // dispatch(endLoading())
+//       });
+//   };
+// };
 
 // event action
 export function setInput(input) {

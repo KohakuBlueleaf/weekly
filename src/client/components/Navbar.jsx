@@ -76,7 +76,7 @@ const OffcanvasExample = (props) => {
         {/\/daily$/.test(currentLocation.pathname) && <Link className="nav-link" to='/' onClick={navclose}><IoIosArrowDown className='navbar-arrow'/></Link>}
         {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
         {!/settings$/.test(currentLocation.pathname) && 
-          <div className='navbar-add-icon'>
+          <div className='navbar-add-icon align-self-center'>
             <MdAddCircleOutline className='add-1' onClick={handleAddClick}/>
             <MdAddCircle className='add-2' onClick={handleAddClick}/>
           </div>

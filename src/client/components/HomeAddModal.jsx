@@ -12,9 +12,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/homePage/action"
 
-import { setInput } from '../store/posts/action';
+import { endListEvents, setInput } from '../store/posts/action';
 // import { createEvent } from '../store/posts/action';
-import { createEvent } from '../api/event';
+import { createEvent as createEventFromApi, listEvents as listEventsFromApi } from '../api/event';
 
 import '../style/homePage.css';
 
@@ -33,9 +33,9 @@ const HomeAddModal = () => {
       inputState = {
         type: 'event',
         title: title,
-        date_year: startDate.getFullYear(),
-        date_month: startDate.getMonth() + 1,
-        date_day: startDate.getDate(),
+        year: startDate.getFullYear(),
+        month: startDate.getMonth() + 1,
+        day: startDate.getDate(),
         week: startDate.getDay(),
         timeStart: timeStart && !todoSelect ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
         timeEnd: timeEnd && !todoSelect ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
@@ -71,7 +71,8 @@ const HomeAddModal = () => {
                 updateInput();
                 e.preventDefault();
                 console.log('asndlkasnd~~~~~~~~~~', inputState);
-                createEvent(inputState);
+                createEventFromApi(inputState);
+                dispatch(endListEvents(listEventsFromApi()));
                 //call api at here
               }}
             >
@@ -126,7 +127,7 @@ const HomeAddModal = () => {
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Location:</Form.Label>
                     <div className='col-10'>
-                    <Form.Control type="text" name='title' placeholder="Enter event location" 
+                    <Form.Control disabled={todoSelect ? true : false} type="text" name='title' placeholder="Enter event location" 
                       onChange={(e) => {setLocation(e.target.value); updateInput()}}/>
                     </div>
                 </Form.Group>
