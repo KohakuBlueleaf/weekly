@@ -238,7 +238,6 @@ const TimeLine = () => {
     })();
   }, [])
 
-  console.log("data:123123123", data)
   return (
     <div className='container d-flex flex-column h-100'>
       {/* {console.log(data)}
