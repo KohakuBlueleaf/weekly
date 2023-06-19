@@ -88,7 +88,7 @@ const TimeLine = () => {
       dispatch(endListEvents(PageData));
       console.log(data);
     })();
-  }, [loginStatus])
+  }, [loginStatus, authStatus])
   pushPageData(listEvents, data);
 
   return (
