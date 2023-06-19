@@ -28,7 +28,7 @@ const NavbarProfile = (props) => {
         >
             {/* <Card.Img variant="top" src="" /> */}
             <Card.Body className='d-flex flex-row'>
-                <span className='signInCardText align-self-center'>{cardCallBack === 1 ? 'UserName' : 'Log in'}</span>
+                <span className='signInCardText align-self-center'>{cardCallBack === 1 ? props.user.username : 'Log in'}</span>
             </Card.Body>
         </Card>
     )

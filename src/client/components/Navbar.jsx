@@ -94,7 +94,7 @@ const OffcanvasExample = (props) => {
               Weekly
             </Offcanvas.Title>
           </Offcanvas.Header>
-          <NavbarProfile authStatus={props.authStatus} signOut={props.signOut}/>
+          <NavbarProfile user={props.user} authStatus={props.authStatus} signOut={props.signOut}/>
           <Offcanvas.Body className='d-flex flex-column'>
             <div className='write-down-sth-wrapper'>
               <EditTextarea

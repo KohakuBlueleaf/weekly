@@ -57,7 +57,7 @@ const Router = () => {
           <Route path="/management/routine" element={<Routine/>} />
           <Route path="/management/todo" element={<Todo/>} />
           <Route path="/tags" element={<Tags/>} />
-          <Route path="settings" element={<Settings authStatus={authStatus} signOut={signOut}/>} />
+          <Route path="settings" element={<Settings user={user} authStatus={authStatus} signOut={signOut}/>} />
           
           {/* Example for nested routes */}
           <Route path="test">

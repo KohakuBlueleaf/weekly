@@ -12,7 +12,7 @@ import SetProfile from '../components/SetProfile';
 const Settings = (props) => {
   return (
     <div>
-      <SetProfile authStatus={props.authStatus} signOut={props.signOut}/>
+      <SetProfile user={props.user} authStatus={props.authStatus} signOut={props.signOut}/>
       <SetCalendarStyle></SetCalendarStyle>
       <SetMore></SetMore>
     </div>

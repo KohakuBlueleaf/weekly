@@ -16,7 +16,7 @@ const SetCalendarStyle = () => {
     return (
         <div>
             <p>More settings</p>
-            <ListGroup vertical>
+            <ListGroup vertical='true'>
                 <ListGroup.Item>
                     <div>
                         <div className='d-flex flex-row justify-content-between'>First day of the week<RxChevronDown></RxChevronDown></div>
