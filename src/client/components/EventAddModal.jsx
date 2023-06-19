@@ -30,10 +30,11 @@ const EventAddModal = () => {
 
     const updateInput = () => {
       inputState = {
+        type: 'event',
         title: title,
-        date_year: startDate.getFullYear(),
-        date_month: startDate.getMonth() + 1,
-        date_day: startDate.getDate(),
+        year: startDate.getFullYear(),
+        month: startDate.getMonth() + 1,
+        day: startDate.getDate(),
         week: startDate.getDay(),
         timeStart: timeStart ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
         timeEnd: timeEnd ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
@@ -64,10 +65,12 @@ const EventAddModal = () => {
           </Modal.Header>
           <Modal.Body>
             <Form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 updateInput();
-                // e.preventDefault();
-                createEvent(inputState)
+                e.preventDefault();
+                await createEventFromApi(inputState, loginStatus);
+                dispatch(endListEvents(await listEventsFromApi(getPageDate(), loginStatus)));
+                dispatch(addClose());
               }}
             >
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
