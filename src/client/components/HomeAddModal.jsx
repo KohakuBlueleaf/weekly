@@ -12,9 +12,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { addClose } from "../store/homePage/action"
 
-import { setInput } from '../store/posts/action';
+import { endListEvents, setInput } from '../store/posts/action';
 // import { createEvent } from '../store/posts/action';
-import { createEvent } from '../api/event';
+import { createEvent as createEventFromApi, listEvents as listEventsFromApi } from '../api/event';
 
 import '../style/homePage.css';
 
@@ -71,7 +71,8 @@ const HomeAddModal = () => {
                 updateInput();
                 e.preventDefault();
                 console.log('asndlkasnd~~~~~~~~~~', inputState);
-                createEvent(inputState);
+                createEventFromApi(inputState);
+                dispatch(endListEvents(listEventsFromApi()));
                 //call api at here
               }}
             >
