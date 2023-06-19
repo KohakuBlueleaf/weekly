@@ -7,7 +7,8 @@ import TimeLineMonth from './TimeLineMonth';
 import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
-import TimeLineModal from './TimeLineModal';
+import RoutineTimeLineModal from './RoutineTimeLineModal';
+import RoutineTimeLineItem from './RoutineTimeLineItem';
 import { getPageDate } from '../utils';
 
 async function getPageRoutine(PageDate, login) {
@@ -109,7 +110,7 @@ const TimeLineRoutine = () => {
     <div className='container d-flex flex-column h-100'>
       {/* {console.log(data)}
       {console.log('render')} */}
-      <TimeLineModal/>
+      <RoutineTimeLineModal/>
         <div className='row flex-shrink-0'>
           <TimeLineMonth month={PageDate[0].month}/>
           <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
@@ -135,13 +136,13 @@ const TimeLineRoutine = () => {
             })}
           </div>
         </div>
-        <TimeLineItem week={'SUN'} date={PageDate[0].week} data={data[0]}/>
-        <TimeLineItem week={'MON'} date={PageDate[1].week} data={data[1]}/>
-        <TimeLineItem week={'TUE'} date={PageDate[2].week} data={data[2]}/>
-        <TimeLineItem week={'WED'} date={PageDate[3].week} data={data[3]}/>
-        <TimeLineItem week={'THU'} date={PageDate[4].week} data={data[4]}/>
-        <TimeLineItem week={'FRI'} date={PageDate[5].week} data={data[5]}/>
-        <TimeLineItem week={'SAT'} date={PageDate[6].week} data={data[6]}/>
+        <RoutineTimeLineItem week={'SUN'} date={PageDate[0].week} data={data[0]}/>
+        <RoutineTimeLineItem week={'MON'} date={PageDate[1].week} data={data[1]}/>
+        <RoutineTimeLineItem week={'TUE'} date={PageDate[2].week} data={data[2]}/>
+        <RoutineTimeLineItem week={'WED'} date={PageDate[3].week} data={data[3]}/>
+        <RoutineTimeLineItem week={'THU'} date={PageDate[4].week} data={data[4]}/>
+        <RoutineTimeLineItem week={'FRI'} date={PageDate[5].week} data={data[5]}/>
+        <RoutineTimeLineItem week={'SAT'} date={PageDate[6].week} data={data[6]}/>
       </div>
     </div>
   );
