@@ -11,7 +11,7 @@ const eventKey = 'events';
 filter = {
     eventDisplay:      //bool
     routineDisplay:    //bool
-    completedDisplay   //bool
+    completedDisplay   //bool       //for eventList回傳全部事件不排序
     tags:              //array
 }
 
@@ -67,7 +67,7 @@ function filterSort(UnorderEvents, filter, date){
     return merge;
 }
 
-export async function listEvents(date, login, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: ''}) {
+export async function listEvents(date, login, filter={eventDisplay: true, routineDisplay: true, completedDisplay: false, tags: ''}) {
     console.log('list', date, filter)
     if(!login){
         return local_listEvents(filter, date);
