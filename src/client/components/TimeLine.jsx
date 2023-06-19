@@ -150,34 +150,35 @@ function getPageDate() {
   return pageDates;
 }
 
-function getPageEvent(PageDate) {
-  return listEvents(PageDate);
+async function getPageEvent(PageDate, login) {
+  return await listEvents(PageDate, login);
 }
 
-function getPageRoutine(PageDate) {
-  return listRoutines(PageDate);
+function getPageRoutine(PageDate, login) {
+  return listRoutines(PageDate, login);
 }
 
 function pushPageData(PageData, data) {
-  if(PageData.length !== 0) {
-    for(let j=0; j<7; j++) {
-      PageData[j].map(element => {
-        for(let k=element.timeStart+1; k<element.timeEnd; k++) {
-          data[j][k] = {
-            name: 'non',
-            time: k,
-            type: 'empty',
-            duration: 0
-          }
+  for(let j=0; j<7; j++) {
+    PageData[j].map(element => {
+      if(element.timeStart<0 || element.timeEnd>47 || element.timeEnd<=element.timeStart){
+        return
+      }
+      for(let k=element.timeStart+1; k<element.timeEnd; k++) {
+        data[j][k] = {
+          name: 'non',
+          time: k,
+          type: 'empty',
+          duration: 0
         }
-        data[j][element.timeStart] = {
-          name: element.title,
-          time: element.timeStart,
-          type: element.type,
-          duration: element.timeEnd-element.timeStart
-        }
-      })
-    }
+      }
+      data[j][element.timeStart] = {
+        name: element.title,
+        time: element.timeStart,
+        type: element.type,
+        duration: element.timeEnd-element.timeStart
+      }
+    })
   }
 }
 
@@ -188,26 +189,15 @@ import { from } from 'webpack-sources/lib/CompatSource';
 import { element } from 'prop-types';
 
 const TimeLine = () => {
+  const loginStatus = useSelector((state) => state.user.token);
+  console.log(loginStatus);
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
-  let PageDate = getPageDate();
-  let PageData = [];
-  let data = [];
-  //Will be executed when this component be rendered
-  useEffect(()=>{
-    console.log(user, authStatus);
-  })
-  let timestamp = [];
-  for(let i=0; i<48; i++){
-    //先用半個小時為單位，好開發
-    if(i%2) timestamp.push('')
-    else timestamp.push(i/2 + '.');
-    // timestamp.push(i + ':30');
-  }
+  let temp = [];
   for(let j=0; j<7; j++){
-    data.push([]);
+    temp.push([]);
     for(let i=0; i<48; i++){
-      data[j].push({
+      temp[j].push({
         name: i,
         time: i,
         type: 'empty',
@@ -215,12 +205,30 @@ const TimeLine = () => {
       })
     }
   }
-
-  PageData = getPageEvent(PageDate);
-  if(PageData.length !== 0) pushPageData(PageData, data);
+  const [data, setData] = useState(temp);
+  let PageDate = getPageDate();
+  let PageData = [];
   
-  PageData = getPageRoutine(PageDate);
-  if(PageData.length !== 0) pushPageData(PageData, data);
+  let timestamp = [];
+  for(let i=0; i<48; i++){
+    //先用半個小時為單位，好開發
+    if(i%2) timestamp.push('')
+    else timestamp.push(i/2 + '.');
+    // timestamp.push(i + ':30');
+  }
+
+  useEffect(()=>{
+    console.log('get events', loginStatus);
+    (async()=>{
+      PageData = await getPageEvent(PageDate, loginStatus);
+      console.log('get events', PageData);
+      pushPageData(PageData, temp);
+      setData(temp);
+      
+      PageData = getPageRoutine(PageDate, loginStatus);
+      pushPageData(PageData, temp);
+    })();
+  }, [])
 
   return (
     <div className='container d-flex flex-column h-100'>

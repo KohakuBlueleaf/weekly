@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setStatus } from './store/users/actions';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 import DefaultLayout from './layouts/default';
 import EmptyLayout from './layouts/empty';
@@ -13,17 +16,48 @@ import Tags from './pages/Tags';
 import Daily from './pages/Daily';
 
 const Router = () => {
+  const { user, signOut } = useAuthenticator((context) => [context.user]);
+  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const loginStatus = useSelector((state) => state.user.token);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const userStatus = async () => {
+      let data = await fetch("/api/user", {
+        method: "GET",
+        headers: {
+          "idToken": user.getSignInUserSession().getIdToken().getJwtToken(),
+        }
+      });
+      console.log(data)
+    }
+    if(user){
+      console.log(user.getSignInUserSession().getIdToken().getJwtToken())
+    }
+    if(authStatus === "authenticated"){
+      userStatus().catch(console.error);
+      dispatch(setStatus(user.getSignInUserSession().getIdToken().getJwtToken()));
+      console.log("authenticated", loginStatus)
+    }else if(authStatus === "unauthenticated"){
+      console.log("unauthenticated", loginStatus)
+      if(loginStatus){
+        dispatch(setStatus(""));
+        location.reload();
+      }
+    }
+  })
+
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<DefaultLayout/>}>
+        <Route element={<DefaultLayout user={user} authStatus={authStatus} signOut={signOut}/>}>
           <Route index={true} path="" element={<Home />} />
           <Route path="/daily" element={<Daily/>} />
           <Route path="/management" element={<Event/>} />
           <Route path="/management/routine" element={<Routine/>} />
           <Route path="/management/todo" element={<Todo/>} />
           <Route path="/tags" element={<Tags/>} />
-          <Route path="settings" element={<Settings />} />
+          <Route path="settings" element={<Settings user={user} authStatus={authStatus} signOut={signOut}/>} />
           
           {/* Example for nested routes */}
           <Route path="test">

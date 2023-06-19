@@ -76,7 +76,7 @@ const OffcanvasExample = (props) => {
         {/\/daily$/.test(currentLocation.pathname) && <Link className="nav-link" to='/' onClick={navclose}><IoIosArrowDown className='navbar-arrow'/></Link>}
         {(/management$/.test(currentLocation.pathname) || /management\/routine$/.test(currentLocation.pathname) || /management\/todo$/.test(currentLocation.pathname)) && <ManTab></ManTab>}
         {!/settings$/.test(currentLocation.pathname) && 
-          <div className='navbar-add-icon'>
+          <div className='navbar-add-icon align-self-center'>
             <MdAddCircleOutline className='add-1' onClick={handleAddClick}/>
             <MdAddCircle className='add-2' onClick={handleAddClick}/>
           </div>
@@ -94,7 +94,7 @@ const OffcanvasExample = (props) => {
               Weekly
             </Offcanvas.Title>
           </Offcanvas.Header>
-          <NavbarProfile authStatus={props.authStatus} signOut={props.signOut}/>
+          <NavbarProfile user={props.user} authStatus={props.authStatus} signOut={props.signOut}/>
           <Offcanvas.Body className='d-flex flex-column'>
             <div className='write-down-sth-wrapper'>
               <EditTextarea

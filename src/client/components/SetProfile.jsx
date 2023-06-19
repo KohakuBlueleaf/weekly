@@ -8,9 +8,9 @@ import { navClose } from '../store/navbar/action';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import '../style/navbar.css'
+import '../style/settings.css'
 
-const NavbarProfile = (props) => {
+const SetProfile = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
   
@@ -34,4 +34,4 @@ const NavbarProfile = (props) => {
     )
   }
   
-  export default NavbarProfile;
+  export default SetProfile;

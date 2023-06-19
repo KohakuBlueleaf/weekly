@@ -1,7 +1,7 @@
 import { SET_STATUS } from "./action_type";
 
 const initialState = {
-  login: false,
+  token: ''
 };
 
 const userReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const userReducer = (state = initialState, action) => {
     case SET_STATUS:
       return {
         ...state,
-        login: action.payload,
+        token: action.payload,
       }
     default:
       return state;

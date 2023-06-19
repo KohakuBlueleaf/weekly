@@ -82,3 +82,19 @@
 .navbar-add-icon:hover .add-2 {
   display: inline;
 }
+
+.man-tab-button {
+  color: #AAAAAA !important;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: 90%;
+  background-color: white !important;
+}
+
+.man-tab-button-selected {
+  color: white !important;
+  background-color: #17385B !important;
+}
+

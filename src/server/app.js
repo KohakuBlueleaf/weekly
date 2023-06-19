@@ -7,6 +7,7 @@ const errorHandler = require('./middleware/error-handler');
 const requestLogger = require('./middleware/request-logger');
 const accessController = require('./middleware/access-controller');
 
+app.use(express.json());
 app.use(errorHandler);
 app.use(accessController);
 app.use(userHandler);
@@ -20,6 +21,8 @@ app.use(express.static(path.resolve(__dirname, '../../public')));
 
 // 設定伺服器路由
 const userRoutes = require('./routes/user');
+const eventRoutes = require('./routes/event');
 app.use('/api/user', userRoutes);
+app.use('/api/event', eventRoutes);
 
 module.exports = app;
