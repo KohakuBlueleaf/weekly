@@ -17,19 +17,19 @@ const TimeLineItem = (props) => {
       <div className='d-flex flex-column TimeLine'>        
         {props.data.map((item, index) => {
           return(
-            item.duration === 0 ? '' :
-            item.time <0 || item.time>47 ? '':
+            (item.timeEnd-item.timeStart) === 0 ? '' :
+            item.timeStart <0 || item.timeStart>47 ? '':
             <div
               key={index + props.date}
-              className={(item.time%2 ? 'border-bottom ': '') + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
+              className={(item.timeStart%2 ? 'border-bottom ': '') + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
             
-              style={{height: 30*item.duration + 'px'}}
+              style={{height: 30*(item.timeEnd-item.timeStart) + 'px'}}
               onClick={() => {
                 if (item.type !== 'empty'){
-                  dispatch(timeLineModalToggle(item.name, item.time, item.duration, item.type));
+                  dispatch(timeLineModalToggle(item.title, item.timeStart, item.timeEnd-item.timeStart, item.type));
                 }
               }}
-            >{item.type==='empty' ? '' :item.name}</div>
+            >{item.type==='empty' ? '' :item.title}</div>
           )
         })}
       </div>
