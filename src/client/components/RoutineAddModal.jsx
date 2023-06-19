@@ -13,7 +13,7 @@ import { getPageDate } from '../utils';
 
 import { addClose } from '../store/routine/action';
 
-import { endListEvents, setInput } from '../store/posts/action';
+import { endListRoutines, setInput } from '../store/routine/action';
 import { createEvent as createEventFromApi, listEvents as listEventsFromApi } from '../api/event';
 import HomeAddModalTag from './HomeaddModalTag';
 
@@ -73,7 +73,7 @@ const RoutineAddModal = () => {
                 e.preventDefault();
                 console.log(updateInput);
                 await createEventFromApi(inputState, loginStatus);
-                dispatch(endListEvents(await listEventsFromApi(getPageDate(), loginStatus)));
+                dispatch(endListRoutines(await listEventsFromApi(getPageDate(), loginStatus)));
                 dispatch(addClose())
                 //call api at here
               }}
