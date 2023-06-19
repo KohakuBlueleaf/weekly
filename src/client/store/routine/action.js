@@ -10,15 +10,23 @@ export function addClose() {
   }
 }
 
-export function timeLineModalToggle(title) {
+export function routineTimeLineModalToggle(item) {
+  console.log("get routinendlaskndasklndaskldn~~~~~~~~~", item);
   return {
-    type: 'TIME_LINE_MODAL_TOGGLE',
-    title
+    type: 'ROUTINE_TIME_LINE_MODAL_TOGGLE',
+    item
   }
 }
 
-export function timeLineModalClose() {
+export function routineTimeLineModalClose() {
   return {
-    type: 'TIME_LINE_MODAL_CLOSE'
+    type: 'ROUTINE_TIME_LINE_MODAL_CLOSE'
+  }
+}
+
+export function endListRoutines(routineDate) {
+  return {
+    type: 'END_LIST_ROUTINE',
+    routineDate
   }
 }

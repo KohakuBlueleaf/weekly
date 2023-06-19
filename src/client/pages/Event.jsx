@@ -12,8 +12,14 @@ import ManTab from '../components/ManTab';
 import EventList from '../components/EventList';
 import EventAddModal from '../components/EventAddModal';
 import EventFilterModal from '../components/EventFilterModal';
+import { toEvent } from '../store/event/action';
 
 function Event() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(toEvent());
+  })
+
   return (
     <div>
       <EventList></EventList>
