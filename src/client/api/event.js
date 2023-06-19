@@ -65,7 +65,7 @@ function filterSort(UnorderEvents, filter, date){
     return merge;
 }
 
-export async function listEvents(date, login, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: []}) {
+export async function listEvents(date, login, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: ''}) {
     console.log('list', date, filter)
     if(!login){
         return local_listEvents(filter, date);

@@ -13,61 +13,7 @@ import TimeLineTitleModal from './TimeLineTitleModal';
 import { getPageDate } from '../utils';
 import { endListEvents, setInput } from '../store/posts/action';
 
-//for display
-function addEvent(timeline, event, date) {
-  //has bug, need fix
-  let targetTimeStamp = event.time;
-  let newTimeline = [];
-  let nowTime = 0;
-  timeline[date].forEach((element, index) => {
-    if(nowTime == targetTimeStamp){
-      newTimeline.push(event);
-      if(element.duration > event.duration){
-        nowTime += element.duration;
-        element.duration -= event.duration;
-        element.time += event.duration;
-        newTimeline.push(element);
-      }else{
-        nowTime += event.duration;
-      }
-      targetTimeStamp = 1000;
-      return
-    }
-    if(nowTime > element.time){
-      let timeReduce = nowTime - element.time;
-      if(timeReduce >= element.duration) return;
-      element.time = nowTime;
-      element.duration = element.duration - timeReduce;
-    }else if(nowTime < element.time){
-      for(let i=0; i<element.time-nowTime; i++){
-        newTimeline.push({
-          name: '',
-          time: nowTime + i,
-          type: 'empty',
-          duration: 1
-        });
-      }
-      nowTime = element.time;
-    }
-    nowTime += element.duration;
-    if(nowTime > targetTimeStamp){
-      element.duration = element.duration - (nowTime-targetTimeStamp);
-      nowTime = targetTimeStamp;
-    }
-    newTimeline.push(element);
-  });
-  if(nowTime < 48){
-    for(let i=0; i<48-nowTime; i++){
-      newTimeline.push({
-        name: '',
-        time: nowTime + i,
-        type: 'empty',
-        duration: 1
-      });
-    }
-  }
-  timeline[date] = newTimeline;
-}
+
 
 async function getPageEvent(PageDate, login) {
   console.log('getPageEvent', PageDate);
