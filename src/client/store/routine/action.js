@@ -24,9 +24,9 @@ export function routineTimeLineModalClose() {
   }
 }
 
-export function endListRoutines(routineDate) {
+export function endListRoutines(routineData) {
   return {
     type: 'END_LIST_ROUTINE',
-    routineDate
+    routineData
   }
 }
