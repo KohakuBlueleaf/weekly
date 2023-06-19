@@ -1,6 +1,8 @@
 const initHomePageState = {
+    title: '',
     addModalShow: false,
     filterModalShow: false,
+    timeLineModalShow: false,
 };
 
 const homePageReducer = (state = initHomePageState, action) => {
@@ -24,6 +26,17 @@ const homePageReducer = (state = initHomePageState, action) => {
       return {
         ...state,
         filterModalShow: false,
+      }
+    case 'TIME_LINE_MODAL_TOGGLE':
+      return {
+        ...state,
+        title: action.title,
+        timeLineModalShow: true,
+      }
+    case 'TIME_LINE_MODAL_CLOSE':
+      return {
+        ...state,
+        timeLineModalShow: false,
       }
     default:
       return state;

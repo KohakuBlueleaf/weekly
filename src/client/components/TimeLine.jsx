@@ -8,6 +8,7 @@ import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
 import { listRoutines } from '../api/routine';
 import '../style/TimeLine.css'
+import TimeLineModal from './TimeLineModal';
 
 //for display
 function addEvent(timeline, event, date) {
@@ -230,10 +231,12 @@ const TimeLine = () => {
     })();
   }, [])
 
+  console.log("data:123123123", data)
   return (
     <div className='container d-flex flex-column h-100'>
       {/* {console.log(data)}
       {console.log('render')} */}
+      <TimeLineModal/>
       <div className='row flex-shrink-0'>
         <TimeLineMonth month={'MAY'}/>
         <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
