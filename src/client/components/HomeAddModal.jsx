@@ -18,6 +18,7 @@ import { endListEvents, setInput } from '../store/posts/action';
 import { endListTodos, setInput as setInputFromTodo } from '../store/todo/action';
 // import { createEvent } from '../store/posts/action';
 import { createEvent as createEventFromApi, listEvents as listEventsFromApi } from '../api/event';
+import { createTodo as createTodoFromApi, listTodos as listTodosFromApi } from '../api/todo';
 
 import '../style/homePage.css';
 
@@ -64,7 +65,7 @@ const HomeAddModal = () => {
     
     const [todoSelect, setTodoSelect] = useState(false);
     const [title, setTitle] = useState("");
-    const [tag, setTag] = useState("");
+    const [tag, setTag] = useState([]);
     const [timeStart, setTimeStart] = useState("");
     const [timeEnd, setTimeEnd] = useState("");
     const [location, setLocation] = useState("");
@@ -134,19 +135,6 @@ const HomeAddModal = () => {
                 </Form.Group>
 
                 <HomeAddModalTag setTag={setTag} updateInput={updateInput}/>
-
-                {/* <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-                  <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
-                  <div className='col-10'>
-                      <Form.Select aria-label="Default select example" 
-                      onChange={(e) => {setTag(e.target.value); updateInput()}}>
-                        <option>selece a tag</option>
-                        <option>Math</option>
-                        <option>Algo</option>
-                        <option>OS</option>
-                      </Form.Select>
-                  </div>
-                </Form.Group> */}
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Location:</Form.Label>

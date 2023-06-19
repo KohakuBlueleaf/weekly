@@ -10,6 +10,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "react-datepicker/dist/react-datepicker.css";
 import HomeAddModalTag from './HomeaddModalTag';
+import { getPageDate } from '../utils';
 
 import { addClose } from "../store/todo/action"
 
@@ -64,9 +65,8 @@ const TodoAddModal = () => {
               onSubmit={async (e) => {
                 updateInput();
                 e.preventDefault();
-                console.log("sent todosssss", inputState)
-                // await createTodoFromApi(inputState, loginStatus);
-                // dispatch(endListTodos(await listTodosFromApi(getPageDate(), loginStatus)));
+                await createTodoFromApi(inputState, loginStatus);
+                dispatch(endListTodos(await listTodosFromApi(getPageDate(), loginStatus)));
                 dispatch(addClose());
               }}
             >
