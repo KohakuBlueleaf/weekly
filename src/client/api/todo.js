@@ -17,20 +17,26 @@ todos = {
     tags:               //array //看情況寫，因為
 }
 
+date = {
+    year:               //number
+    month:              //number
+    day:                //number
+}
+
 if completed is true => show all todos(include completed)
 else => show only uncompleted todo
 */
 
-export async function listTodos(login, completed = true) {
+export async function listTodos(login, date, completed = true) {
     if(!login) {
         return local_listTodos(login, completed);
     }else {
-        
+        //server
     }
 }
 
 //
-function local_listTodos(login, completed) {
+function local_listTodos(login, date, completed) {
     let todoString = localStorage.getItem(todoKey);
     let all_todos = todoString ? JSON.parse(todoString) : [];
     
@@ -47,7 +53,7 @@ export async function createTodo(todoData, login) {
     if(!login) {
         return local_createTodo(todoData, login);
     }else {
-
+        //server
     }
 }
 

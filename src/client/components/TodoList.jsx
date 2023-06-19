@@ -1,17 +1,41 @@
 import React from 'react';
-
 import { useEffect } from 'react';
-import { connect, useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useOutletContext } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 
 import {FaEquals} from 'react-icons/fa';
-import {BsCircle} from 'react-icons/bs';
-import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
-function TodoList() {
+
+import endListTodos from '../store/todo/action'
+import { listTodos } from '../api/todo';
+
+async function getTagsList(login, date, completed) {
+  let all_todos = await listTodos(login, date, completed); 
+
+
+}
+
+const TodoList = () => {
+  const loginStatus = useSelector((state) => state.user.token);
+  const [user, authStatus] = useOutletContext();
+  const dispatch = useDispatch();
+
+  //
+  const listTodos = useSelector((state) => state.todo.todo);
+  console.log('init todo is:', listTodos);
+
+  let todoData = [];
+
+  // useEffect(() => {
+  //   console.log('get todos', listTodos, loginStatus);
+  //   if(authStatus === 'configuring') return;
+  //   (async()=> {
+  //     todoData = await 
+  //   })
+  // })
+
+
   return (
     <ListGroup vertical="true">
         
