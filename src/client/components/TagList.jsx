@@ -26,18 +26,17 @@ const TagList = () => {
   useEffect(()=>{
     console.log('get tags', listTags, loginStatus);
     if(authStatus === 'configuring') return;
+    if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
       tagData = await getTagsList(loginStatus);
       dispatch(endListTags(tagData));
       console.log("tagdata is", tagData);
     })();
-  }, [loginStatus, authStatus])
+  }, [loginStatus, authStatus]);
 
 
   return (
     <ListGroup vertical="true">
-      
-
       {listTags.map(t=>{
         return (
           <ListGroup.Item className='d-flex flex-row justify-content-between'>
@@ -46,8 +45,7 @@ const TagList = () => {
           </ListGroup.Item>
         )
       })}
-
-                
+           
     </ListGroup>
   );
 }
