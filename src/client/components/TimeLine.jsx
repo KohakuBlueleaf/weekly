@@ -11,6 +11,7 @@ import TimeLineModal from './TimeLineModal';
 import { timeLineTitleModalToggle } from '../store/homePage/action';
 import TimeLineTitleModal from './TimeLineTitleModal';
 import { getPageDate } from '../utils';
+import { endListEvents, setInput } from '../store/posts/action';
 
 //for display
 function addEvent(timeline, event, date) {
@@ -140,6 +141,7 @@ const TimeLine = () => {
     (async()=>{
       // PageData = await listEvents;
       PageData = await getPageEvent(getPageDate(), loginStatus);
+      dispatch(endListEvents(PageData));
       console.log('get events', PageData);
       pushPageData(PageData, temp);
       setData(temp);
