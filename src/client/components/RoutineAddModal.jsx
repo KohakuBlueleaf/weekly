@@ -38,8 +38,8 @@ const RoutineAddModal = () => {
         month: -1,
         day: -1,
         week: startDate.getDay(),
-        timeStart: timeStart && !todoSelect ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
-        timeEnd: timeEnd && !todoSelect ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
+        timeStart: timeStart ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
+        timeEnd: timeEnd ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
         tags: tag,
         location: location,
       }
@@ -70,6 +70,7 @@ const RoutineAddModal = () => {
               onSubmit={async (e) => {
                 updateInput();
                 e.preventDefault();
+                console.log(updateInput);
                 await createEventFromApi(inputState, loginStatus);
                 dispatch(endListEvents(await listEventsFromApi(getPageDate(), loginStatus)));
                 dispatch(addClose())
@@ -85,10 +86,10 @@ const RoutineAddModal = () => {
                 </Form.Group>
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                  <Form.Label className='col-2 align-self-center m-0'>End: </Form.Label>
+                  <Form.Label className='col-2 align-self-center m-0'>Date: </Form.Label>
                     <div className='col-10 date-picker'>
                     <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
-                      <MobileTimePicker onChange={(e) => {if (e) {setTimeEnd(e.$d); updateInput()}}}/>
+                      <MobileDatePicker onChange={(date) => {if (date) {setStartDate(date.$d); updateInput()}}}/>
                     </LocalizationProvider>
                     </div>
                 </Form.Group>
