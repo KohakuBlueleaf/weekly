@@ -56,7 +56,9 @@ const EventList = () => {
             <FaEquals color="#BE6464"></FaEquals>
             </ListGroup.Item>
         )
+
       })}
+
     </ListGroup>
   );
 }
