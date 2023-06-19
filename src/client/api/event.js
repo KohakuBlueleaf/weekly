@@ -24,6 +24,23 @@ date = {
 */
 
 function filterSort(UnorderEvents, filter, date){
+
+    if(filter.completedDisplay) {
+        let FromNowOn = UnorderEvents.filter(e => {
+            if(e.year > date.year) return true;
+            else if(e.year < date.year) return false;
+            else {
+                if(e.month > date.month) return true;
+                else if(e.month < date.month) return false;
+                else {
+                    if(e.day >= date.day) return true;
+                    else if(e.day < date.day) return false;
+                }
+            }
+        })
+        return FromNowOn;
+    }
+    
     //先對日期做篩選
 
     let merge = [[],[],[],[],[],[],[]];

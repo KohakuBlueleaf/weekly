@@ -8,7 +8,7 @@ import {FaEquals} from 'react-icons/fa';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import { listEvents as listEventsFromApi } from '../api/event';
-import {getPageDate} from '../utils/index';
+import {getPageDate, getToday} from '../utils/index';
 import { endListEventAll } from '../store/event/action';
 
 async function getEventList(PageDate, login) {
@@ -29,7 +29,7 @@ const EventList = () => {
   const dispatch = useDispatch();
   
   //填空
-  const listEvents = useSelector((state) => state.event.event_dall)
+  const listEvents = useSelector((state) => state.event.event_all)
 
   let eventData = [];
 
@@ -38,7 +38,7 @@ const EventList = () => {
     if(authStatus === 'configuring') return;
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=> {
-      eventData = await getEventList(getPageDate(), loginStatus);
+      eventData = await getEventList(getToday(), loginStatus);
       //填空sth
       dispatch(endListEventAll(eventData));
       console.log("eventdata is", eventData);
@@ -48,12 +48,15 @@ const EventList = () => {
 
   return (
     <ListGroup vertical="true">
-      {/* {listEvents.map(e => {
+      { console.log('list is',listEvents)}
+      {listEvents.map(e => {
         return(
-          <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
+          <ListGroup.Item className='d-flex flex-row justify-content-between'>
+            <a><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</a>
+            <FaEquals color="#BE6464"></FaEquals>
+            </ListGroup.Item>
         )
-      })} */}
-                
+      })}
     </ListGroup>
   );
 }
