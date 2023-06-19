@@ -29,28 +29,28 @@ function pushPageData(PageData, data) {
         return
       }
       for(let k=element.timeStart+1; k<element.timeEnd; k++) {
-        if(data[j][k].name === 'non') return;
+        if(data[j][k].title === 'non') return;
         data[j][k] = {
-          name: 'non',
-          time: k,
-          type: 'empty',
-          duration: 0
+          id: 'uuid()',
+          type: 'empty',               //string
+          title: 'non',             //string
+          year: -1,               //number
+          month: -1,             //number
+          day: -1,            //number
+          week: -1,               //number
+          timeStart: k,     //number, 0~47, 奇數為半小
+          timeEnd: k,         //number, 0~47, 奇數為半小
+          tags: [],               //array
+          location: 'location'        //string
         }
       }
-      if(data[j][element.timeStart].name === 'non') return;
-      data[j][element.timeStart] = {
-        name: element.title,
-        time: element.timeStart,
-        type: element.type,
-        duration: element.timeEnd-element.timeStart
-      }
+      if(data[j][element.timeStart].title === 'non') return;
+      data[j][element.timeStart] = element;
     })
   }
 }
 
 import "../style/TimeLine.css"
-import { from } from 'webpack-sources/lib/CompatSource';
-import { element } from 'prop-types';
 
 const TimeLineRoutine = () => {
   const loginStatus = useSelector((state) => state.user.token);
@@ -64,10 +64,18 @@ const TimeLineRoutine = () => {
     temp.push([]);
     for(let i=0; i<48; i++){
       temp[j].push({
-        name: i,
-        time: i,
-        type: 'empty',
-        duration: 1
+
+        id: 'uuid()',
+        type: 'empty',               //string
+        title: i,             //string
+        year: -1,               //number
+        month: -1,             //number
+        day: -1,            //number
+        week: -1,               //number
+        timeStart: i,     //number, 0~47, 奇數為半小
+        timeEnd: i+1,         //number, 0~47, 奇數為半小
+        tags: [],               //array
+        location: 'location'        //string
       })
     }
   }
