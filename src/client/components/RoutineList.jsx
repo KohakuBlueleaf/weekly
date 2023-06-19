@@ -8,8 +8,10 @@ import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
 import TimeLineModal from './TimeLineModal';
+import { timeLineTitleModalToggle } from '../store/homePage/action';
+import TimeLineTitleModal from './TimeLineTitleModal';
 import { getPageDate } from '../utils';
-
+import { endListEvents, setInput } from '../store/posts/action';
 
 
 async function getPageRoutine(PageDate, login) {
@@ -25,6 +27,7 @@ async function getPageRoutine(PageDate, login) {
 }
 
 function pushPageData(PageData, data) {
+  if(!PageData || !PageData[0]) return
   for(let j=0; j<7; j++) {
     PageData[j].map(element => {
       if(element.timeStart<0 || element.timeEnd>47 || element.timeEnd<=element.timeStart){
@@ -51,8 +54,6 @@ function pushPageData(PageData, data) {
 }
 
 import "../style/TimeLine.css"
-import { from } from 'webpack-sources/lib/CompatSource';
-import { element } from 'prop-types';
 
 const TimeLineRoutine = () => {
   const loginStatus = useSelector((state) => state.user.token);
@@ -61,11 +62,11 @@ const TimeLineRoutine = () => {
   
   const listRoutines = useSelector((state) => state.addModal.event);
   
-  let temp = [];
+  let data = [];
   for(let j=0; j<7; j++){
-    temp.push([]);
+    data.push([]);
     for(let i=0; i<48; i++){
-      temp[j].push({
+      data[j].push({
         name: i,
         time: i,
         type: 'empty',
@@ -73,7 +74,6 @@ const TimeLineRoutine = () => {
       })
     }
   }
-  const [data, setData] = useState(temp);
   const PageDate = getPageDate();
   let PageData = [];
   
@@ -86,17 +86,16 @@ const TimeLineRoutine = () => {
   }
 
   useEffect(()=>{
-    console.log('get routines', listRoutines);
+    // console.log('get routines', listRoutines);
+    if(authStatus === 'confuguring') return;
     (async()=>{
       //PageDate = getPageDate();
       PageData = await getPageRoutine(getPageDate(), loginStatus);
-      console.log('get routines', PageData);
-      pushPageData(PageData, temp);
-      setData(temp);
-      
-      console.log(data);
+      dispatch(endListEvents(PageData))
+      console.log('get routines', data);
     })();
-  }, [listRoutines])
+  }, [loginStatus])
+  pushPageData(listRoutines, data);
 
   return (
     <div className='container d-flex flex-column h-100'>
