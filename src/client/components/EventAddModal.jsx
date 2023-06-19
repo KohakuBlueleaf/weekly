@@ -9,11 +9,14 @@ import { MobileDatePicker, MobileTimePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "react-datepicker/dist/react-datepicker.css";
+import HomeAddModalTag from './HomeaddModalTag';
+import { getPageDate } from '../utils';
 
 import { addClose } from "../store/event/action"
 
 import { setInput } from '../store/posts/action';
-import { createEvent as createEventFromApi } from '../api/event';
+import { listEvents as listEventsFromApi, createEvent as createEventFromApi } from '../api/event';
+import { endListEvents } from '../store/posts/action';
 
 import "../style/event.css"
 
@@ -25,6 +28,7 @@ const EventAddModal = () => {
     } = useSelector((state) => ({
         addModalShow: state.event.addModalShow
     }));
+    const loginStatus = useSelector((state) => state.user.token);
 
     let inputState;
 
@@ -108,18 +112,7 @@ const EventAddModal = () => {
                     </div>
                 </Form.Group>
 
-                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
-                  <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
-                  <div className='col-10'>
-                      <Form.Select aria-label="Default select example" 
-                      onChange={(e) => {setTag(e.target.value); updateInput()}}>
-                        <option>selece a tag</option>
-                        <option>Math</option>
-                        <option>Algo</option>
-                        <option>OS</option>
-                      </Form.Select>
-                  </div>
-                </Form.Group>
+                <HomeAddModalTag setTag={setTag} updateInput={updateInput}/>
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-2 align-self-center m-0'>Location:</Form.Label>
@@ -129,12 +122,12 @@ const EventAddModal = () => {
                     </div>
                 </Form.Group>
 
-            </Form>
-              <Modal.Footer>
+                <Modal.Footer>
                   <Button variant="primary" type="submit">
                       Submit
                   </Button>
-              </Modal.Footer>
+                </Modal.Footer>
+            </Form>
             </Modal.Body>
         </Modal>
     );

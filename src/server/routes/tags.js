@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
   tagData.forEach((e) => {
     processedData.push({
       id: e.id,
-      name: e.name,
+      title: e.name,
       color: e.color,
     })
   })
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
   let user = req.userData;
   console.log('POST', req.body, user);
   let tag = await database.Tag.create({
-    name: req.body.name,
+    name: req.body.title,
     color: req.body.color,
     ownerId: user.id
   })

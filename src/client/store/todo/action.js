@@ -33,32 +33,6 @@ export function endListTodos(todos) {
   }
 }
 
-export function listTodos() {
-  return (dispatch, getState) => {
-    // dispatch(startLoading());
-    return listTodosFromApi(/*searchText*/).then(todos => {
-        dispatch(endListTodos(todos));
-    }).catch(err => {
-        console.error('Error listing todos', err);
-    }).then(() => {
-        // dispatch(endLoading())
-    });
-};
-}
-
-export function createTodo(tododata/*, filter*/) {
-  return (dispatch, getState) => {
-      // dispatch(startLoading());
-      return createTodoFromApi(eventdata).then(todos => {
-          dispatch(listTodos());
-      }).catch(err => {
-          console.error('Error creating todos', err);
-      }).then(() => {
-          // dispatch(endLoading())
-      });
-  };
-};
-
 export function setInput(input) {
   return {
     type: 'SET_INPUT',

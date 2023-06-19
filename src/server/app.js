@@ -22,7 +22,11 @@ app.use(express.static(path.resolve(__dirname, '../../public')));
 // 設定伺服器路由
 const userRoutes = require('./routes/user');
 const eventRoutes = require('./routes/event');
+const tagsRoutes = require('./routes/tags');
+const todoRoutes = require('./routes/todo');
 app.use('/api/user', userRoutes);
 app.use('/api/event', eventRoutes);
+app.use('/api/tag', tagsRoutes);
+app.use('/api/todo', todoRoutes);
 
 module.exports = app;

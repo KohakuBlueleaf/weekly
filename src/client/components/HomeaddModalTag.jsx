@@ -27,7 +27,6 @@ const HomeAddModalTag = (props) => {
                         )
                     })
                 }
-                <option onClick={() => console.log("hello")}>algo</option>
               </Form.Select>
             </div>
         </Form.Group>
