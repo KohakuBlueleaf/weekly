@@ -26,6 +26,7 @@ const HomeAddModal = () => {
     } = useSelector((state) => ({
         addModalShow: state.homePage.addModalShow
     }));
+    const loginStatus = useSelector((state) => state.user.token);
     
     let inputState;
 
@@ -67,12 +68,13 @@ const HomeAddModal = () => {
           </Modal.Header>
           <Modal.Body>
             <Form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 updateInput();
                 e.preventDefault();
                 console.log('asndlkasnd~~~~~~~~~~', inputState);
-                createEventFromApi(inputState);
+                await createEventFromApi(inputState, loginStatus);
                 dispatch(endListEvents(listEventsFromApi()));
+                dispatch(addClose())
                 //call api at here
               }}
             >
