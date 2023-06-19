@@ -27,9 +27,6 @@ function TitleBar() {
         console.log("hi~~~~~");
         dispatch(todoFilterToggle());
       }
-      else if (/tags$/.test(currentLocation.pathname)) {
-        dispatch(tagsFilterToggle())
-      }
       else {
         dispatch(filterToggle());
       }
@@ -41,10 +38,10 @@ function TitleBar() {
               <Container fluid>
                   <Navbar.Brand href="#" className='navbar-brand'>Weekly</Navbar.Brand>
                   <div>
-                    {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) ?
+                    {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) && !/management\/routine$/.test(currentLocation.pathname) ?
                      <FiFilter className='filter-icon' onClick={handleFilterClick}/>
                      :
-                     !/settings$/.test(currentLocation.pathname) && 
+                     !/settings$/.test(currentLocation.pathname) && !/management\/routine$/.test(currentLocation.pathname) && 
                      <BsBrush className='theme-icon' onClick={() => dispatch(tagsThemeToggle())}/>
                     }
                   </div>

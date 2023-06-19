@@ -40,7 +40,7 @@ function _createTodo(todoData) {
         year: todoData.year,               //number
         month: todoData.month,             //number
         day: todoData.day,                 //number
-        weekday: todoData.week,               //number
+        weekday: todoData.week,            //number
         tags: todoData.tags,               //array[obj, obj, ...]
     };
 

@@ -40,9 +40,9 @@ function local_listTags(searchText = '') {
 }
 
 export function createTag(tagData, login) {
-    console.log('listTags', )
+    console.log('listTags', tagData)
     if(!login){
-        return local_createTag();
+        return local_createTag(tagData);
     }else{
         //return await server_createTags();
     }
