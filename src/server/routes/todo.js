@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
         as: 'owner',
         where: {id: user.id}
       },
-      { model: database.Tag, as: 'tags'},
+      { model: database.Tag, as: 'tags', through: database.Todo_Tag },
     ]
   })
   let processedData = [];
@@ -48,6 +48,12 @@ router.post('/', async (req, res) => {
     weekday: req.body.weekday,
     ownerId: user.id
   })
+  for(let tag of req.body.tags) {
+    await database.Todo_Tag.create({
+      TodoId: todo.id,
+      TagId: tag
+    })
+  }
   res.json({
     'status': 'ok',
   })
