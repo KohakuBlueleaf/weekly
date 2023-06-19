@@ -9,7 +9,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 import { listEvents as listEventsFromApi } from '../api/event';
 import {getPageDate} from '../utils/index';
-
+import { endListEventAll } from '../store/event/action';
 
 async function getEventList(PageDate, login) {
   let filter = {
@@ -29,8 +29,7 @@ const EventList = () => {
   const dispatch = useDispatch();
   
   //填空
-  //const listEvents = useSelector((state) => state.?)
-
+  const listEvents = useSelector((state) => state.event.event_dall)
 
   let eventData = [];
 
@@ -39,9 +38,9 @@ const EventList = () => {
     if(authStatus === 'configuring') return;
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=> {
-      eventData = await getEventList(getPageDate(), login);
+      eventData = await getEventList(getPageDate(), loginStatus);
       //填空sth
-      dispatch(sth(eventData));
+      dispatch(endListEventAll(eventData));
       console.log("eventdata is", eventData);
     })();
   },[loginStatus, authStatus]);
@@ -49,11 +48,11 @@ const EventList = () => {
 
   return (
     <ListGroup vertical="true">
-      {listEvents.map(e => {
+      {/* {listEvents.map(e => {
         return(
           <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
         )
-      })}
+      })} */}
                 
     </ListGroup>
   );

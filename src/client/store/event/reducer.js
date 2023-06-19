@@ -1,4 +1,5 @@
 const initManagementState = {
+    event_all: [],
     addModalShow: false,
     filterModalShow: false,
     curpage: 'event',
@@ -31,16 +32,21 @@ const eventReducer = (state = initManagementState, action) => {
           ...state,
           curpage: 'event',
         }
-        case 'EVENT_TO_ROUTINE_PAGE':
-      return {
-        ...state,
-        curpage: 'routine',
-      }
+      case 'EVENT_TO_ROUTINE_PAGE':
+        return {
+          ...state,
+          curpage: 'routine',
+        }
       case 'EVENT_TO_TODO_PAGE':
-      return {
-        ...state,
-        curpage: 'todo',
-      }
+        return {
+          ...state,
+          curpage: 'todo',
+        }
+      case 'END_LIST_EVENT_ALL':
+        return {
+          ...state,
+          event_all: action.eventData,
+        }
       default:
         return state;
     }
