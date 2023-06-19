@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
         as: 'owner',
         where: {id: user.id}
       },
-      { model: database.Tag, as: 'tags'},
+      { model: database.Tag, as: 'tags', through: database.Todo_Tag },
     ]
   })
   let processedData = [];
@@ -28,7 +28,8 @@ router.get('/', async (req, res) => {
       year: e.year,
       month: e.month,
       day: e.day,
-      week: e.weekday,
+      weekday: e.weekday,
+      tags: e.tags.map((tag) => tag.id),
     })
   })
   console.log('get', processedData)
@@ -44,9 +45,15 @@ router.post('/', async (req, res) => {
     year: req.body.year,
     month: req.body.month,
     day: req.body.day,
-    weekday: req.body.week,
+    weekday: req.body.weekday,
     ownerId: user.id
   })
+  for(let tag of req.body.tags) {
+    await database.Todo_Tag.create({
+      TodoId: todo.id,
+      TagId: tag
+    })
+  }
   res.json({
     'status': 'ok',
   })

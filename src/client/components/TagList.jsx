@@ -26,6 +26,7 @@ const TagList = () => {
   useEffect(()=>{
     console.log('get tags', listTags, loginStatus);
     if(authStatus === 'configuring') return;
+    if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
       tagData = await getTagsList(loginStatus);
       dispatch(endListTags(tagData));

@@ -1,28 +1,24 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import DailyTodoList from './DailyTodoList';
+
+import "../style/daily.css";
 
 const DailyTodo= () => {
     
     return (
-        <Form>
-            <div className="mb-3">
-                <Form.Check // prettier-ignore
-                    type={'checkbox'}
-                    id={`default`}
-                    label={`default`}
-                />
+        <Form className='container h-33 todo-card-wrapper d-flex flex-column'>
+            <Card className='todo-card'>
+                <Card.Body className='d-flex flex-column p-0 h-100'>
 
-                <Form.Check
-                    type={'checkbox'}
-                    id={`disabled-default`}
-                    label={`disabled`}
-                    
-                />
-            </div> 
+                    <div className='todo-title'>Todo</div>
+
+                    <DailyTodoList/>
+
+                </Card.Body>
+            </Card>
         </Form>
-        
-        
     ) 
 }
 

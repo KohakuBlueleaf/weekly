@@ -31,7 +31,7 @@ export async function listTodos(date, login, completed = true) {
     if(!login) {
         return local_listTodos(login, completed);
     }else {
-        //server
+        return await server_listTodos(date, login, completed);
     }
 }
 
@@ -48,12 +48,29 @@ function local_listTodos(date, login, completed) {
     return todos;
 }
 
+//
+async function server_listTodos(date, login, completed) {
+    let res = await fetch('/api/todo', {
+        method: 'GET',
+        headers: {
+            'idToken': login
+        }
+    })
+    let all_todos = await res.json();
+    let todos = all_todos.filter( todo => {
+        if(completed) return true;
+        return todo.completed === completed;
+    })
+
+    return todos;
+}
+
 export async function createTodo(todoData, login) {
     console.log('createTodo', todoData, login);
     if(!login) {
         return local_createTodo(todoData, login);
     }else {
-        //server
+        return await server_createTodo(todoData, login);
     }
 }
 
@@ -80,5 +97,29 @@ function local_createTodo(todoData) {
 
     localStorage.setItem(todoKey, JSON.stringify(todos));
     return newTodo;
+}
 
+
+async function server_createTodo(todoData, login) {
+    const newTodo = {
+        completed: todoData.completed,     //bool
+        title: todoData.title,             //string
+        year: todoData.year,               //number
+        month: todoData.month,             //number
+        day: todoData.day,                 //number
+        weekday: todoData.week,            //number
+        tags: todoData.tags,               //array[obj, obj, ...]
+    };
+
+    let result = await fetch('/api/todo',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'idToken': login
+        },
+        body: JSON.stringify(newTodo)
+    });
+
+    console.log('sent', result);
+    return newTodo;
 }

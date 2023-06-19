@@ -81,8 +81,9 @@ const TimeLine = () => {
   }
 
   useEffect(()=>{
-    console.log('get events', listEvents, loginStatus);
+    console.log('get events', listEvents);
     if(authStatus === 'configuring') return;
+    if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
       PageData = await getPageEvent(getPageDate(), loginStatus);
       dispatch(endListEvents(PageData));
