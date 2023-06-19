@@ -248,7 +248,7 @@ const TimeLine = () => {
         <div className='row flex-shrink-0'
           onClick={() => {dispatch(timeLineTitleModalToggle()); console.log("title click")}}
         >
-          <TimeLineMonth month={'MAY'}/>
+          <TimeLineMonth month={PageDate[0].month}/>
           <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
           <TimeLineTitle week={'MON'} date={PageDate[1].day}/>
           <TimeLineTitle week={'TUE'} date={PageDate[2].day}/>
