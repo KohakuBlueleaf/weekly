@@ -9,6 +9,7 @@ import { MobileDatePicker, MobileTimePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "react-datepicker/dist/react-datepicker.css";
+import { getPageDate } from '../utils';
 
 import { addClose } from "../store/homePage/action"
 
@@ -73,7 +74,7 @@ const HomeAddModal = () => {
                 e.preventDefault();
                 console.log('asndlkasnd~~~~~~~~~~', inputState);
                 await createEventFromApi(inputState, loginStatus);
-                dispatch(endListEvents(await listEventsFromApi()));
+                dispatch(endListEvents(await listEventsFromApi(getPageDate(), loginStatus)));
                 dispatch(addClose())
                 //call api at here
               }}
