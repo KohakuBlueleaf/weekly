@@ -16,7 +16,7 @@ import { addClose } from "../store/event/action"
 
 import { setInput } from '../store/posts/action';
 import { listEvents as listEventsFromApi, createEvent as createEventFromApi } from '../api/event';
-import { endListEvents } from '../store/posts/action';
+import { endListEventAll } from '../store/event/action';
 
 import "../style/event.css"
 
@@ -73,7 +73,7 @@ const EventAddModal = () => {
                 updateInput();
                 e.preventDefault();
                 await createEventFromApi(inputState, loginStatus);
-                dispatch(endListEvents(await listEventsFromApi(getPageDate(), loginStatus)));
+                dispatch(endListEventAll(await listEventsFromApi(getPageDate(), loginStatus)));
                 dispatch(addClose());
               }}
             >
