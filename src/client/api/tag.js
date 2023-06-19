@@ -24,16 +24,15 @@ export async function getTagById(id, login) {
 }
 
 export async function listTags(login) {
-    console.log('listTags', login)
     if(!login){
-        return local_listTags();
+        return local_listTags(login);
     }else{
         return await server_listTags(login);
     }
 }
 
 
-function local_listTags(searchText = '') {
+function local_listTags(login) {
     let tagString = localStorage.getItem(tagKey);
     let tags = tagString ? JSON.parse(tagString) : [];
     return tags;
@@ -68,12 +67,12 @@ function local_createTag(tagData) {
 
     let tagString = localStorage.getItem(tagKey);
     let old_tags = tagString ? JSON.parse(tagString) : [];
-    console.log(old_tags);
 
     let tags = [
         newTag,
         ...old_tags
     ];
+
 
     localStorage.setItem(tagKey, JSON.stringify(tags));
     return newTag;

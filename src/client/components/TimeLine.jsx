@@ -16,7 +16,7 @@ import { endListEvents, setInput } from '../store/posts/action';
 
 
 async function getPageEvent(PageDate, login) {
-  console.log('getPageEvent', PageDate);
+  // console.log('getPageEvent', PageDate);
 
   return await listEvents(PageDate, login);
 }
