@@ -227,6 +227,8 @@ const TimeLine = () => {
       
       PageData = getPageRoutine(PageDate, loginStatus);
       pushPageData(PageData, temp);
+
+      console.log(data);
     })();
   }, [])
 
