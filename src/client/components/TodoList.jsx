@@ -40,9 +40,11 @@ const TodoList = () => {
   return (
     <ListGroup vertical="true">
       {listTodos.map(t=>{
-        <ListGroup.Item className='d-flex flex-row justify-content-between'>
+        return(
+          <ListGroup.Item className='d-flex flex-row justify-content-between'>
           <a>{t.title}</a><FaEquals color="#BE6464"></FaEquals>
           </ListGroup.Item>
+        )
       })}       
     </ListGroup>
   );
