@@ -11,44 +11,16 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import HelpModal from '../components/HelpModal';
 
 
-const DefaultLayout = () => {
-  const { user, signOut } = useAuthenticator((context) => [context.user]);
-  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
-  const loginStatus = useSelector((state) => state.user.login);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const userStatus = async () => {
-      let data = await fetch("/api/user", {
-        method: "GET",
-        headers: {
-          "idToken": user.getSignInUserSession().getIdToken().getJwtToken(),
-        }
-      });
-      console.log(data)
-    }
-    if(authStatus === "authenticated"){
-      userStatus().catch(console.error);
-      dispatch(setStatus(true));
-      console.log("authenticated", loginStatus)
-    }else if(authStatus === "unauthenticated"){
-      console.log("unauthenticated", loginStatus)
-      if(loginStatus){
-        dispatch(setStatus(false));
-        location.reload();
-      }
-    }
-  })
-
+const DefaultLayout = (props) => {
   return (
 
     <Container fluid className='m-0 p-0 h-100 d-flex flex-column flex-row max-h-100'>
       <TitleBar className='flex-shrink-0 w-100'></TitleBar>
       <div className='flex-shrink-1 overflow-auto m-2'>
-        <Outlet context={[user, authStatus]}/>
+        <Outlet context={[props.user, props.authStatus]}/>
       </div>
       <div className='flex-shrink-0 w-100 mt-auto'>
-        <OffcanvasExample user={user} authStatus={authStatus} signOut={signOut}></OffcanvasExample>
+        <OffcanvasExample user={props.user} authStatus={props.authStatus} signOut={props.signOut}></OffcanvasExample>
       </div>
       
       <HelpModal/>
