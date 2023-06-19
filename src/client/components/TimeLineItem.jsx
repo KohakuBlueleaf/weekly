@@ -16,7 +16,7 @@ const TimeLineItem = (props) => {
       {console.log('render')} */}
       <div className='d-flex flex-column TimeLine'>
         
-        {/* {console.log(props.data)} */}
+        {console.log(props.data)}
         
         {props.data.map((item, index) => {
           return(

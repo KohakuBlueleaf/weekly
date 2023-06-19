@@ -5,44 +5,63 @@ import '@babel/polyfill';
 
 const tagKey = 'tags';
 
-export async function listTags() {
+/*
+tags = {
+    id:             //string
+    title:          //string
+    color:          //string
+}
+
+*/
+
+export async function getTagById(id, login) {
+    if(!id) return;
+    tags = [];
+    tags = listTags(login)
+    tags.forEach(element => {
+        if(element.id === id) return element;
+    });
+}
+
+export async function listTags(login) {
     console.log('listTags', )
     if(!login){
         return local_listTags();
     }else{
-        return await server_listTags();
+        //return await server_listTags();
     }
 }
 
 
-function _listTags(searchText = '') {
+function local_listTags(searchText = '') {
     let tagString = localStorage.getItem(tagKey);
     let tags = tagString ? JSON.parse(tagString) : [];
-    // if(events.lengh > 0) {
-    //     events = events.filter(e => {
-    //         return e.title.toLocaleLowerCase().indexOf(searchText.toLowerCase()) !== -1
-    //     });
-    // }
     return tags;
 }
 
-export function createTag(tagData) {
-    return new Promise((resolve, reject) => {
-        resolve(_createTag(tagData));
-    });
+export function createTag(tagData, login) {
+    console.log('listTags', )
+    if(!login){
+        return local_createTag();
+    }else{
+        //return await server_createTags();
+    }
 }
 
-
-function _createTag(tagData) {
+function local_createTag(tagData) {
     const newTag = {
         id: uuid(),
         title: tagData.title,             //string
         color: tagData.color              //string
     };
 
-    const tags = [
+    let tagString = localStorage.getItem(tagKey);
+    let old_tags = tagString ? JSON.parse(tagString) : [];
+    console.log(old_tags);
+
+    let tags = [
         newTag,
-        ...listTags()
+        ...old_tags
     ];
 
     localStorage.setItem(tagKey, JSON.stringify(tags));
