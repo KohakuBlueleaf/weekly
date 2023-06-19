@@ -16,11 +16,10 @@ import Tags from './pages/Tags';
 import Daily from './pages/Daily';
 
 const Router = () => {
-  const dispatch = useDispatch();
   const { user, signOut } = useAuthenticator((context) => [context.user]);
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
-  const loginStatus = useSelector((state) => state.user.login);
-
+  const loginStatus = useSelector((state) => state.user.token);
+  const dispatch = useDispatch();
   useEffect(() => {
     const userStatus = async () => {
       let data = await fetch("/api/user", {
@@ -31,18 +30,22 @@ const Router = () => {
       });
       console.log(data)
     }
+    if(user){
+      console.log(user.getSignInUserSession().getIdToken().getJwtToken())
+    }
     if(authStatus === "authenticated"){
       userStatus().catch(console.error);
-      dispatch(setStatus(true));
+      dispatch(setStatus(user.getSignInUserSession().getIdToken().getJwtToken()));
       console.log("authenticated", loginStatus)
     }else if(authStatus === "unauthenticated"){
       console.log("unauthenticated", loginStatus)
       if(loginStatus){
-        dispatch(setStatus(false));
+        dispatch(setStatus(""));
         location.reload();
       }
     }
   })
+
 
   return (
     <BrowserRouter>

@@ -73,7 +73,7 @@ const HomeAddModal = () => {
                 e.preventDefault();
                 console.log('asndlkasnd~~~~~~~~~~', inputState);
                 await createEventFromApi(inputState, loginStatus);
-                dispatch(endListEvents(listEventsFromApi()));
+                dispatch(endListEvents(await listEventsFromApi()));
                 dispatch(addClose())
                 //call api at here
               }}

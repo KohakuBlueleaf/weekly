@@ -7,8 +7,9 @@ const router = express.Router();
 
 // 處理 GET /api/event 路由
 router.get('/', async (req, res) => {
+  console.log('GET /api/event')
   let user = req.userData;
-  let eventData = database.Event.findAll({
+  let eventData = await database.Event.findAll({
     include: [
       {
         model: database.User,
@@ -18,8 +19,6 @@ router.get('/', async (req, res) => {
       { model: database.Tag, as: 'tags'},
     ]
   })
-  console.log(user, eventData)
-  
   let processedData = [];
   eventData.forEach((e) => {
     processedData.push({
@@ -33,16 +32,29 @@ router.get('/', async (req, res) => {
       timeStart: e.timeStart,
       timeEnd: e.timeEnd,
       tags: e.tags,
-      location: e.location,
-      date: e.date
+      location: e.location
     })
   })
+  console.log('get', processedData)
   res.json(processedData);
 });
 
 router.post('/', async (req, res) => {
   let user = req.userData;
-  console.log(req.body, user);
+  console.log('POST', req.body, user);
+  let event = await database.Event.create({
+    type: req.body.type,
+    title: req.body.title,
+    year: req.body.year,
+    month: req.body.month,
+    day: req.body.day,
+    weekday: req.body.weekday,
+    timeStart: req.body.timeStart,
+    timeEnd: req.body.timeEnd,
+    tags: req.body.tags,
+    location: req.body.location,
+    ownerId: user.id
+  })
   res.json({
     'status': 'ok',
   })

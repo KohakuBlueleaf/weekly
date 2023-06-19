@@ -24,8 +24,6 @@ date = {
 */
 
 function filterSort(UnorderEvents, filter, date, all){
-    console.log(UnorderEvents);
-
     if(all === true) return UnorderEvents;
 
     //先對日期做篩選
@@ -50,11 +48,12 @@ function filterSort(UnorderEvents, filter, date, all){
     return events;
 }
 
-export function listEvents(date, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: []}, all = false, login) {
+export async function listEvents(date, login, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: []}, all = false) {
+    console.log('list', date, filter, all)
     if(!login){
-        return local_listEvents(filter,date, all);
+        return local_listEvents(filter, date, all);
     }else{
-        return server_listEvents(filter,date, all, login);
+        return await server_listEvents(filter, date, all, login);
     }
 }
 
@@ -167,13 +166,19 @@ function local_listEvents(filter, date, all) {
 }
 
 
-async function server_listEvents(date, filter, all, login) {
-    let UnorderEvents = await fetch('/api/event', {
+async function server_listEvents(filter, date, all, login) {
+    let res = await fetch('/api/event', {
         method: 'GET',
         headers: {
             'idToken': login
         }
     })
+    let UnorderEvents = await res.json();
+    console.log(UnorderEvents)
+    if(!UnorderEvents || !date){
+        console.log(UnorderEvents, date)
+        return [[],[],[],[],[],[],[]]
+    }
     return filterSort(UnorderEvents, filter, date, all);
 }
 

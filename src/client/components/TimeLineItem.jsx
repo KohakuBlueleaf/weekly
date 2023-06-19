@@ -20,6 +20,7 @@ const TimeLineItem = (props) => {
         {props.data.map((item, index) => {
           return(
             item.duration === 0 ? '' :
+            item.time <0 || item.time>47 ? '':
             <div
               key={index + props.date}
               className={'border-bottom ' + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
