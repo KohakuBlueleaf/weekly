@@ -27,7 +27,7 @@ if completed is true => show all todos(include completed)
 else => show only uncompleted todo
 */
 
-export async function listTodos(login, date, completed = true) {
+export async function listTodos(date, login, completed = true) {
     if(!login) {
         return local_listTodos(login, completed);
     }else {
@@ -36,7 +36,7 @@ export async function listTodos(login, date, completed = true) {
 }
 
 //
-function local_listTodos(login, date, completed) {
+function local_listTodos(date, login, completed) {
     let todoString = localStorage.getItem(todoKey);
     let all_todos = todoString ? JSON.parse(todoString) : [];
     
