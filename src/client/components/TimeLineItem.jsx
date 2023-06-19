@@ -14,7 +14,7 @@ const TimeLineItem = (props) => {
     <div className='d-flex flex-column TimeLineItem-col p-0'>
       {/* {console.log(props.data)}
       {console.log('render')} */}
-      <div className='d-flex flex-column border TimeLine'>
+      <div className='d-flex flex-column TimeLine'>
         
         {/* {console.log(props.data)} */}
         
@@ -24,7 +24,7 @@ const TimeLineItem = (props) => {
             item.time <0 || item.time>47 ? '':
             <div
               key={index + props.date}
-              className={'border-bottom ' + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
+              className={(item.time%2 ? 'border-bottom ': '') + (item.type==='empty' ? '' : 'TimeLineItemEvent')}
             
               style={{height: 30*item.duration + 'px'}}
               onClick={() => {

@@ -49,8 +49,6 @@ function pushPageData(PageData, data) {
 }
 
 import "../style/TimeLine.css"
-import { from } from 'webpack-sources/lib/CompatSource';
-import { element } from 'prop-types';
 
 const TimeLine = () => {
   const loginStatus = useSelector((state) => state.user.token);
@@ -83,13 +81,14 @@ const TimeLine = () => {
   }
 
   useEffect(()=>{
-    console.log('get events', listEvents);
+    console.log('get events', listEvents, loginStatus);
+    if(authStatus === 'configuring') return;
     (async()=>{
       PageData = await getPageEvent(getPageDate(), loginStatus);
       dispatch(endListEvents(PageData));
       console.log(data);
     })();
-  }, [])
+  }, [loginStatus])
   pushPageData(listEvents, data);
 
   return (
@@ -115,14 +114,14 @@ const TimeLine = () => {
           框框
         </div>
 
-      <div className='row flex-shrink-1 main-time-line'>
+      <div className='row flex-shrink-1 main-time-line border-top'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
-          <div className='d-flex flex-column border TimeLine'>
+          <div className='d-flex flex-column TimeLine'>
             {timestamp.map((item, index) => {
               return (
                 <div
                   key={'timestamp' + index}
-                  className={'border-bottom'}
+                  className={(index%2 ? 'border-bottom ': '')}
                   style={{height: '30px'}}
                 >{item}</div>
               )
