@@ -46,6 +46,7 @@ module.exports = {
         logLevel: 'debug' /*optional*/
       }
     },
+    open: false
   },
   plugins: [
     new CopyPlugin({
