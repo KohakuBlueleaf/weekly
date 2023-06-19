@@ -8,25 +8,9 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 import {listEvents as listEventsFromApi, createEvent as createEventfromApi} from '../api/event.js'
 
-function createEvent() {
-  return createEventfromApi({
-    id: uuid(),
-    type: 'event',              //string
-    title: 'title',             //string
-    year: 2023,            //number
-    month: 6,              //number
-    day: 18,               //number
-    week: 0,                    //number
-    timeStart: 3,               //number, 0~47, 奇數為半小
-    timeEnd: 8,                 //number, 1~48, 奇數為半小
-    tags: ['eventData.tags'],               //array[obj, obj, ...]
-    location: 'eventData.location'        //string
-});
-}
-
 
 const EventList = () => {
-  createEvent();
+  
   return (
     <ListGroup vertical="true">
         
