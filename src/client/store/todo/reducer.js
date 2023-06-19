@@ -1,11 +1,12 @@
 const initTodoState = {
   todo: [],
+  completed: false,
   title: '',
   year: -1,
   month: -1,
   day: -1,
   weekday: -1,
-  tags: '',
+  tags: [],
   addModalShow: false,
   filterModalShow: false,
 };
@@ -15,6 +16,7 @@ const todoReducer = (state = initTodoState, action) => {
       case 'SET_INPUT':
         return {
           ...state,
+          completed: action.input.completed,
           title: action.input.title,
           year: action.input.date_year,
           month: action.input.date_month,
