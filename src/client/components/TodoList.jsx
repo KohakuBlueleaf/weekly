@@ -10,6 +10,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import {endListTodos} from '../store/todo/action'
 import { listTodos } from '../api/todo';
 import getToday from '../utils/index';
+import {TbMinusVertical} from "react-icons/tb";
 
 async function getTodoList(login, date, completed) {
   return await listTodos(login, date, completed); 
@@ -43,7 +44,8 @@ const TodoList = () => {
       {listTodos.map(t=>{
         return(
           <ListGroup.Item className='d-flex flex-row justify-content-between'>
-          <a>{t.title}</a><FaEquals color="#BE6464"></FaEquals>
+          <a><TbMinusVertical color="#BE6464"></TbMinusVertical>{t.title}</a>
+          <FaEquals color="#BE6464"></FaEquals>
           </ListGroup.Item>
         )
       })}       

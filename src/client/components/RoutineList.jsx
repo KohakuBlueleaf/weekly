@@ -15,7 +15,7 @@ async function getPageRoutine(PageDate, login) {
   let filter = {
     eventDisplay: false,        //bool
     routineDisplay: true,       //bool
-    completedDisplay: true,     //bool
+    completedDisplay: false,     //bool
     tags: []                    //array
   }
 

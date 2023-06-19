@@ -1,23 +1,59 @@
 import React from 'react';
-
-import { v4 as uuid } from 'uuid';
-import {FaEquals, FaGripLinesVertical} from 'react-icons/fa';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useOutletContext } from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
 import {TbMinusVertical} from "react-icons/tb";
-import Container from 'react-bootstrap/Container';
+import {FaEquals} from 'react-icons/fa';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import {listEvents as listEventsFromApi, createEvent as createEventfromApi} from '../api/event.js'
+import { listEvents as listEventsFromApi } from '../api/event';
+import {getPageDate} from '../utils/index';
+
+
+async function getEventList(PageDate, login) {
+  let filter = {
+    eventDisplay: true,
+    routineDisplay: false,
+    completedDisplay: true,
+    tags: ''
+  }
+  return await listEventsFromApi(PageDate, login, filter);
+}
+
 
 
 const EventList = () => {
+  const loginStatus = useSelector((state) => state.user.token);
+  const [user, authStatus] = useOutletContext();
+  const dispatch = useDispatch();
   
+  //填空
+  //const listEvents = useSelector((state) => state.?)
+
+
+  let eventData = [];
+
+  useEffect(() => {
+    console.log('get eventList', listEvents, loginStatus);
+    if(authStatus === 'configuring') return;
+    if(authStatus === 'authenticated' && !loginStatus) return;
+    (async()=> {
+      eventData = await getEventList(getPageDate(), login);
+      //填空sth
+      dispatch(sth(eventData));
+      console.log("eventdata is", eventData);
+    })();
+  },[loginStatus, authStatus]);
+
+
   return (
     <ListGroup vertical="true">
-        
-        <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>event1</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
-        <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>event2</a><FaEquals></FaEquals></ListGroup.Item>
-        <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>event3</a><FaEquals></FaEquals></ListGroup.Item>
-        <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>event4</a><FaEquals></FaEquals></ListGroup.Item>
+      {listEvents.map(e => {
+        return(
+          <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
+        )
+      })}
                 
     </ListGroup>
   );
