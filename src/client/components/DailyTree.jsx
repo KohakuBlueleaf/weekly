@@ -1,7 +1,15 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
 
 const DailyTree = () => {
+    const dispatch = useDispatch();
+
+    const {
+        event,
+    } = useSelector((state) => ({
+        event: state.addModal.event
+    }));
     
     return (
         //插入圖片(routine/events/樹幹)

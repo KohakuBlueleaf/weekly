@@ -99,7 +99,6 @@ function local_createTodo(todoData) {
     return newTodo;
 }
 
-
 async function server_createTodo(todoData, login) {
     const newTodo = {
         completed: todoData.completed,     //bool

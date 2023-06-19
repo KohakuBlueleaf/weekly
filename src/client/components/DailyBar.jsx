@@ -18,7 +18,7 @@ const DailyBar = () => {
                 </Col>    
                 <Col xs={9} md={10} lg={11}>
                     <ProgressBar now={now} label={`${now}%`}/>
-                </Col>    
+                </Col>
             </Row>
         </Container>
     ) 
