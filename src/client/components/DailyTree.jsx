@@ -29,7 +29,6 @@ const DailyTree = () => {
             <div className='d-flex justify-content-start'>
                 python
             </div>
-            
         </div>    
         
     ) 

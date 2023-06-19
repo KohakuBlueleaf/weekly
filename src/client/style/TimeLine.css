@@ -15,5 +15,7 @@
 }
 
 .TimeLineItemEvent{
+    text-align: center;
+    border-radius: 0.5rem;
     background-color: grey;
 }

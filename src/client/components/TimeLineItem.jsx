@@ -12,8 +12,6 @@ const TimeLineItem = (props) => {
 
   return (
     <div className='d-flex flex-column TimeLineItem-col p-0'>
-      {console.log("props.data: sadasdasda", props.data)}
-      {/* {console.log('render')} */}
       <div className='d-flex flex-column TimeLine'>        
         {props.data.map((item, index) => {
           return(
@@ -26,7 +24,6 @@ const TimeLineItem = (props) => {
               style={{height: 30*(item.timeEnd-item.timeStart) + 'px'}}
               onClick={() => {
                 if (item.type !== 'empty'){
-                  console.log("in mappingdmasl;dmasl;dm", item);
                   dispatch(timeLineModalToggle(item));
                 }
               }}
