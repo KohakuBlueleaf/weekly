@@ -19,7 +19,7 @@ const TagList = () => {
   const dispatch = useDispatch();
 
   const listTags = useSelector((state) => state.tags.tags);
-  console.log(listTags)
+  console.log('init tag is', listTags)
 
   let tagData = [];
 

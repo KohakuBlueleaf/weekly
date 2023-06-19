@@ -5,34 +5,60 @@ import '@babel/polyfill';
 
 const todoKey = 'todos';
 
-export function listTodos() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(_listTodos());
-        }, 500);
-    });
+/*
+todos = {
+    id:                 //uuid
+    completed:          //bool
+    title:              //string
+    year:               //number
+    month:              //number
+    day:                //number
+    weekday:            //number
+    tags:               //array //看情況寫，因為
 }
 
+date = {
+    year:               //number
+    month:              //number
+    day:                //number
+}
 
-function _listTodos(searchText = '') {
+if completed is true => show all todos(include completed)
+else => show only uncompleted todo
+*/
+
+export async function listTodos(login, date, completed = true) {
+    if(!login) {
+        return local_listTodos(login, completed);
+    }else {
+        //server
+    }
+}
+
+//
+function local_listTodos(login, date, completed) {
     let todoString = localStorage.getItem(todoKey);
-    let todos = todoString ? JSON.parse(todoString) : [];
-    // if(events.lengh > 0) {
-    //     events = events.filter(e => {
-    //         return e.title.toLocaleLowerCase().indexOf(searchText.toLowerCase()) !== -1
-    //     });
-    // }
+    let all_todos = todoString ? JSON.parse(todoString) : [];
+    
+    todos = all_todos.filter( todo => {
+        if(completed) return true;
+        return todo.completed === completed;
+    })
+
     return todos;
 }
 
-export function createTodo(todoData) {
-    return new Promise((resolve, reject) => {
-        resolve(_createTodo(todoData));
-    });
+export async function createTodo(todoData, login) {
+    console.log('createTodo', todoData, login);
+    if(!login) {
+        return local_createTodo(todoData, login);
+    }else {
+        //server
+    }
 }
 
 
-function _createTodo(todoData) {
+function local_createTodo(todoData) {
     const newTodo = {
         id: uuid(),
         completed: todoData.completed,     //bool
@@ -44,9 +70,12 @@ function _createTodo(todoData) {
         tags: todoData.tags,               //array[obj, obj, ...]
     };
 
-    const todos = [
+    let todoString = localStorage.getItem(todoKey);
+    let old_todos = todoString ? JSON.parse(todoString) : [];
+
+    let todos = [
         newTodo,
-        ...listTodos()
+        ...old_todos
     ];
 
     localStorage.setItem(todoKey, JSON.stringify(todos));

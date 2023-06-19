@@ -50,15 +50,15 @@ async function server_listTags(login) {
 }
 
 export async function createTag(tagData, login) {
-    console.log('createTags', tagData, login)
+    console.log('createTags', tagData, login);
     if(!login){
-        return local_createTag(tagData);
+        return local_createTag(tagData, login);
     }else{
         return await server_createTags(tagData, login);
     }
 }
 
-function local_createTag(tagData) {
+function local_createTag(tagData, login) {
     const newTag = {
         id: uuid(),
         title: tagData.title,             //string
