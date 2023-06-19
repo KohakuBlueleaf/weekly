@@ -28,7 +28,8 @@ router.get('/', async (req, res) => {
       year: e.year,
       month: e.month,
       day: e.day,
-      week: e.weekday,
+      weekday: e.weekday,
+      tags: e.tags.map((tag) => tag.id),
     })
   })
   console.log('get', processedData)
@@ -44,7 +45,7 @@ router.post('/', async (req, res) => {
     year: req.body.year,
     month: req.body.month,
     day: req.body.day,
-    weekday: req.body.week,
+    weekday: req.body.weekday,
     ownerId: user.id
   })
   res.json({

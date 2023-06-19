@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
     weekday: req.body.weekday,
     timeStart: req.body.timeStart,
     timeEnd: req.body.timeEnd,
-    tags: req.body.tags,
+    tags: [1, 2, 3],
     location: req.body.location,
     ownerId: user.id
   })
