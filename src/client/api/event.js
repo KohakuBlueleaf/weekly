@@ -26,7 +26,8 @@ date = {
 function filterSort(UnorderEvents, filter, date){
 
     if(filter.completedDisplay) {
-        let FromNowOn = UnorderEvents.filter(e => {
+        let FromNowOn = []
+        FromNowOn = UnorderEvents.filter(e => {
             if(e.year > date.year) return true;
             else if(e.year < date.year) return false;
             else {

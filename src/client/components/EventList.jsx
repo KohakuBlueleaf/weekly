@@ -10,7 +10,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { listEvents as listEventsFromApi } from '../api/event';
 import { getPageDate, getToday } from '../utils/index';
 import { endListEventAll } from '../store/event/action';
-import { endListEvents } from '../store/posts/action';
+import { Container } from 'react-bootstrap';
+import {getTagById} from '../api/tag'
 
 async function getEventList(PageDate, login) {
   let filter = {
@@ -49,9 +50,14 @@ const EventList = () => {
       {listEvents.map(e => {
         return(
           <ListGroup.Item className='d-flex flex-row justify-content-between'>
-            <a><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</a>
+            <div>
+              <div><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</div>
+              <div className='d-flex flex-row'>{e.month}/{e.day}&nbsp;{e.timeStart/2}:{e.timeStart%2? `30`:`00`}-{e.timeEnd/2}:{EventList.timeEnd%2?`30`:`00`}
+              {/* {getTagById(e.tags[0], loginStatus).title} */}
+              </div>
+            </div>
             <FaEquals color="#BE6464"></FaEquals>
-            </ListGroup.Item>
+          </ListGroup.Item>
         )
 
       })}
