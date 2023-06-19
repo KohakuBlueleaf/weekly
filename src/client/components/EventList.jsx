@@ -8,7 +8,7 @@ import {FaEquals} from 'react-icons/fa';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import { listEvents as listEventsFromApi } from '../api/event';
-import getPageDate from '../utils/index';
+import {getPageDate} from '../utils/index';
 
 
 async function getEventList(PageDate, login) {
