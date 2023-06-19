@@ -29,6 +29,7 @@ const TodoList = () => {
   useEffect(() => {
     console.log('get todos', listTodos, loginStatus);
     if(authStatus === 'configuring') return;
+    if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=> {
       todoData = await getTodoList(loginStatus);
       dispatch(endListTodos(todoData));
