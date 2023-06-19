@@ -83,9 +83,9 @@ const RoutineTimeLineModal = () => {
                 </Form.Group>
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                  <Form.Label className='col-3 align-self-center m-0'>Date:</Form.Label>
+                  <Form.Label className='col-3 align-self-center m-0'>Week:</Form.Label>
                     <div className='col'>
-                      {`${year}/${month}/${day} ${weekday(week)}`}
+                      {`${weekday(week)}`}
                     </div>
                 </Form.Group>
 

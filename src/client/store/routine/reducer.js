@@ -26,6 +26,20 @@ const routineReducer = (state = initRoutineState, action) => {
         ...state,
         addModalShow: false,
       }
+    case 'ROUTINE_SET_INPUT':
+      return {
+        ...state,
+        type: action.input.type,
+        title: action.input.title,
+        year: action.input.year,
+        month: action.input.month,
+        day: action.input.day,
+        week: action.input.week,
+        tag: action.input.tag,
+        timeStart: action.input.timeStart,
+        timeEnd: action.input.timeEnd,
+        location: action.input.location,
+      }
     case 'ROUTINE_TIME_LINE_MODAL_TOGGLE':
       return {
         ...state,

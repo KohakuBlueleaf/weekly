@@ -30,3 +30,10 @@ export function endListRoutines(routineData) {
     routineData
   }
 }
+
+export function setInput(input) {
+  return {
+    type: 'ROUTINE_SET_INPUT',
+    input
+  }
+}
