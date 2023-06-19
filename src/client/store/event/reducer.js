@@ -42,6 +42,11 @@ const eventReducer = (state = initManagementState, action) => {
           ...state,
           curpage: 'todo',
         }
+      case 'END_LIST_EVENT_ALL':
+        return {
+          ...state,
+          event_all: action.eventData,
+        }
       default:
         return state;
     }
