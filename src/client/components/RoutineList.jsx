@@ -12,66 +12,18 @@ import { timeLineTitleModalToggle } from '../store/homePage/action';
 import TimeLineTitleModal from './TimeLineTitleModal';
 import { getPageDate } from '../utils';
 
-//for display
-function addEvent(timeline, event, date) {
-  //has bug, need fix
-  let targetTimeStamp = event.time;
-  let newTimeline = [];
-  let nowTime = 0;
-  timeline[date].forEach((element, index) => {
-    if(nowTime == targetTimeStamp){
-      newTimeline.push(event);
-      if(element.duration > event.duration){
-        nowTime += element.duration;
-        element.duration -= event.duration;
-        element.time += event.duration;
-        newTimeline.push(element);
-      }else{
-        nowTime += event.duration;
-      }
-      targetTimeStamp = 1000;
-      return
-    }
-    if(nowTime > element.time){
-      let timeReduce = nowTime - element.time;
-      if(timeReduce >= element.duration) return;
-      element.time = nowTime;
-      element.duration = element.duration - timeReduce;
-    }else if(nowTime < element.time){
-      for(let i=0; i<element.time-nowTime; i++){
-        newTimeline.push({
-          name: '',
-          time: nowTime + i,
-          type: 'empty',
-          duration: 1
-        });
-      }
-      nowTime = element.time;
-    }
-    nowTime += element.duration;
-    if(nowTime > targetTimeStamp){
-      element.duration = element.duration - (nowTime-targetTimeStamp);
-      nowTime = targetTimeStamp;
-    }
-    newTimeline.push(element);
-  });
-  if(nowTime < 48){
-    for(let i=0; i<48-nowTime; i++){
-      newTimeline.push({
-        name: '',
-        time: nowTime + i,
-        type: 'empty',
-        duration: 1
-      });
-    }
+
+
+async function getPageRoutine(PageDate, login) {
+  console.log('getPageRoutine', PageDate);
+  let filter = {
+    eventDisplay: false,        //bool
+    routineDisplay: true,       //bool
+    completedDisplay: true,     //bool
+    tags: []                    //array
   }
-  timeline[date] = newTimeline;
-}
 
-async function getPageEvent(PageDate, login) {
-  console.log('getPageEvent', PageDate);
-
-  return await listEvents(PageDate, login);
+  return await listEvents(PageDate, login, filter);
 }
 
 function pushPageData(PageData, data) {
@@ -104,12 +56,12 @@ import "../style/TimeLine.css"
 import { from } from 'webpack-sources/lib/CompatSource';
 import { element } from 'prop-types';
 
-const TimeLine = () => {
+const TimeLineRoutine = () => {
   const loginStatus = useSelector((state) => state.user.token);
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
   
-  const listEvents = useSelector((state) => state.addModal.event);
+  const listRoutines = useSelector((state) => state.addModal.event);
   
   let temp = [];
   for(let j=0; j<7; j++){
@@ -136,17 +88,17 @@ const TimeLine = () => {
   }
 
   useEffect(()=>{
-    console.log('get events', listEvents);
+    console.log('get routines', listRoutines);
     (async()=>{
-      // PageData = await listEvents;
-      PageData = await getPageEvent(getPageDate(), loginStatus);
-      console.log('get events', PageData);
+      //PageDate = getPageDate();
+      PageData = await getPageRoutine(getPageDate(), loginStatus);
+      console.log('get routines', PageData);
       pushPageData(PageData, temp);
       setData(temp);
       
       console.log(data);
     })();
-  }, [listEvents])
+  }, [listRoutines])
 
   return (
     <div className='container d-flex flex-column h-100'>
@@ -199,4 +151,4 @@ const TimeLine = () => {
   
 };
 
-export default TimeLine;
+export default TimeLineRoutine;

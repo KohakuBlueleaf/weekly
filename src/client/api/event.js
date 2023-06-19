@@ -26,33 +26,43 @@ date = {
 function filterSort(UnorderEvents, filter, date){
     //先對日期做篩選
 
+    let merge = [[],[],[],[],[],[],[]];
     let events = [[],[],[],[],[],[],[]];
     let routines = [[],[],[],[],[],[],[]];
 
     UnorderEvents.forEach((element) => {
-        date.forEach(d => {
-            if(element.year === d.year && element.month === d.month && element.day === d.day && element.type === 'event') {
-                events[element.week].push(element);
-            }
-            else if(element.year === d.year && element.month === d.month && element.day === d.day && element.type === 'routine') {
-                routines[element.week].push(element);
-            }
-        })
-    });
+        if(element.type === 'routine') {
+            routines[element.week].push(element);
+        }
+        else {
+            date.forEach(d => {
+                if(element.year === d.year && element.month === d.month && element.day === d.day && element.type === 'event') {
+                    events[element.week].push(element);
+                }
 
-    //filter還沒寫完
+            })    
+        }
+        
+    });
     
     if(filter.eventDisplay === false) events = [];
-    else if(filter.tags && filter.tags.length === 0) {
-        return events
-    }
-    else {
+    else if(filter.tags && filter.tags.length !== 0) {
         //寫tag篩選
     }
 
+    if(filter.routineDisplay === false) routines = [];
+    else if(filter.tags && filter.tags.length !== 0) {
+        //寫tag篩選
+    }
 
+    merge.forEach( (element, index) => {
+        if(routines[index])
+            element.push(...routines[index]);
+        if(events[index])
+            element.push(...events[index]);
+    })
     
-    return events;
+    return merge;
 }
 
 export async function listEvents(date, login, filter={eventDisplay: true, routineDisplay: true, completedDisplay: true, tags: []}) {
@@ -69,7 +79,7 @@ function local_listEvents(filter, date) {
     let eventString = localStorage.getItem(eventKey);
     let UnorderEvents = eventString ? JSON.parse(eventString) : [];
     console.log('this is local');
-    console.log(UnorderEvents);
+    console.log(UnorderEvents, filter, date);
     return filterSort(UnorderEvents, filter, date);
 
 }

@@ -10,8 +10,14 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import ManTab from '../components/ManTab';
 
-function Routine() {
-  return (<h1>this is routine</h1>)
+import TimeLineRoutine from '../components/RoutineList';
+
+const Routine = () => {
+  return (
+    <div>
+      <TimeLineRoutine/>
+    </div>
+  )
 }
 
 export default Routine;
