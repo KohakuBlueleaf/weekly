@@ -10,10 +10,10 @@ export const cleanMessage = () => ({
   type: 'CLEAN_MESSAGE',
 })
 
-export function endListEvents(events) {
+export function endListEvents(event) {
   return {
     type: 'END_LIST_POSTS',
-    events
+    event
   }
 }
 

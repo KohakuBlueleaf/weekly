@@ -72,7 +72,6 @@ const HomeAddModal = () => {
               onSubmit={async (e) => {
                 updateInput();
                 e.preventDefault();
-                console.log('asndlkasnd~~~~~~~~~~', inputState);
                 await createEventFromApi(inputState, loginStatus);
                 dispatch(endListEvents(await listEventsFromApi(getPageDate(), loginStatus)));
                 dispatch(addClose())
