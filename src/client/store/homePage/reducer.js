@@ -1,9 +1,10 @@
 const initHomePageState = {
     title: '',
-    // year: -1,
-    // month: -1,
-    // day: -1,
-    // week: -1,
+    type: '',
+    year: -1,
+    month: -1,
+    day: -1,
+    week: -1,
     timeStart: -1,
     timeEnd: -1,
     tags: [],
@@ -37,12 +38,19 @@ const homePageReducer = (state = initHomePageState, action) => {
         filterModalShow: false,
       }
     case 'TIME_LINE_MODAL_TOGGLE':
-      let temp = action.timeStart + action.duration;
+      console.log("action.item: sdjhasjkdhbasjkdhasjkd", action.item);
       return {
         ...state,
-        title: action.title,
-        timeStart: action.timeStart,
-        timeEnd: temp,
+        type: action.item.type,
+        title: action.item.title,
+        year: action.item.year,
+        month: action.item.month,
+        day: action.item.day,
+        week: action.item.week,
+        tag: action.item.tag,
+        timeStart: action.item.timeStart,
+        timeEnd: action.item.timeEnd,
+        location: action.item.location,
         timeLineModalShow: true,
       }
     case 'TIME_LINE_MODAL_CLOSE':
