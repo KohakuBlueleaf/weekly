@@ -10,6 +10,7 @@ import '../style/TimeLine.css'
 import RoutineTimeLineModal from './RoutineTimeLineModal';
 import RoutineTimeLineItem from './RoutineTimeLineItem';
 import { getPageDate } from '../utils';
+import {endListRoutines} from '../store/routine/action';
 
 async function getPageRoutine(PageDate, login) {
   console.log('getPageRoutine', PageDate);
@@ -24,6 +25,9 @@ async function getPageRoutine(PageDate, login) {
 }
 
 function pushPageData(PageData, data) {
+  console.log('this is',PageData);
+  if(!PageData || !PageData[0]) return
+  
   for(let j=0; j<7; j++) {
     PageData[j].map(element => {
       if(element.timeStart<0 || element.timeEnd>47 || element.timeEnd<=element.timeStart){
@@ -58,14 +62,13 @@ const TimeLineRoutine = () => {
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
   
-  const listRoutines = useSelector((state) => state.addModal.event);
+  const listRoutines = useSelector((state) => state.routine.routine);
   
-  let temp = [];
+  let data = [];
   for(let j=0; j<7; j++){
-    temp.push([]);
+    data.push([]);
     for(let i=0; i<48; i++){
-      temp[j].push({
-
+      data[j].push({
         id: 'uuid()',
         type: 'empty',               //string
         title: i,             //string
@@ -80,7 +83,6 @@ const TimeLineRoutine = () => {
       })
     }
   }
-  const [data, setData] = useState(temp);
   const PageDate = getPageDate();
   let PageData = [];
   
@@ -95,21 +97,17 @@ const TimeLineRoutine = () => {
   useEffect(()=>{
     console.log('get routines', listRoutines);
     if(authStatus === 'configuring') return;
+    if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
-      //PageDate = getPageDate();
       PageData = await getPageRoutine(getPageDate(), loginStatus);
-      console.log('get routines', PageData);
-      pushPageData(PageData, temp);
-      setData(temp);
-      
+      dispatch(endListRoutines(PageData));
       console.log(data);
     })();
-  }, [listRoutines, authStatus])
+  }, [loginStatus, authStatus])
+  pushPageData(listRoutines, data);
 
   return (
     <div className='container d-flex flex-column h-100'>
-      {/* {console.log(data)}
-      {console.log('render')} */}
       <RoutineTimeLineModal/>
         <div className='row flex-shrink-0'>
           <TimeLineMonth month={PageDate[0].month}/>
