@@ -28,7 +28,7 @@ export async function listTags(login) {
     if(!login){
         return local_listTags();
     }else{
-        //return await server_listTags();
+        return await server_listTags();
     }
 }
 
@@ -39,12 +39,23 @@ function local_listTags(searchText = '') {
     return tags;
 }
 
-export function createTag(tagData, login) {
+async function server_listTags(login) {
+    let res = await fetch('/api/tag', {
+        method: 'GET',
+        headers: {
+            'idToken': login
+        }
+    })
+    let tags = await res.json();
+    return tags;
+}
+
+export async function createTag(tagData, login) {
     console.log('listTags', tagData)
     if(!login){
         return local_createTag(tagData);
     }else{
-        //return await server_createTags();
+        return await server_createTags(tagData, login);
     }
 }
 
@@ -67,4 +78,23 @@ function local_createTag(tagData) {
     localStorage.setItem(tagKey, JSON.stringify(tags));
     return newTag;
 
+}
+
+async function server_createTag(tagData, login) {
+    const newTag = {
+        title: tagData.title,             //string
+        color: tagData.color              //string
+    };
+
+    let result = await fetch('/api/tag',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'idToken': login
+        },
+        body: JSON.stringify(newTag)
+    });
+
+    console.log('sent', result);
+    return newTag;
 }
