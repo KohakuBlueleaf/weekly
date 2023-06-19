@@ -1,6 +1,6 @@
 const initAddModalState = {
   event: [],
-  type: 'events',
+  type: 'event',
   title: '',
   date_year: -1,
   date_month: -1,

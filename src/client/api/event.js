@@ -159,6 +159,7 @@ function local_listEvents(filter, date, all) {
 }
 
 export function createEvent(eventData) {
+    console.log("hi api: ", eventData);
     return local_createEvent(eventData);
 }
 
