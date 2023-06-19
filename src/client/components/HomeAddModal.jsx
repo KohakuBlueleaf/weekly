@@ -31,7 +31,7 @@ const HomeAddModal = () => {
 
     const updateInput = () => {
       inputState = {
-        type: 'events',
+        type: 'event',
         title: title,
         date_year: startDate.getFullYear(),
         date_month: startDate.getMonth() + 1,
@@ -69,7 +69,7 @@ const HomeAddModal = () => {
             <Form
               onSubmit={(e) => {
                 updateInput();
-                // e.preventDefault();
+                e.preventDefault();
                 console.log('asndlkasnd~~~~~~~~~~', inputState);
                 createEvent(inputState);
                 //call api at here
