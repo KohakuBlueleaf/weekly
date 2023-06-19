@@ -222,13 +222,13 @@ const TimeLine = () => {
   useEffect(()=>{
     console.log('get events', loginStatus);
     (async()=>{
-      PageDate = getPageDate();
-      PageData = await getPageEvent(PageDate, loginStatus);
+      //PageDate = getPageDate();
+      PageData = await getPageEvent(getPageDate(), loginStatus);
       console.log('get events', PageData);
       pushPageData(PageData, temp);
       setData(temp);
       
-      PageData = getPageRoutine(PageDate, loginStatus);
+      PageData = getPageRoutine(getPageDate(), loginStatus);
       pushPageData(PageData, temp);
 
       console.log(data);
