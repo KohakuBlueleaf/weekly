@@ -45,7 +45,7 @@ module.exports = {
         router: () => 'http://localhost:3000',
         logLevel: 'debug' /*optional*/
       }
-    }
+    },
   },
   plugins: [
     new CopyPlugin({
