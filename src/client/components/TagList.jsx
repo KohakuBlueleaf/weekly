@@ -38,8 +38,12 @@ const TagList = () => {
     <ListGroup vertical="true">
       
       {listTags.map(t=>{
-        
-        return <ListGroup.Item className='d-flex flex-row justify-content-between'><a><FaCircle color="#BE6464"></FaCircle>{t.title}</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
+        return (
+          <ListGroup.Item className='d-flex flex-row justify-content-between'>
+            <a><FaCircle color={t.color ? t.color : "#BE6464"}></FaCircle>{t.title}</a>
+            <FaEquals color={t.color ? t.color : "#BE6464"}></FaEquals>
+          </ListGroup.Item>
+        )
       })}
                 
     </ListGroup>
