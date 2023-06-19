@@ -8,6 +8,8 @@ import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
 import TimeLineModal from './TimeLineModal';
+import { timeLineTitleModalToggle } from '../store/homePage/action';
+import TimeLineTitleModal from './TimeLineTitleModal';
 import { getPageDate } from '../utils';
 import { endListEvents, setInput } from '../store/posts/action';
 
@@ -25,6 +27,8 @@ async function getPageRoutine(PageDate, login) {
 }
 
 function pushPageData(PageData, data) {
+  console.log(PageData, '123')
+  if(!PageData || !PageData[0]) return
   for(let j=0; j<7; j++) {
     PageData[j].map(element => {
       if(element.timeStart<0 || element.timeEnd>47 || element.timeEnd<=element.timeStart){
@@ -61,11 +65,11 @@ const TimeLineRoutine = () => {
   
   const listRoutines = useSelector((state) => state.addModal.event);
   
-  let temp = [];
+  let data = [];
   for(let j=0; j<7; j++){
-    temp.push([]);
+    data.push([]);
     for(let i=0; i<48; i++){
-      temp[j].push({
+      data[j].push({
         name: i,
         time: i,
         type: 'empty',
@@ -73,7 +77,6 @@ const TimeLineRoutine = () => {
       })
     }
   }
-  const [data, setData] = useState(temp);
   const PageDate = getPageDate();
   let PageData = [];
   
