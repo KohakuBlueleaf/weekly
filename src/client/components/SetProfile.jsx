@@ -23,7 +23,7 @@ const SetProfile = (props) => {
   
     return (
         <Card
-            className='signInCard'
+            className='signInCard-settings'
             onClick={cardCallBack === 1 ? async ()=>{props.signOut()} : ()=>{dispatch(navClose()); navigate('/login')}}
         >
             {/* <Card.Img variant="top" src="" /> */}

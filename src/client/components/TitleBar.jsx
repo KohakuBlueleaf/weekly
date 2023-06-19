@@ -44,6 +44,7 @@ function TitleBar() {
                     {!/settings$/.test(currentLocation.pathname) && !/tags$/.test(currentLocation.pathname) ?
                      <FiFilter className='filter-icon' onClick={handleFilterClick}/>
                      :
+                     !/settings$/.test(currentLocation.pathname) && 
                      <BsBrush className='theme-icon' onClick={() => dispatch(tagsThemeToggle())}/>
                     }
                   </div>
