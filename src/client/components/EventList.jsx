@@ -28,9 +28,7 @@ const EventList = () => {
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
   
-  //填空
   const listEvents = useSelector((state) => state.event.event_all)
-
   let eventData = [];
 
   useEffect(() => {
@@ -39,7 +37,6 @@ const EventList = () => {
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=> {
       eventData = await getEventList(getToday(), loginStatus);
-      //填空sth
       dispatch(endListEventAll(eventData));
       console.log("eventdata is", eventData);
     })();
@@ -48,7 +45,6 @@ const EventList = () => {
 
   return (
     <ListGroup vertical="true">
-      { console.log('list is',listEvents)}
       {listEvents.map(e => {
         return(
           <ListGroup.Item className='d-flex flex-row justify-content-between'>
