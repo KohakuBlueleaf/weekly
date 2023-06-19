@@ -37,3 +37,16 @@
 .daily-todo-list::-webkit-scrollbar {
     display: none;
 }
+
+.routine-item {
+    width: 47% !important;
+    text-align: right;
+}
+
+.event-item {
+    width: 47% !important;
+}
+
+.daily-tree-middle {
+    width: 6% !important;
+}
