@@ -17,18 +17,18 @@ export function endListEvents(event) {
   }
 }
 
-export function listEvents() {
-  return (dispatch, getState) => {
-    // dispatch(startLoading());
-    return listPostsFromApi(/*searchText*/).then(events => {
-        dispatch(endListEvents(events));
-    }).catch(err => {
-        console.error('Error listing posts', err);
-    }).then(() => {
-        // dispatch(endLoading())
-    });
-};
-}
+// export function listEvents() {
+//   return (dispatch, getState) => {
+//     // dispatch(startLoading());
+//     return listPostsFromApi(/*searchText*/).then(events => {
+//         dispatch(endListEvents(events));
+//     }).catch(err => {
+//         console.error('Error listing posts', err);
+//     }).then(() => {
+//         // dispatch(endLoading())
+//     });
+// };
+// }
 
 // export function createEvent(eventdata/*, filter*/) {
 //   return (dispatch, getState) => {
