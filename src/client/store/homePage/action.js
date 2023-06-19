@@ -1,6 +1,3 @@
-import { createEvent as createEventFromApi } from "../../api/event"
-import { listEvents as listPostsFromApi } from "../../api/event"
-
 export function addToggle() {
   return {
     type: 'HOME_ADD_TOGGLE'
@@ -25,10 +22,28 @@ export function filterClose() {
   }
 }
 
-export function endListEvents(posts) {
+export function timeLineModalToggle(title) {
   return {
-    type: 'END_LIST_POSTS',
-    posts
+    type: 'TIME_LINE_MODAL_TOGGLE',
+    title
+  }
+}
+
+export function timeLineModalClose() {
+  return {
+    type: 'TIME_LINE_MODAL_CLOSE'
+  }
+}
+
+export function timeLineTitleModalToggle() {
+  return {
+    type: 'TIME_LINE_TITLE_MODAL_TOGGLE'
+  }
+}
+
+export function timeLineTitleModalClose() {
+  return {
+    type: 'TIME_LINE_TITLE_MODAL_CLOSE'
   }
 }
 

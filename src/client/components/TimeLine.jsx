@@ -8,6 +8,9 @@ import TimeLineTitle from './TimeLineTitle';
 import { listEvents } from '../api/event';
 import { listRoutines } from '../api/routine';
 import '../style/TimeLine.css'
+import TimeLineModal from './TimeLineModal';
+import { timeLineTitleModalToggle } from '../store/homePage/action';
+import TimeLineTitleModal from './TimeLineTitleModal';
 
 //for display
 function addEvent(timeline, event, date) {
@@ -235,24 +238,29 @@ const TimeLine = () => {
     })();
   }, [])
 
+  console.log("data:123123123", data)
   return (
     <div className='container d-flex flex-column h-100'>
       {/* {console.log(data)}
       {console.log('render')} */}
-      <div className='row flex-shrink-0'>
-        <TimeLineMonth month={'MAY'}/>
-        <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
-        <TimeLineTitle week={'MON'} date={PageDate[1].day}/>
-        <TimeLineTitle week={'TUE'} date={PageDate[2].day}/>
-        <TimeLineTitle week={'WED'} date={PageDate[3].day}/>
-        <TimeLineTitle week={'THU'} date={PageDate[4].day}/>
-        <TimeLineTitle week={'FRI'} date={PageDate[5].day}/>
-        <TimeLineTitle week={'SAT'} date={PageDate[6].day}/>
-      </div>
+      <TimeLineModal/>
+        <TimeLineTitleModal/>
+        <div className='row flex-shrink-0'
+          onClick={() => {dispatch(timeLineTitleModalToggle()); console.log("title click")}}
+        >
+          <TimeLineMonth month={'MAY'}/>
+          <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
+          <TimeLineTitle week={'MON'} date={PageDate[1].day}/>
+          <TimeLineTitle week={'TUE'} date={PageDate[2].day}/>
+          <TimeLineTitle week={'WED'} date={PageDate[3].day}/>
+          <TimeLineTitle week={'THU'} date={PageDate[4].day}/>
+          <TimeLineTitle week={'FRI'} date={PageDate[5].day}/>
+          <TimeLineTitle week={'SAT'} date={PageDate[6].day}/>
+        </div>
 
-      <div>
-        框框
-      </div>
+        <div>
+          框框
+        </div>
 
       <div className='row flex-shrink-1 main-time-line'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
