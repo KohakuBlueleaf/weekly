@@ -53,7 +53,6 @@ const EventList = () => {
           <ListGroup.Item className='d-flex flex-row justify-content-between'><a><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
         )
       })} */}
-                
     </ListGroup>
   );
 }
