@@ -31,19 +31,21 @@ function pushPageData(PageData, data) {
       for(let k=element.timeStart+1; k<element.timeEnd; k++) {
         if(data[j][k].name === 'non') return;
         data[j][k] = {
-          name: 'non',
-          time: k,
-          type: 'empty',
-          duration: 0
+          id: 'uuid()',
+          type: 'empty',               //string
+          title: 'non',             //string
+          year: -1,               //number
+          month: -1,             //number
+          day: -1,            //number
+          week: -1,               //number
+          timeStart: k,     //number, 0~47, 奇數為半小
+          timeEnd: k,         //number, 0~47, 奇數為半小
+          tags: [],               //array
+          location: 'location'        //string
         }
       }
-      if(data[j][element.timeStart].name === 'non') return;
-      data[j][element.timeStart] = {
-        name: element.title,
-        time: element.timeStart,
-        type: element.type,
-        duration: element.timeEnd-element.timeStart
-      }
+      if(data[j][element.timeStart].title === 'non') return;
+      data[j][element.timeStart] = element
     })
   }
 }
@@ -62,10 +64,17 @@ const TimeLine = () => {
     data.push([]);
     for(let i=0; i<48; i++){
       data[j].push({
-        name: i,
-        time: i,
-        type: 'empty',
-        duration: 1
+        id: 'uuid()',
+        type: 'empty',               //string
+        title: i,             //string
+        year: -1,               //number
+        month: -1,             //number
+        day: -1,            //number
+        week: -1,               //number
+        timeStart: i,     //number, 0~47, 奇數為半小
+        timeEnd: i+1,         //number, 0~47, 奇數為半小
+        tags: [],               //array
+        location: 'location  '      //string
       })
     }
   }
