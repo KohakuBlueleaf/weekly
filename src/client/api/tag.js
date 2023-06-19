@@ -17,7 +17,7 @@ tags = {
 export async function getTagById(id, login) {
     if(!id) return;
     tags = [];
-    tags = listTags(login)
+    tags = await listTags(login)
     tags.forEach(element => {
         if(element.id === id) return element;
     });
