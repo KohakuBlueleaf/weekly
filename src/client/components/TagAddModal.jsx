@@ -35,7 +35,7 @@ const TagAddModal = () => {
     }
     
     const [title, setTitle] = useState("");
-    const [color, setColor] = useState("");
+    const [color, setColor] = useState("17385B");
     return (
         <Modal
           show={tagsAddModalShow}

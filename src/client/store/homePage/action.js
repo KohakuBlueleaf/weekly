@@ -22,10 +22,12 @@ export function filterClose() {
   }
 }
 
-export function timeLineModalToggle(title) {
+export function timeLineModalToggle(title, timeStart, duration) {
   return {
     type: 'TIME_LINE_MODAL_TOGGLE',
-    title
+    title,
+    timeStart,
+    duration,
   }
 }
 
