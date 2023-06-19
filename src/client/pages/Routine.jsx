@@ -15,7 +15,7 @@ import TimeLineRoutine from '../components/RoutineList';
 
 const Routine = () => {
   return (
-    <div>
+    <div style={{'height': '100%', 'max-height': '100%'}}>
       <TimeLineRoutine/>
       <RoutineAddModal/>
     </div>
