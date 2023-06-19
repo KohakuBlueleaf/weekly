@@ -94,6 +94,24 @@ const RoutineAddModal = () => {
                     </div>
                 </Form.Group>
 
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                  <Form.Label className='col-2 align-self-center m-0'>Start: </Form.Label>
+                    <div className='col-10 date-picker'>
+                    <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
+                      <MobileTimePicker onChange={(e) => {if (e) {setTimeStart(e.$d); updateInput()}}}/>
+                    </LocalizationProvider>
+                    </div>
+                </Form.Group>
+
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                  <Form.Label className='col-2 align-self-center m-0'>End: </Form.Label>
+                    <div className='col-10 date-picker'>
+                    <LocalizationProvider className='' dateAdapter={AdapterDayjs}>
+                      <MobileTimePicker onChange={(e) => {if (e) {setTimeEnd(e.$d); updateInput()}}}/>
+                    </LocalizationProvider>
+                    </div>
+                </Form.Group>
+
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTag">
                   <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
                   <div className='col-10'>
