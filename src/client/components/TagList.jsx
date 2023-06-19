@@ -19,6 +19,7 @@ const TagList = () => {
   const dispatch = useDispatch();
 
   const listTags = useSelector((state) => state.tags.tags);
+  console.log(listTags)
 
   let tagData = [];
 
@@ -36,10 +37,16 @@ const TagList = () => {
   return (
     <ListGroup vertical="true">
       
-      {tagData.map(t=>{
-        return(
-        <ListGroup.Item className='d-flex flex-row justify-content-between'><a><FaCircle color="#BE6464"></FaCircle>{t.title}</a><FaEquals color="#BE6464"></FaEquals></ListGroup.Item>
-      )})}
+
+      {listTags.map(t=>{
+        return (
+          <ListGroup.Item className='d-flex flex-row justify-content-between'>
+            <a><FaCircle color={t.color ? t.color : "#BE6464"}></FaCircle>{t.title}</a>
+            <FaEquals color={t.color ? t.color : "#BE6464"}></FaEquals>
+          </ListGroup.Item>
+        )
+      })}
+
                 
     </ListGroup>
   );
