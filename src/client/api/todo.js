@@ -80,5 +80,4 @@ function local_createTodo(todoData) {
 
     localStorage.setItem(todoKey, JSON.stringify(todos));
     return newTodo;
-
 }

@@ -1,0 +1,39 @@
+.daily-wrapper {
+    height: 100%;
+}
+
+.todo-card-wrapper {
+    height: 100%;
+    margin-top: auto;
+}
+
+.todo-card {
+    margin-top: auto;
+    height: 33% !important;
+}
+
+.todo-title {
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
+.lgcheckbox-daily input {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin-right: 0.5rem;
+}
+
+.lgcheckbox-daily label {
+    align-self: center !important;
+}
+
+.daily-todo-list {
+    height: 100%;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.daily-todo-list::-webkit-scrollbar {
+    display: none;
+}
