@@ -35,6 +35,18 @@ export function timeLineModalClose() {
   }
 }
 
+export function timeLineTitleModalToggle() {
+  return {
+    type: 'TIME_LINE_TITLE_MODAL_TOGGLE'
+  }
+}
+
+export function timeLineTitleModalClose() {
+  return {
+    type: 'TIME_LINE_TITLE_MODAL_CLOSE'
+  }
+}
+
 // event action
 // export function setTitle(title) {
 //   return {
