@@ -113,10 +113,6 @@ const TimeLineRoutine = () => {
           <TimeLineTitle week={'SAT'} date={PageDate[6].day}/>
         </div>
 
-        <div>
-          框框
-        </div>
-
       <div className='row flex-shrink-1 main-time-line'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
           <div className='d-flex flex-column border TimeLine'>

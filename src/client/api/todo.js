@@ -40,7 +40,7 @@ function local_listTodos(date, login, completed) {
     let todoString = localStorage.getItem(todoKey);
     let all_todos = todoString ? JSON.parse(todoString) : [];
     
-    todos = all_todos.filter( todo => {
+    let todos = all_todos.filter( todo => {
         if(completed) return true;
         return todo.completed === completed;
     })
