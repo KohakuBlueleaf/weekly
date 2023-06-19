@@ -11,6 +11,7 @@ import '../style/TimeLine.css'
 import TimeLineModal from './TimeLineModal';
 import { timeLineTitleModalToggle } from '../store/homePage/action';
 import TimeLineTitleModal from './TimeLineTitleModal';
+import { getPageDate } from '../utils';
 
 //for display
 function addEvent(timeline, event, date) {
@@ -68,92 +69,8 @@ function addEvent(timeline, event, date) {
   timeline[date] = newTimeline;
 }
 
-//回傳本周日期
-function getPageDate() {
-  
-  let pageDates = [{},{},{},{},{},{},{}];
-  let constraintDay = 31;
-  let preveiosDay = 31;
-  let today = new Date();
-  const thisYear = today.getFullYear();
-  const thisWeek = today.getDay();
-  const thisMonth = today.getMonth()+1;
-  const thisDate = today.getDate();
-
-  switch (thisMonth) {
-    case 2:
-      constraintDay = 28;
-      break;
-    case 1, 3, 5, 7, 8, 10, 12: constraintDay = 31;
-      break;
-    default: constraintDay = 30;
-      break;
-  }
-
-  switch (thisMonth) {
-    case 3:
-      preveiosDay = 28;
-      break;
-    case 1, 2, 4, 6, 8, 9, 11: preveiosDay = 31;
-      break;
-    default: preveiosDay = 30;
-      break;
-  }
-
-  //pageDates[thisWeek] = {thisMonth, thisDate};
-  for(let i=thisWeek,j=0; i<7; i++,j++) {
-    let theDay = {};
-    if(thisDate+j>constraintDay) {
-      theDay = {
-        year: thisYear,
-        month: thisMonth<12 ? thisMonth+1 : 1,
-        day: thisDate+j-constraintDay,
-        week: i        
-      }
-    }
-    else {
-      theDay = {
-        year: thisYear,
-        month: thisMonth,
-        day: thisDate+j,
-        week: i
-      }
-    }
-    pageDates[i] = theDay;
-  }
-
-  for(let i=thisWeek-1,j=1; i>=0; i--,j++) {
-    let theDay = {};
-    if(thisDate-j<=0) {
-      theDay = {
-        year: thisYear,
-        month: thisMonth-1>=0 ? thisMonth-1 : 12,
-        day: preveiosDay+(thisDate-j),
-        week: i
-      }
-    }
-    else {
-      theDay = {
-        year: thisYear,
-        month: thisMonth,
-        day: thisDate-j,
-        week: i
-      }
-    }
-    pageDates[i] = theDay;
-
-  }
-
-  // {
-  //   year: 
-  //   month:
-  //   day:
-  //   week:
-  // }
-  return pageDates;
-}
-
 async function getPageEvent(PageDate, login) {
+  console.log('getPageEvent', PageDate);
   return await listEvents(PageDate, login);
 }
 
@@ -195,9 +112,11 @@ import { element } from 'prop-types';
 
 const TimeLine = () => {
   const loginStatus = useSelector((state) => state.user.token);
-  console.log(loginStatus);
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
+  
+  const listEvents = useSelector((state) => state.addModal.event);
+  
   let temp = [];
   for(let j=0; j<7; j++){
     temp.push([]);
@@ -211,7 +130,7 @@ const TimeLine = () => {
     }
   }
   const [data, setData] = useState(temp);
-  let PageDate = getPageDate();
+  const PageDate = getPageDate();
   let PageData = [];
   
   let timestamp = [];
@@ -223,20 +142,21 @@ const TimeLine = () => {
   }
 
   useEffect(()=>{
-    console.log('get events', loginStatus);
+    console.log('get events', listEvents);
     (async()=>{
-      PageDate = getPageDate();
-      PageData = await getPageEvent(PageDate, loginStatus);
+      //PageDate = getPageDate();
+      PageData = await getPageEvent(getPageDate(), loginStatus);
       console.log('get events', PageData);
       pushPageData(PageData, temp);
       setData(temp);
       
-      PageData = getPageRoutine(PageDate, loginStatus);
+      PageData = getPageRoutine(getPageDate(), loginStatus);
       pushPageData(PageData, temp);
+      setData(temp);
 
       console.log(data);
     })();
-  }, [])
+  }, [listEvents])
 
   return (
     <div className='container d-flex flex-column h-100'>
