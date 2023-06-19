@@ -16,10 +16,28 @@ const TimeLineModal = () => {
     const dispatch = useDispatch();
   
     const {
+        type,
         title,
+        year,
+        month,
+        day,
+        week,
+        timeStart,
+        timeEnd,
+        tags,
+        location,
         timeLineModalShow,
     } = useSelector((state) => ({
+        type: state.homePage.type,
         title: state.homePage.title,
+        year: state.homePage.year,
+        month: state.homePage.month,
+        day: state.homePage.day,
+        week: state.homePage.week,
+        timeStart: state.homePage.timeStart,
+        timeEnd: state.homePage.timeEnd,
+        tags: state.homePage.tags,
+        location: state.homePage.location,
         timeLineModalShow: state.homePage.timeLineModalShow,
     }));
 
@@ -33,40 +51,26 @@ const TimeLineModal = () => {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-                title
+              {title}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
-                {title}
-                {/* <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                  <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
+              <Form>
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                  <Form.Label className='col-2 align-self-center m-0'>Start:</Form.Label>
                     <div className='col-10'>
-                    <Form.Control type="text" name='title' placeholder="Enter Tag name" 
-                      onChange={(e) => {setTitle(e.target.value); updateInput()}}/>
+                      {Math.floor(timeStart / 2)} : {timeStart % 2 ? '30' : '00'}
                     </div>
                 </Form.Group>
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
-                  <Form.Label htmlFor="col-2 align-self-center m-0">Color picker:</Form.Label>
+                  <Form.Label className='col-2 align-self-center m-0'>End:</Form.Label>
                     <div className='col-10'>
-                        <Form.Control
-                            className='m-0'
-                            type="color"
-                            defaultValue="#17385B"
-                            title="Choose tags color"
-                            onChange={(e) => {setColor(e.target.value)}}
-                        />
+                    {Math.floor(timeEnd / 2)} : {timeEnd % 2 ? '30' : '00'}
                     </div>
-                </Form.Group> */}
-
-                <Modal.Footer>
-                  <Button variant="primary" type="submit">
-                      Submit
-                  </Button>
-                </Modal.Footer>
+                </Form.Group>
               </Form>
-            </Modal.Body>
+          </Modal.Body>
         </Modal>
     );
   };

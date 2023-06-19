@@ -31,6 +31,6 @@ const HomeAddModalTag = (props) => {
             </div>
         </Form.Group>
     );
-  };
+};
   
-  export default HomeAddModalTag;
+export default HomeAddModalTag;

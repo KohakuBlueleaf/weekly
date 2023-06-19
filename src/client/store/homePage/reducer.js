@@ -1,5 +1,13 @@
 const initHomePageState = {
     title: '',
+    // year: -1,
+    // month: -1,
+    // day: -1,
+    // week: -1,
+    timeStart: -1,
+    timeEnd: -1,
+    tags: [],
+    location: '',
     addModalShow: false,
     filterModalShow: false,
     timeLineModalShow: false,
@@ -29,9 +37,12 @@ const homePageReducer = (state = initHomePageState, action) => {
         filterModalShow: false,
       }
     case 'TIME_LINE_MODAL_TOGGLE':
+      let temp = action.timeStart + action.duration;
       return {
         ...state,
         title: action.title,
+        timeStart: action.timeStart,
+        timeEnd: temp,
         timeLineModalShow: true,
       }
     case 'TIME_LINE_MODAL_CLOSE':
