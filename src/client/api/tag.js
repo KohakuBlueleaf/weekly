@@ -5,12 +5,13 @@ import '@babel/polyfill';
 
 const tagKey = 'tags';
 
-export function listTags() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(_listTags());
-        }, 500);
-    });
+export async function listTags() {
+    console.log('listTags', )
+    if(!login){
+        return local_listTags();
+    }else{
+        return await server_listTags();
+    }
 }
 
 

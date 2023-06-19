@@ -9,7 +9,7 @@ import { listEvents } from '../api/event';
 import '../style/TimeLine.css'
 import TimeLineModal from './TimeLineModal';
 import { getPageDate } from '../utils';
-
+import { endListEvents, setInput } from '../store/posts/action';
 
 
 async function getPageRoutine(PageDate, login) {
@@ -88,15 +88,12 @@ const TimeLineRoutine = () => {
   useEffect(()=>{
     console.log('get routines', listRoutines);
     (async()=>{
-      //PageDate = getPageDate();
       PageData = await getPageRoutine(getPageDate(), loginStatus);
-      console.log('get routines', PageData);
-      pushPageData(PageData, temp);
-      setData(temp);
-      
+      dispatch(endListEvents(PageData));
       console.log(data);
     })();
-  }, [listRoutines])
+  }, [])
+  pushPageData(listEvents, data);
 
   return (
     <div className='container d-flex flex-column h-100'>
