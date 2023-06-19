@@ -15,6 +15,7 @@ import { getPageDate } from '../utils';
 import { addClose } from "../store/homePage/action"
 
 import { endListEvents, setInput } from '../store/posts/action';
+import { endListTodos, setInput as setInputFromTodo } from '../store/todo/action';
 // import { createEvent } from '../store/posts/action';
 import { createEvent as createEventFromApi, listEvents as listEventsFromApi } from '../api/event';
 
@@ -33,19 +34,32 @@ const HomeAddModal = () => {
     let inputState;
 
     const updateInput = () => {
-      inputState = {
-        type: 'event',
-        title: title,
-        year: startDate.getFullYear(),
-        month: startDate.getMonth() + 1,
-        day: startDate.getDate(),
-        week: startDate.getDay(),
-        timeStart: timeStart && !todoSelect ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
-        timeEnd: timeEnd && !todoSelect ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
-        tags: tag,
-        location: location,
+      if (!todoSelect) {
+        inputState = {
+          type: 'event',
+          title: title,
+          year: startDate.getFullYear(),
+          month: startDate.getMonth() + 1,
+          day: startDate.getDate(),
+          week: startDate.getDay(),
+          timeStart: timeStart && !todoSelect ? timeStart.getHours() * 2 + Math.floor(timeStart.getMinutes() / 30) : -1,
+          timeEnd: timeEnd && !todoSelect ? timeEnd.getHours() * 2 + Math.floor(timeEnd.getMinutes() / 30) : -1,
+          tags: tag,
+          location: location,
+        }
+        dispatch(setInput(inputState));
+      } else {
+        inputState = {
+          conpleted: false,
+          title: title,
+          year: startDate.getFullYear(),
+          month: startDate.getMonth() + 1,
+          day: startDate.getDate(),
+          weekday: startDate.getDay(),
+          tags: tag,
+        }
+        dispatch(setInputFromTodo(inputState));
       }
-      dispatch(setInput(inputState));
     }
     
     const [todoSelect, setTodoSelect] = useState(false);
@@ -73,9 +87,14 @@ const HomeAddModal = () => {
               onSubmit={async (e) => {
                 updateInput();
                 e.preventDefault();
-                await createEventFromApi(inputState, loginStatus);
-                dispatch(endListEvents(await listEventsFromApi(getPageDate(), loginStatus)));
-                dispatch(addClose())
+                if (!todoSelect) {
+                  await createEventFromApi(inputState, loginStatus);
+                  dispatch(endListEvents(await listEventsFromApi(getPageDate(), loginStatus)));
+                } else {
+                  await createTodoFromApi(inputState, loginStatus);
+                  dispatch(endListTodos(await listTodosFromApi(getPageDate(), loginStatus)));
+                }
+                dispatch(addClose());
                 //call api at here
               }}
             >
