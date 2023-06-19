@@ -10,8 +10,6 @@ import '../style/TimeLine.css'
 import TimeLineModal from './TimeLineModal';
 import { getPageDate } from '../utils';
 
-
-
 async function getPageRoutine(PageDate, login) {
   console.log('getPageRoutine', PageDate);
   let filter = {
@@ -87,6 +85,7 @@ const TimeLineRoutine = () => {
 
   useEffect(()=>{
     console.log('get routines', listRoutines);
+    if(authStatus === 'configuring') return;
     (async()=>{
       //PageDate = getPageDate();
       PageData = await getPageRoutine(getPageDate(), loginStatus);
@@ -96,7 +95,7 @@ const TimeLineRoutine = () => {
       
       console.log(data);
     })();
-  }, [listRoutines])
+  }, [listRoutines, authStatus])
 
   return (
     <div className='container d-flex flex-column h-100'>
