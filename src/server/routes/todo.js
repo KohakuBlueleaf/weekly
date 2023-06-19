@@ -5,11 +5,11 @@ const express = require('express');
 const router = express.Router();
 
 
-// 處理 GET /api/event 路由
+// 處理 GET /api/todo 路由
 router.get('/', async (req, res) => {
-  console.log('GET /api/event')
+  console.log('GET /api/todo')
   let user = req.userData;
-  let eventData = await database.Event.findAll({
+  let todoData = await database.Todo.findAll({
     include: [
       {
         model: database.User,
@@ -20,19 +20,15 @@ router.get('/', async (req, res) => {
     ]
   })
   let processedData = [];
-  eventData.forEach((e) => {
+  todoData.forEach((e) => {
     processedData.push({
       id: e.id,
-      type: e.type,
-      title: e.title,
+      content: e.type,
+      completed: e.completed,
       year: e.year,
       month: e.month,
       day: e.day,
       week: e.weekday,
-      timeStart: e.timeStart,
-      timeEnd: e.timeEnd,
-      tags: e.tags.map((tag) => tag.id),
-      location: e.location
     })
   })
   console.log('get', processedData)
@@ -42,17 +38,13 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   let user = req.userData;
   console.log('POST', req.body, user);
-  let event = await database.Event.create({
-    type: req.body.type,
-    title: req.body.title,
+  let todo = await database.Todo.create({
+    content: req.body.type,
+    completed: req.body.completed,
     year: req.body.year,
     month: req.body.month,
     day: req.body.day,
-    weekday: req.body.weekday,
-    timeStart: req.body.timeStart,
-    timeEnd: req.body.timeEnd,
-    tags: req.body.tags,
-    location: req.body.location,
+    weekday: req.body.week,
     ownerId: user.id
   })
   res.json({

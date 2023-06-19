@@ -76,6 +76,7 @@ async function getPageEvent(PageDate, login) {
 }
 
 function pushPageData(PageData, data) {
+  if(!PageData || !PageData[0]) return
   for(let j=0; j<7; j++) {
     PageData[j].map(element => {
       if(element.timeStart<0 || element.timeEnd>47 || element.timeEnd<=element.timeStart){
@@ -112,11 +113,11 @@ const TimeLine = () => {
   
   const listEvents = useSelector((state) => state.addModal.event);
   
-  let temp = [];
+  let data = [];
   for(let j=0; j<7; j++){
-    temp.push([]);
+    data.push([]);
     for(let i=0; i<48; i++){
-      temp[j].push({
+      data[j].push({
         name: i,
         time: i,
         type: 'empty',
@@ -124,7 +125,6 @@ const TimeLine = () => {
       })
     }
   }
-  const [data, setData] = useState(temp);
   const PageDate = getPageDate();
   let PageData = [];
   
@@ -139,16 +139,12 @@ const TimeLine = () => {
   useEffect(()=>{
     console.log('get events', listEvents);
     (async()=>{
-      // PageData = await listEvents;
       PageData = await getPageEvent(getPageDate(), loginStatus);
       dispatch(endListEvents(PageData));
-      console.log('get events', PageData);
-      pushPageData(PageData, temp);
-      setData(temp);
-      
       console.log(data);
     })();
-  }, [listEvents])
+  }, [])
+  pushPageData(listEvents, data);
 
   return (
     <div className='container d-flex flex-column h-100'>
