@@ -41,6 +41,7 @@ export function toTodo() {
 }
 
 export function endListEventAll(eventData) {
+  console.log("end listevent all");
   return {
     type: "END_LIST_EVENT_ALL",
     eventData
