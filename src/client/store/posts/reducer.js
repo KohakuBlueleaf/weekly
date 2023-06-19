@@ -8,7 +8,7 @@ const initAddModalState = {
   week: -1,
   timeStart: -1,
   timeEnd: -1,
-  tags: '',
+  tags: [],
   location: '',
 }
 
