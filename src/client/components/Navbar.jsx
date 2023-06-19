@@ -17,6 +17,7 @@ import { addToggle } from '../store/homePage/action';
 import { addToggle as addToggle_event } from "../store/event/action"
 import { tagsAddToggle } from '../store/tags/action';
 import { addToggle as todoAddToggle } from '../store/todo/action';
+import { addToggle as routineAddToggle } from '../store/routine/action';
 import { helpToggle } from '../store/help/action';
 import ManTab from './ManTab';
 import NavbarProfile from './NavbarProfile';
@@ -51,6 +52,9 @@ const OffcanvasExample = (props) => {
     }
     else if (/management\/todo$/.test(currentLocation.pathname)) {
       dispatch(todoAddToggle());
+    }
+    else if (/management\/routine$/.test(currentLocation.pathname)) {
+      dispatch(routineAddToggle());
     }
     else if (/tags$/.test(currentLocation.pathname)) {
       dispatch(tagsAddToggle());

@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 
 import Nav from 'react-bootstrap/Nav';
 import ManTab from '../components/ManTab';
+import RoutineAddModal from '../components/RoutineAddModal';
 
 import TimeLineRoutine from '../components/RoutineList';
 
@@ -16,6 +17,7 @@ const Routine = () => {
   return (
     <div>
       <TimeLineRoutine/>
+      <RoutineAddModal/>
     </div>
   )
 }
