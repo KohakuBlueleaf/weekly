@@ -1,11 +1,5 @@
 const initTodoState = {
-  todo: [{id: -1, title: 'ss demo3', year: 2023, month: 6, day: 18, tags: ''},
-  {id: -1, title: 'ss demo3', year: 2023, month: 6, day: 19, tags: ''},
-  {id: -1, title: 'ss demo3', year: 2023, month: 6, day: 20, tags: ''},
-  {id: -1, title: 'ss demo3', year: 2023, month: 6, day: 21, tags: ''},
-  {id: -1, title: 'ss demo3', year: 2023, month: 6, day: 22, tags: ''},
-  {id: -1, title: 'ss demo3', year: 2023, month: 6, day: 23, tags: ''},
-  {id: -1, title: 'ss demo3', year: 2023, month: 6, day: 24, tags: ''},],
+  todo: [],
   completed: false,
   title: '',
   year: -1,

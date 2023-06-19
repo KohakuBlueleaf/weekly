@@ -19,6 +19,7 @@ import { tagsAddToggle } from '../store/tags/action';
 import { addToggle as todoAddToggle } from '../store/todo/action';
 import { addToggle as routineAddToggle } from '../store/routine/action';
 import { helpToggle } from '../store/help/action';
+import { toEvent } from '../store/event/action';
 import ManTab from './ManTab';
 import NavbarProfile from './NavbarProfile';
 import '../style/navbar.css';
@@ -111,7 +112,7 @@ const OffcanvasExample = (props) => {
             </div>
             <Nav className="justify-content-end flex-grow-1 pe-3 nav-link-wrapper">
               <Link className="nav-link" to='/' onClick={navclose}><RxHome className='nav-link-icon'/>Home</Link>
-              <Link className="nav-link" to='/management' onClick={navclose}><ImNewspaper className='nav-link-icon'/>Management</Link>
+              <Link className="nav-link" to='/management' onClick={() => {dispatch(toEvent()) ;navclose()}}><ImNewspaper className='nav-link-icon'/>Management</Link>
               <Link className="nav-link" to='/tags' onClick={navclose}><GrTag className='nav-link-icon'/>Tags</Link>
               <Link className="nav-link" onClick={hadleHelpClick}><RxQuestionMarkCircled className='nav-link-icon'/>Helps</Link>
               <Link className="nav-link" to='/settings' onClick={navclose}><FiSettings className='nav-link-icon'/>Settings</Link>

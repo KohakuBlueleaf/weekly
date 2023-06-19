@@ -103,7 +103,7 @@ const TimeLine = () => {
 
   return (
     <div className='container d-flex flex-column h-100'>
-      {/* {console.log(data)}
+      {/* {console.log("data", data)}
       {console.log('render')} */}
       <TimeLineModal/>
         <TimeLineTitleModal/>
