@@ -13,11 +13,16 @@ import TimeLineTitleModal from './TimeLineTitleModal';
 import { getPageDate } from '../utils';
 import { endListEvents, setInput } from '../store/posts/action';
 
+import {endListTags} from '../store/tags/action';
+import { listTags } from '../api/tag';
 
 
 async function getPageEvent(PageDate, login, filter) {
   // console.log('getPageEvent', PageDate);
   return await listEvents(PageDate, login, filter);
+}
+async function getTagsList(login) {
+  return await listTags(login);
 }
 
 function pushPageData(PageData, data) {
@@ -80,7 +85,9 @@ const TimeLine = () => {
   const dispatch = useDispatch();
   
   const listEvents = useSelector((state) => state.addModal.event);
-
+  const listTags = useSelector((state) => state.tags.tags);
+  let tagData = [];
+  
   const {
     eventFilter,
     routineFilter,
@@ -113,33 +120,36 @@ const TimeLine = () => {
         routineDisplay: routineFilter,
       });
       dispatch(endListEvents(PageData));
+      tagData = await getTagsList(loginStatus);
+      dispatch(endListTags(tagData));
       console.log(data);
     })();
   }, [loginStatus, authStatus])
   pushPageData(listEvents, data);
 
   return (
-    <div className='container d-flex flex-column h-100'>
+    <div className='container d-flex flex-column h-100 '>
       {/* {console.log("data", data)}
       {console.log('render')} */}
       <TimeLineModal/>
-        <TimeLineTitleModal/>
-        <div className='row flex-shrink-0'
-          onClick={() => {dispatch(timeLineTitleModalToggle()); console.log("title click")}}
-        >
-          <TimeLineMonth month={PageDate[0].month}/>
-          <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
-          <TimeLineTitle week={'MON'} date={PageDate[1].day}/>
-          <TimeLineTitle week={'TUE'} date={PageDate[2].day}/>
-          <TimeLineTitle week={'WED'} date={PageDate[3].day}/>
-          <TimeLineTitle week={'THU'} date={PageDate[4].day}/>
-          <TimeLineTitle week={'FRI'} date={PageDate[5].day}/>
-          <TimeLineTitle week={'SAT'} date={PageDate[6].day}/>
-        </div>
+      <TimeLineTitleModal/>
+      <div className='row flex-shrink-0'
+        onClick={() => {dispatch(timeLineTitleModalToggle()); console.log("title click")}}
+      >
+        <TimeLineMonth month={PageDate[0].month}/>
+        <TimeLineTitle week={'SUN'} date={PageDate[0].day}/>
+        <TimeLineTitle week={'MON'} date={PageDate[1].day}/>
+        <TimeLineTitle week={'TUE'} date={PageDate[2].day}/>
+        <TimeLineTitle week={'WED'} date={PageDate[3].day}/>
+        <TimeLineTitle week={'THU'} date={PageDate[4].day}/>
+        <TimeLineTitle week={'FRI'} date={PageDate[5].day}/>
+        <TimeLineTitle week={'SAT'} date={PageDate[6].day}/>
+      </div>
 
-        <div>
-          框框
-        </div>
+      <div className='w-100 border rounded p-2 m-2' style={{backgroundColor: 'white'}}>
+        <br/>
+        <br/>
+      </div>
 
       <div className='row flex-shrink-1 main-time-line border-top'>
         <div className='d-flex flex-column TimeLineMonth-col p-0'>
@@ -155,13 +165,13 @@ const TimeLine = () => {
             })}
           </div>
         </div>
-        <TimeLineItem week={'SUN'} date={PageDate[0].week} data={data[0]}/>
-        <TimeLineItem week={'MON'} date={PageDate[1].week} data={data[1]}/>
-        <TimeLineItem week={'TUE'} date={PageDate[2].week} data={data[2]}/>
-        <TimeLineItem week={'WED'} date={PageDate[3].week} data={data[3]}/>
-        <TimeLineItem week={'THU'} date={PageDate[4].week} data={data[4]}/>
-        <TimeLineItem week={'FRI'} date={PageDate[5].week} data={data[5]}/>
-        <TimeLineItem week={'SAT'} date={PageDate[6].week} data={data[6]}/>
+        <TimeLineItem week={'SUN'} date={PageDate[0].week} data={data[0]} tags={listTags}/>
+        <TimeLineItem week={'MON'} date={PageDate[1].week} data={data[1]} tags={listTags}/>
+        <TimeLineItem week={'TUE'} date={PageDate[2].week} data={data[2]} tags={listTags}/>
+        <TimeLineItem week={'WED'} date={PageDate[3].week} data={data[3]} tags={listTags}/>
+        <TimeLineItem week={'THU'} date={PageDate[4].week} data={data[4]} tags={listTags}/>
+        <TimeLineItem week={'FRI'} date={PageDate[5].week} data={data[5]} tags={listTags}/>
+        <TimeLineItem week={'SAT'} date={PageDate[6].week} data={data[6]} tags={listTags}/>
       </div>
     </div>
   );

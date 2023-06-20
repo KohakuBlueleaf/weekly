@@ -30,13 +30,6 @@ async function getTagsList(login) {
 }
 
 
-function getTagById(tags, id) {
-  tags = [];
-  tags.forEach(element => {
-    if(element.id === id) return element;
-  });
-}
-
 const EventList = () => {
   const loginStatus = useSelector((state) => state.user.token);
   const [user, authStatus] = useOutletContext();

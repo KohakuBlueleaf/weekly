@@ -65,6 +65,7 @@ const TodoList = () => {
   return (
     <ListGroup vertical="true">
       {listTodos.map(t=>{
+      console.log(t)
         return(
           <ListGroup.Item className='d-flex flex-row justify-content-between' key={'todo-list-'+t.id}>
           <div className='d-flex flex-column w-100'>

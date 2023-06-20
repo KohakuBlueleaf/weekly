@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
   todoData.forEach((e) => {
     processedData.push({
       id: e.id,
-      content: e.type,
+      title: e.content,
       completed: e.completed,
       year: e.year,
       month: e.month,
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
   let user = req.userData;
   console.log('POST', req.body, user);
   let todo = await database.Todo.create({
-    content: req.body.type,
+    content: req.body.title,
     completed: req.body.completed,
     year: req.body.year,
     month: req.body.month,

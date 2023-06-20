@@ -12,8 +12,15 @@ import RoutineTimeLineItem from './RoutineTimeLineItem';
 import { getPageDate } from '../utils';
 import { endListRoutines } from '../store/routine/action';
 
+import {endListTags} from '../store/tags/action';
+import { listTags } from '../api/tag';
+
+
 async function getPageRoutine(PageDate, login, filter) {
   return await listEvents(PageDate, login, filter);
+}
+async function getTagsList(login) {
+  return await listTags(login);
 }
 
 function pushPageData(PageData, data) {
@@ -55,6 +62,8 @@ const TimeLineRoutine = () => {
   const dispatch = useDispatch();
   
   const listRoutines = useSelector((state) => state.routine.routine);
+  const listTags = useSelector((state) => state.tags.tags);
+  let tagData = [];
   
   let data = [];
   for(let j=0; j<7; j++){
@@ -96,6 +105,8 @@ const TimeLineRoutine = () => {
         routineDisplay: true,
       });
       dispatch(endListRoutines(PageData));
+      tagData = await getTagsList(loginStatus);
+      dispatch(endListTags(tagData));
       console.log(data);
     })();
   }, [loginStatus, authStatus])
@@ -129,13 +140,13 @@ const TimeLineRoutine = () => {
             })}
           </div>
         </div>
-        <RoutineTimeLineItem week={'SUN'} date={PageDate[0].week} data={data[0]}/>
-        <RoutineTimeLineItem week={'MON'} date={PageDate[1].week} data={data[1]}/>
-        <RoutineTimeLineItem week={'TUE'} date={PageDate[2].week} data={data[2]}/>
-        <RoutineTimeLineItem week={'WED'} date={PageDate[3].week} data={data[3]}/>
-        <RoutineTimeLineItem week={'THU'} date={PageDate[4].week} data={data[4]}/>
-        <RoutineTimeLineItem week={'FRI'} date={PageDate[5].week} data={data[5]}/>
-        <RoutineTimeLineItem week={'SAT'} date={PageDate[6].week} data={data[6]}/>
+        <RoutineTimeLineItem week={'SUN'} date={PageDate[0].week} data={data[0]} tags={listTags}/>
+        <RoutineTimeLineItem week={'MON'} date={PageDate[1].week} data={data[1]} tags={listTags}/>
+        <RoutineTimeLineItem week={'TUE'} date={PageDate[2].week} data={data[2]} tags={listTags}/>
+        <RoutineTimeLineItem week={'WED'} date={PageDate[3].week} data={data[3]} tags={listTags}/>
+        <RoutineTimeLineItem week={'THU'} date={PageDate[4].week} data={data[4]} tags={listTags}/>
+        <RoutineTimeLineItem week={'FRI'} date={PageDate[5].week} data={data[5]} tags={listTags}/>
+        <RoutineTimeLineItem week={'SAT'} date={PageDate[6].week} data={data[6]} tags={listTags}/>
       </div>
     </div>
   );
