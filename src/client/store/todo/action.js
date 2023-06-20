@@ -39,3 +39,9 @@ export function setInput(input) {
     input
   }
 }
+
+export function todoFilterCompletedToggle() {
+  return {
+    type: 'TODO_FILTER_COMPLETED_TOGGLE'
+  }
+}
