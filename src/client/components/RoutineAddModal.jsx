@@ -73,7 +73,10 @@ const RoutineAddModal = () => {
                 e.preventDefault();
                 console.log(updateInput);
                 await createEventFromApi(inputState, loginStatus);
-                dispatch(endListRoutines(await listEventsFromApi(getPageDate(), loginStatus)));
+                dispatch(endListRoutines(await listEventsFromApi(getPageDate(), loginStatus, {
+                  eventDisplay: false,
+                  routineDisplay: true,
+                })));
                 dispatch(addClose())
                 //call api at here
               }}
