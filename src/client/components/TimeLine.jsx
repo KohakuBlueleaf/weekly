@@ -15,10 +15,9 @@ import { endListEvents, setInput } from '../store/posts/action';
 
 
 
-async function getPageEvent(PageDate, login) {
+async function getPageEvent(PageDate, login, filter) {
   // console.log('getPageEvent', PageDate);
-
-  return await listEvents(PageDate, login);
+  return await listEvents(PageDate, login, filter);
 }
 
 function pushPageData(PageData, data) {
@@ -117,8 +116,11 @@ const TimeLine = () => {
     if(authStatus === 'configuring') return;
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
-      PageData = await getPageEvent(getPageDate(), loginStatus);
       data = allEmptyData();
+      PageData = await getPageEvent(getPageDate(), loginStatus, {
+        eventDisplay: eventFilter,
+        routineDisplay: routineFilter,
+      });
       dispatch(endListEvents(PageData));
       console.log(data);
     })();
