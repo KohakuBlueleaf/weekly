@@ -65,6 +65,7 @@ const HomeFilterModal = () => {
                       label={`Event`}
                       checked={eventFilter ? true : false}
                       onClick={() => dispatch(homeEventFilterToggle())}
+                      onChange={() => {}}
                     />
 
                     <Form.Check
@@ -74,6 +75,7 @@ const HomeFilterModal = () => {
                         label={`Routine`}
                         checked={routineFilter ? true : false}
                         onClick={() => dispatch(homeRoutineFilterToggle())}
+                        onChange={() => {}}
                     />
 
                     <Modal.Footer>

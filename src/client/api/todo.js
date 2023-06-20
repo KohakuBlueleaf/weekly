@@ -129,7 +129,7 @@ export async function modifyTodo(todoData, login) {
         return local_modifyTodo(todoData, login);
     }
     else {
-        //server
+        return await server_modifyTodo(todoData, login);
     }
 }
 
@@ -139,7 +139,7 @@ function local_modifyTodo(todoData, login) {
 
     let modified = {};
     let noModified = old_todos.filter(e => {
-        console.log(e);
+        console.log(e, todoData);
         if(e.id === todoData.id) {
             modified = {
                 completed: !e.completed,
@@ -158,12 +158,30 @@ function local_modifyTodo(todoData, login) {
     console.log(modified);
     // console.log(modified);
     let merge = [];
-    
     if(noModified) merge = [modified, ...noModified];
     else merge = [modified]; 
+    merge = merge.filter(value => Object.keys(value).length !== 0)
+    console.log(merge)
 
     console.log(merge);
     localStorage.setItem(todoKey, JSON.stringify(merge));
     return merge;
     
+}
+
+async function server_modifyTodo(todoData, login) {
+    console.log(todoData)
+    todoData.completed = !todoData.completed;
+    let result = await fetch('/api/todo',{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'idToken': login
+        },
+        body: JSON.stringify(todoData)
+    });
+    let merge = await result.json();
+
+    console.log('sent', merge);
+    return merge;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import DailyTodoList from './DailyTodoList';
 
 import "../style/daily.css";

@@ -24,9 +24,11 @@ const userRoutes = require('./routes/user');
 const eventRoutes = require('./routes/event');
 const tagsRoutes = require('./routes/tags');
 const todoRoutes = require('./routes/todo');
+const memoRoutes = require('./routes/memo');
 app.use('/api/user', userRoutes);
 app.use('/api/event', eventRoutes);
 app.use('/api/tag', tagsRoutes);
 app.use('/api/todo', todoRoutes);
+app.use('/api/memo', memoRoutes);
 
 module.exports = app;
