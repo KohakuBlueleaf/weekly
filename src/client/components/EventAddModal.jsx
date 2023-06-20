@@ -14,7 +14,7 @@ import { getPageDate } from '../utils';
 
 import { addClose } from "../store/event/action"
 
-import { setInput } from '../store/posts/action';
+import { endListEvents, setInput } from '../store/posts/action';
 import { listEvents as listEventsFromApi, createEvent as createEventFromApi } from '../api/event';
 import { endListEventAll } from '../store/event/action';
 
@@ -73,7 +73,12 @@ const EventAddModal = () => {
                 updateInput();
                 e.preventDefault();
                 await createEventFromApi(inputState, loginStatus);
-                dispatch(endListEventAll(await listEventsFromApi(getPageDate(), loginStatus)));
+                let temp = (await listEventsFromApi(getPageDate(), loginStatus, {
+                  eventDisplay: true,
+                  routineDisplay: false,
+                }))
+                dispatch(endListEventAll(temp));
+                dispatch(endListEvents(temp));
                 dispatch(addClose());
               }}
             >
