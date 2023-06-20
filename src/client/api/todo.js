@@ -140,7 +140,7 @@ function local_modifyTodo(todoData, login) {
     let noModified = old_todos.filter(e => {
         if(e.id === todoData.id) {
             modified = {
-                completed: todoData.completed,
+                completed: !e.completed,
                 title: e.title,             //string
                 year: e.year,               //number
                 month: e.month,             //number
