@@ -158,9 +158,10 @@ function local_modifyTodo(todoData, login) {
     console.log(modified);
     // console.log(modified);
     let merge = [];
-    
     if(noModified) merge = [modified, ...noModified];
     else merge = [modified]; 
+    merge = merge.filter(value => Object.keys(value).length !== 0)
+    console.log(merge)
 
     console.log(merge);
     localStorage.setItem(todoKey, JSON.stringify(merge));
