@@ -1,7 +1,7 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';

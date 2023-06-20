@@ -1,8 +1,7 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
 
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';

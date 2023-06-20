@@ -1,7 +1,6 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import { connect, useSelector, useDispatch } from 'react-redux';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
 
 import "../style/daily.css";
 

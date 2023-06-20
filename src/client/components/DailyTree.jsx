@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { listEvents as listEventsFromApi } from '../api/event';

@@ -1,16 +1,14 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useOutletContext } from "react-router-dom";
-import Modal from 'react-bootstrap/Modal';
+import { useOutletContext } from "react-router-dom";
 import {TbMinusVertical} from "react-icons/tb";
 import {FaEquals} from 'react-icons/fa';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import { listEvents as listEventsFromApi } from '../api/event';
-import { getPageDate, getToday } from '../utils/index';
+import { getToday } from '../utils/index';
 import { endListEventAll } from '../store/event/action';
-import { Container } from 'react-bootstrap';
 import {endListTags} from '../store/tags/action';
 import { listTags } from '../api/tag';
 import { brightness } from '../utils/index';
