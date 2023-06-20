@@ -30,8 +30,19 @@ const EventList = () => {
   const [user, authStatus] = useOutletContext();
   const dispatch = useDispatch();
   
-  const listEvents = useSelector((state) => state.event.event_all)
+  const listEvents = useSelector((state) => state.event.event_all);
   let eventData = [];
+  let allEvents = [];
+  
+  listEvents.forEach((e_list) => {
+    if(e_list.forEach){
+      e_list.forEach((e) => {
+        allEvents.push(e);
+      })
+    }else{
+      allEvents.push(e_list)
+    }
+  })
 
   useEffect(() => {
     console.log('get eventList', listEvents, loginStatus);
@@ -44,10 +55,9 @@ const EventList = () => {
     })();
   },[loginStatus, authStatus]);
 
-
   return (
     <ListGroup vertical="true">
-      {listEvents.map(e => {
+      {allEvents.map(e => {
         return(
           <ListGroup.Item className='d-flex flex-row justify-content-between'>
             <div>
