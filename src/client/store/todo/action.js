@@ -1,6 +1,3 @@
-import { listTodos as listTodosFromApi } from "../../api/todo"
-import { createTodo as createTodoFromApi } from "../../api/todo"
-
 export function addToggle() {
   return {
       type: 'TODO_ADD_TOGGLE'
