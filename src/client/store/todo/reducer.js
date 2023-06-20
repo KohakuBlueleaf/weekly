@@ -9,6 +9,7 @@ const initTodoState = {
   tags: [],
   addModalShow: false,
   filterModalShow: false,
+  completedShowFilter: true,
 };
 
 const todoReducer = (state = initTodoState, action) => {
@@ -48,6 +49,11 @@ const todoReducer = (state = initTodoState, action) => {
         return {
           ...state,
           filterModalShow: false,
+        }
+      case 'TODO_FILTER_COMPLETED_TOGGLE':
+        return {
+          ...state,
+          completedShowFilter: !state.completedShowFilter,
         }
       default:
         return state;

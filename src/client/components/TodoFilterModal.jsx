@@ -7,16 +7,21 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { filterClose } from "../store/todo/action"
+import { endListTodos, filterClose } from "../store/todo/action";
+import { listTodos as listTodosFromApi } from '../api/todo';
+import { getPageDate } from '../utils';
 
 const TodoFilterModal = () => {
     const [user, authStatus] = useOutletContext();
+    const loginStatus = useSelector((state) => state.user.token);
     const dispatch = useDispatch();
   
     const {
         filterModalShow,
+        completedShowFilter
     } = useSelector((state) => ({
-        filterModalShow: state.todo.filterModalShow
+        filterModalShow: state.todo.filterModalShow,
+        completedShowFilter: state.todo.completedShowFilter,
     }));
   
     return (
@@ -33,35 +38,29 @@ const TodoFilterModal = () => {
           </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-              <Form className=''>
+              <Form className=''
+              onSubmit={async (e) => {
+                e.preventDefault();
+                dispatch(endListTodos(await listTodosFromApi(getPageDate(), loginStatus, completedShowFilter)))
+                dispatch(filterClose());
+            }}
+              >
+                  
                   <Form.Check
                       className='lgcheckbox d-flex flex-row mb-3'
                       type={'checkbox'}
                       id={`default-checkbox`}
-                      label={`Routine`}
+                      checked={completedShowFilter ? true : false}
+                      label={`Display checked`}
                   />
 
-                  <Form.Check
-                      className='lgcheckbox d-flex flex-row mb-3'
-                      type={'checkbox'}
-                      id={`default-checkbox`}
-                      label={`Event`}
-                  />
-
-                  <Form.Check
-                      className='lgcheckbox d-flex flex-row mb-3'
-                      type={'checkbox'}
-                      id={`default-checkbox`}
-                      label={`Completed`}
-                  />
-
-
+                    <Modal.Footer>
+                            <Button variant="primary" type="submit">
+                                Ok
+                            </Button>
+                    </Modal.Footer>
               </Form>
-          <Modal.Footer>
-              <Button variant="primary" type="submit">
-                  Ok
-              </Button>
-          </Modal.Footer>
+          
           </Modal.Body>
       </Modal>
     );

@@ -13,7 +13,6 @@ import { getPageDate } from '../utils';
 import { endListRoutines } from '../store/routine/action';
 
 async function getPageRoutine(PageDate, login, filter) {
-
   return await listEvents(PageDate, login, filter);
 }
 
