@@ -18,7 +18,7 @@ const HomeAddModalTag = (props) => {
             <Form.Label className='col-2 align-self-center m-0'>Tag:</Form.Label>
             <div className='col-10'>
                 <Form.Select aria-label="Default select example" 
-                onChange={(e) => {props.setTag(e.target.value); props.updateInput()}}>
+                onChange={(e) => {props.setTag([e.target.value]); props.updateInput()}}>
                 <option>select a tag</option>
                 {
                     tags.map((item, index) => {
