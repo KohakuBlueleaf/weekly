@@ -69,7 +69,7 @@ const EventList = () => {
           <ListGroup.Item key={'event-list-'+e.id} className='d-flex flex-row justify-content-between'>
             <div className='d-flex flex-column w-100'>
               <div><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</div>
-              <div className='d-flex flex-row'>{e.month}/{e.day}&nbsp;{e.timeStart/2}:{e.timeStart%2? `30`:`00`}-{e.timeEnd/2}:{EventList.timeEnd%2?`30`:`00`}
+              <div className='d-flex flex-row'>{e.month}/{e.day}&nbsp;{Math.floor(e.timeStart/2)}:{e.timeStart%2? `30`:`00`}-{Math.floor(e.timeEnd/2)}:{e.timeEnd%2?`30`:`00`}
 
               </div>
               <div className='flex-shrink-1 d-flex'>
