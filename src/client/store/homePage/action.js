@@ -23,6 +23,7 @@ export function filterClose() {
 }
 
 export function timeLineModalToggle(item) {
+  console.log("itemskdaslkdnaskldns", item)
   return {
     type: 'TIME_LINE_MODAL_TOGGLE',
     item
