@@ -48,7 +48,7 @@ const RoutineAddModal = () => {
     }
     
     const [title, setTitle] = useState("");
-    const [tag, setTag] = useState("");
+    const [tag, setTag] = useState([]);
     const [timeStart, setTimeStart] = useState("");
     const [timeEnd, setTimeEnd] = useState("");
     const [location, setLocation] = useState("");
