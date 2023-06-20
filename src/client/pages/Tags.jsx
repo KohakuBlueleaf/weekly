@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
