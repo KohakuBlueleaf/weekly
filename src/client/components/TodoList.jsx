@@ -15,6 +15,7 @@ import {TbMinusVertical} from "react-icons/tb";
 import { modifyTodo as modifyTodoFromApi } from '../api/todo';
 import {endListTags} from '../store/tags/action';
 import { listTags } from '../api/tag';
+import { brightness } from '../utils/index';
 
 import "../style/todoList.css";
 
@@ -82,7 +83,7 @@ const TodoList = () => {
             <div className='flex-shrink-1 d-flex'>
             {
               listTags.map(tags=>{
-                tag = undefined;
+                let tag = undefined;
                 t.tags.every(targetTag=>{
                   console.log(t, targetTag)
                   if(tags.id == targetTag){
@@ -92,14 +93,19 @@ const TodoList = () => {
                   }
                   return true;
                 })
-                if(tag)
+                if(tag){
                   return (
                   <div 
-                    key={'event-' + t.id + '-' + tag.id} 
+                    key={'event-' + t.id + '-' + tag.id}
+                    style={{
+                      backgroundColor: tag.color,
+                      color: brightness(tag.color || '#17385B')>127 ? 'black': 'white',
+                    }}
                     className='border rounded ps-2 pe-2'>
                     {tag.title}
                   </div>
                   )
+                }
               })
             }
             </div>

@@ -13,6 +13,7 @@ import { endListEventAll } from '../store/event/action';
 import { Container } from 'react-bootstrap';
 import {endListTags} from '../store/tags/action';
 import { listTags } from '../api/tag';
+import { brightness } from '../utils/index';
 
 
 async function getEventList(PageDate, login) {
@@ -46,7 +47,6 @@ const EventList = () => {
   let eventData = [];
   let allEvents = [];
   let tagData = [];
-  let tag;
   
   listEvents.forEach((e_list) => {
     if(e_list.forEach){
@@ -84,7 +84,7 @@ const EventList = () => {
               <div className='flex-shrink-1 d-flex'>
               {
                 listTags.map(t=>{
-                  tag = undefined;
+                  let tag = undefined;
                   e.tags.every(targetTag=>{
                     console.log(t, targetTag)
                     if(t.id == targetTag){
@@ -94,14 +94,20 @@ const EventList = () => {
                     }
                     return true;
                   })
-                  if(tag)
+                  if(tag){
+                    console.log(brightness(tag.color || '#17385B'))
                     return (
                     <div 
-                      key={'event-' + e.id + '-' + tag.id} 
+                      key={'event-' + e.id + '-' + tag.id}
+                      style={{
+                        backgroundColor: tag.color,
+                        color: brightness(tag.color || '#17385B')>127 ? 'black': 'white',
+                      }}
                       className='border rounded ps-2 pe-2'>
                       {tag.title}
                     </div>
                     )
+                  }
                 })
               }
               </div>
