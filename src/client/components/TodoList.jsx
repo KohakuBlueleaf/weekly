@@ -10,13 +10,13 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 import {endListTodos} from '../store/todo/action'
 import { listTodos } from '../api/todo';
-import getToday from '../utils/index';
+import {getToday} from '../utils/index';
 import {TbMinusVertical} from "react-icons/tb";
 import { modifyTodo as modifyTodoFromApi } from '../api/todo';
 
 import "../style/todoList.css";
 
-async function getTodoList(login, date, completed) {
+async function getTodoList(date,login, completed) {
   return await listTodos(login, date, completed); 
 }
 
@@ -37,12 +37,12 @@ const TodoList = () => {
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=> {
       todoData = await getTodoList(loginStatus);
-      dispatch(endListTodos(todoData));
+      dispatch(endListTodos(todoData, getToday(), true));
       console.log("tododata is", todoData);
     })();
   }, [loginStatus, authStatus]);
 
-
+  
   return (
     <ListGroup vertical="true">
       {listTodos.map(t=>{

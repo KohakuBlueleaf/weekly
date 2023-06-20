@@ -29,7 +29,7 @@ else => show only uncompleted todo
 
 export async function listTodos(date, login, completed = true) {
     if(!login) {
-        return local_listTodos(login, completed);
+        return local_listTodos(date, login, completed);
     }else {
         return await server_listTodos(date, login, completed);
     }
@@ -78,7 +78,7 @@ export async function createTodo(todoData, login) {
 function local_createTodo(todoData) {
     const newTodo = {
         id: uuid(),
-        completed: todoData.completed,     //bool
+        completed: false,     //bool
         title: todoData.title,             //string
         year: todoData.year,               //number
         month: todoData.month,             //number
@@ -94,6 +94,7 @@ function local_createTodo(todoData) {
         newTodo,
         ...old_todos
     ];
+    // console.log('tososss',todos);
 
     localStorage.setItem(todoKey, JSON.stringify(todos));
     return newTodo;
@@ -101,7 +102,7 @@ function local_createTodo(todoData) {
 
 async function server_createTodo(todoData, login) {
     const newTodo = {
-        completed: todoData.completed,     //bool
+        completed: false,     //bool
         title: todoData.title,             //string
         year: todoData.year,               //number
         month: todoData.month,             //number
@@ -138,9 +139,10 @@ function local_modifyTodo(todoData, login) {
 
     let modified = {};
     let noModified = old_todos.filter(e => {
+        console.log(e);
         if(e.id === todoData.id) {
             modified = {
-                completed: todoData.completed,
+                completed: !e.completed,
                 title: e.title,             //string
                 year: e.year,               //number
                 month: e.month,             //number
@@ -152,7 +154,16 @@ function local_modifyTodo(todoData, login) {
         }
         else return true
     })
-    if(!modified) return [...noModified];
-    else return [modified, ...noModified];
+
+    console.log(modified);
+    // console.log(modified);
+    let merge = [];
+    
+    if(noModified) merge = [modified, ...noModified];
+    else merge = [modified]; 
+
+    console.log(merge);
+    localStorage.setItem(todoKey, JSON.stringify(merge));
+    return merge;
     
 }
