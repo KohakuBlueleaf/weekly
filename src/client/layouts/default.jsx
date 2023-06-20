@@ -16,7 +16,7 @@ const DefaultLayout = (props) => {
 
     <Container fluid className='m-0 p-0 h-100 d-flex flex-column flex-row max-h-100'>
       <TitleBar className='flex-shrink-0 w-100'></TitleBar>
-      <div className='flex-shrink-1 overflow-auto my-3 mx-2 h-100'>
+      <div className='flex-shrink-1 overflow-auto my-3 mx-2 h-100 overflow-hidden'>
         <Outlet context={[props.user, props.authStatus]}/>
       </div>
       <div className='flex-shrink-0 w-100 mt-auto'>

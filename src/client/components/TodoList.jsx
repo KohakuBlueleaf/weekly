@@ -19,8 +19,8 @@ import { brightness } from '../utils/index';
 
 import "../style/todoList.css";
 
-async function getTodoList(date,login, completed) {
-  return await listTodos(login, date, completed); 
+async function getTodoList(date, login, completed) {
+  return await listTodos(date, login, completed); 
 }
 async function getTagsList(login) {
   return await listTags(login);
@@ -42,6 +42,8 @@ const TodoList = () => {
   //
   const listTodos = useSelector((state) => state.todo.todo);
   const listTags = useSelector((state) => state.tags.tags);
+  const completedShowFilter = useSelector((state) => state.todo.completedShowFilter);
+
   console.log('init todo is:', listTodos);
 
   let todoData = [];
@@ -53,7 +55,7 @@ const TodoList = () => {
     if(authStatus === 'configuring') return;
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=> {
-      todoData = await getTodoList(loginStatus);
+      todoData = await getTodoList(getToday(), loginStatus, completedShowFilter);
       dispatch(endListTodos(todoData));
       tagData = await getTagsList(loginStatus);
       dispatch(endListTags(tagData));
