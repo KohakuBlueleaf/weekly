@@ -49,7 +49,7 @@ const homePageReducer = (state = initHomePageState, action) => {
         month: action.item.month,
         day: action.item.day,
         week: action.item.week,
-        tag: action.item.tag,
+        tag: action.item.tags,
         timeStart: action.item.timeStart,
         timeEnd: action.item.timeEnd,
         location: action.item.location,

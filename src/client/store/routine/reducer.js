@@ -35,7 +35,7 @@ const routineReducer = (state = initRoutineState, action) => {
         month: action.input.month,
         day: action.input.day,
         week: action.input.week,
-        tag: action.input.tag,
+        tags: action.input.tags,
         timeStart: action.input.timeStart,
         timeEnd: action.input.timeEnd,
         location: action.input.location,

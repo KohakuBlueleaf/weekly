@@ -45,7 +45,7 @@ const TodoAddModal = () => {
     }
     
     const [title, setTitle] = useState("");
-    const [tag, setTag] = useState("");
+    const [tag, setTag] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
     return (
         <Modal
