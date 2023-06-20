@@ -122,3 +122,37 @@ async function server_createTodo(todoData, login) {
     console.log('sent', result);
     return newTodo;
 }
+
+export async function modifyTodo(todoData, login) {
+    if(!login) {
+        return local_modifyTodo(todoData, login);
+    }
+    else {
+        //server
+    }
+}
+
+function local_modifyTodo(todoData, login) {
+    let todoString = localStorage.getItem(todoKey);
+    let old_todos = todoString ? JSON.parse(todoString) : [];
+
+    let modified = {};
+    let noModified = old_todos.filter(e => {
+        if(e.id === todoData.id) {
+            modified = {
+                completed: todoData.completed,
+                title: e.title,             //string
+                year: e.year,               //number
+                month: e.month,             //number
+                day: e.day,                 //number
+                weekday: e.weekday,            //number
+                tags: e.tags,               //array[obj, obj, ...]
+            }
+            return false;
+        }
+        else return true
+    })
+    if(!modified) return [...noModified];
+    else return [modified, ...noModified];
+    
+}
