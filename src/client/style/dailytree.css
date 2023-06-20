@@ -1,19 +1,6 @@
 
 .routine-tree-item{
-  background-color: rgb(133, 95, 68);
-  position: relative;
-  color:white;
-  height: 2rem;
-  width: 100%;
-}
-.routine-tree-item::before {
-  background: #fff7e8 none repeat scroll 0 0;
-  content: "";
-  height: 100px;
-  position: absolute;
-  left: -25px;
-  transform: skew(25deg);
-  width: 50px;
+  height: 3rem;
 }
 
 .event-tree-item{
