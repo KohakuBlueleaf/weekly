@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useOutletContext } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 import {FaEquals} from 'react-icons/fa';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -11,6 +12,8 @@ import {endListTodos} from '../store/todo/action'
 import { listTodos } from '../api/todo';
 import getToday from '../utils/index';
 import {TbMinusVertical} from "react-icons/tb";
+
+import "../style/todoList.css";
 
 async function getTodoList(login, date, completed) {
   return await listTodos(login, date, completed); 
@@ -43,9 +46,17 @@ const TodoList = () => {
     <ListGroup vertical="true">
       {listTodos.map(t=>{
         return(
-          <ListGroup.Item className='d-flex flex-row justify-content-between'>
-          <a><TbMinusVertical color="#BE6464"></TbMinusVertical>{t.title}</a>
-          <FaEquals color="#BE6464"></FaEquals>
+          <ListGroup.Item className='d-flex flex-row'>
+          <TbMinusVertical color="#BE6464" className='todo-color'/>
+          <Form.Check
+              className='lgcheckbox-todo d-flex flex-row'
+              type={'checkbox'}
+              id={`default-checkbox`}
+              defaultChecked={t.completed ? true : false}
+              label={`${t.title}`}
+              onClick={() => {}}
+          />
+          <FaEquals color="#BE6464" className='equal-icon'></FaEquals>
           </ListGroup.Item>
         )
       })}       

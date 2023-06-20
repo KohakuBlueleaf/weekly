@@ -1,0 +1,19 @@
+.lgcheckbox-todo input {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin-right: 0.5rem;
+}
+
+.lgcheckbox-todo label {
+    align-self: center !important;
+}
+
+.equal-icon {
+    align-self: center;
+    margin-left: auto !important;
+}
+
+.todo-color {
+    font-size: 150%;
+    align-self: center;
+}
