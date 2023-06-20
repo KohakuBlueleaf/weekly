@@ -14,7 +14,7 @@ todos = {
     month:              //number
     day:                //number
     weekday:            //number
-    tags:               //array //看情況寫，因為
+    tags:               //array //
 }
 
 date = {
