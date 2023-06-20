@@ -80,26 +80,17 @@ const TimeLine = () => {
   const dispatch = useDispatch();
   
   const listEvents = useSelector((state) => state.addModal.event);
+
+  const {
+    eventFilter,
+    routineFilter,
+  } = useSelector((state) => ({
+      eventFilter: state.homePage.eventFilter,
+      routineFilter: state.homePage.routineFilter,
+  }));
   
   let data = allEmptyData();
-  // for(let j=0; j<7; j++){
-  //   data.push([]);
-  //   for(let i=0; i<48; i++){
-  //     data[j].push({
-  //       id: 'uuid()',
-  //       type: 'empty',               //string
-  //       title: i,             //string
-  //       year: -1,               //number
-  //       month: -1,             //number
-  //       day: -1,            //number
-  //       week: -1,               //number
-  //       timeStart: i,     //number, 0~47, 奇數為半小
-  //       timeEnd: i+1,         //number, 0~47, 奇數為半小
-  //       tags: [],               //array
-  //       location: 'location  '      //string
-  //     })
-  //   }
-  // }
+
   const PageDate = getPageDate();
   let PageData = [];
   
