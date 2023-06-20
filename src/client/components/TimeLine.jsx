@@ -17,7 +17,6 @@ import { endListEvents, setInput } from '../store/posts/action';
 
 async function getPageEvent(PageDate, login, filter) {
   // console.log('getPageEvent', PageDate);
-
   return await listEvents(PageDate, login, filter);
 }
 
@@ -50,22 +49,7 @@ function pushPageData(PageData, data) {
   }
 }
 
-import "../style/TimeLine.css"
-
-const TimeLine = () => {
-  const loginStatus = useSelector((state) => state.user.token);
-  const [user, authStatus] = useOutletContext();
-  const dispatch = useDispatch();
-  
-  const listEvents = useSelector((state) => state.addModal.event);
-  const {
-    eventFilter,
-    routineFilter,
-  } = useSelector((state) => ({
-      eventFilter: state.homePage.eventFilter,
-      routineFilter: state.homePage.routineFilter,
-  }));
-  
+function allEmptyData() {
   let data = [];
   for(let j=0; j<7; j++){
     data.push([]);
@@ -85,6 +69,28 @@ const TimeLine = () => {
       })
     }
   }
+  return data;
+}
+
+import "../style/TimeLine.css"
+
+const TimeLine = () => {
+  const loginStatus = useSelector((state) => state.user.token);
+  const [user, authStatus] = useOutletContext();
+  const dispatch = useDispatch();
+  
+  const listEvents = useSelector((state) => state.addModal.event);
+
+  const {
+    eventFilter,
+    routineFilter,
+  } = useSelector((state) => ({
+      eventFilter: state.homePage.eventFilter,
+      routineFilter: state.homePage.routineFilter,
+  }));
+  
+  let data = allEmptyData();
+
   const PageDate = getPageDate();
   let PageData = [];
   
@@ -101,6 +107,7 @@ const TimeLine = () => {
     if(authStatus === 'configuring') return;
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
+      data = allEmptyData();
       PageData = await getPageEvent(getPageDate(), loginStatus, {
         eventDisplay: eventFilter,
         routineDisplay: routineFilter,

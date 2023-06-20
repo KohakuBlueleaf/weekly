@@ -53,7 +53,7 @@ const EventList = () => {
             <div>
               <div><TbMinusVertical color="#BE6464"></TbMinusVertical>{e.title}</div>
               <div className='d-flex flex-row'>{e.month}/{e.day}&nbsp;{e.timeStart/2}:{e.timeStart%2? `30`:`00`}-{e.timeEnd/2}:{EventList.timeEnd%2?`30`:`00`}
-              {/* {getTagById(e.tags[0], loginStatus).title} */}
+              {/* {getTagById(e.tags, loginStatus).title} */}
               </div>
             </div>
             <FaEquals color="#BE6464"></FaEquals>

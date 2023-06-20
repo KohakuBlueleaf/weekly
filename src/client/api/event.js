@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import moment from 'moment';
 import '@babel/polyfill';
 import { element } from 'prop-types';
+import {getTagById}from '../api/tag'
 
 const eventKey = 'events';
 
@@ -12,7 +13,7 @@ filter = {
     eventDisplay:      //bool
     routineDisplay:    //bool
     completedDisplay   //bool       //for eventList回傳全部事件不排序
-    tags:              //array
+    tags:              //string
 }
 
 date = {
@@ -144,7 +145,7 @@ function local_createEvent(eventData) {
         week: eventData.week,               //number
         timeStart: eventData.timeStart,     //number, 0~47, 奇數為半小
         timeEnd: eventData.timeEnd,         //number, 0~47, 奇數為半小
-        tags: eventData.tags,               //array
+        tags: eventData.tags,               //string
         location: eventData.location        //string
     };
 
@@ -171,7 +172,7 @@ async function server_createEvent(eventData, login) {
         weekday: eventData.week,               //number
         timeStart: eventData.timeStart,     //number, 0~47, 奇數為半小
         timeEnd: eventData.timeEnd,         //number, 0~47, 奇數為半小
-        tags: eventData.tags,               //array
+        tags: eventData.tags,               //string
         location: eventData.location        //string
     };
 
@@ -186,4 +187,28 @@ async function server_createEvent(eventData, login) {
 
     console.log('sent', result);
     return newEvent;
+}
+
+export async function deleteEvent(eventData, login) {
+    if(!login) {
+        console.log("now is deleting", eventData);
+        return local_deleteEvent(eventData, login);
+    }
+    else {
+        //server
+    }
+    
+}
+
+function local_deleteEvent(eventData, login) {
+    let eventString = localStorage.getItem(eventKey);
+    let UnorderEvents = eventString ? JSON.parse(eventString) : [];
+
+    afterDelete = UnorderEvents.filter(e => {
+        if(e.id === eventData.id) return false;
+        else return true;
+    })
+
+    localStorage.setItem(eventKey, JSON.stringify(afterDelete));
+    return afterDelete;
 }
