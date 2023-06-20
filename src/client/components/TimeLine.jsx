@@ -50,15 +50,7 @@ function pushPageData(PageData, data) {
   }
 }
 
-import "../style/TimeLine.css"
-
-const TimeLine = () => {
-  const loginStatus = useSelector((state) => state.user.token);
-  const [user, authStatus] = useOutletContext();
-  const dispatch = useDispatch();
-  
-  const listEvents = useSelector((state) => state.addModal.event);
-  
+function allEmptyData() {
   let data = [];
   for(let j=0; j<7; j++){
     data.push([]);
@@ -78,6 +70,37 @@ const TimeLine = () => {
       })
     }
   }
+  return data;
+}
+
+import "../style/TimeLine.css"
+
+const TimeLine = () => {
+  const loginStatus = useSelector((state) => state.user.token);
+  const [user, authStatus] = useOutletContext();
+  const dispatch = useDispatch();
+  
+  const listEvents = useSelector((state) => state.addModal.event);
+  
+  let data = allEmptyData();
+  // for(let j=0; j<7; j++){
+  //   data.push([]);
+  //   for(let i=0; i<48; i++){
+  //     data[j].push({
+  //       id: 'uuid()',
+  //       type: 'empty',               //string
+  //       title: i,             //string
+  //       year: -1,               //number
+  //       month: -1,             //number
+  //       day: -1,            //number
+  //       week: -1,               //number
+  //       timeStart: i,     //number, 0~47, 奇數為半小
+  //       timeEnd: i+1,         //number, 0~47, 奇數為半小
+  //       tags: [],               //array
+  //       location: 'location  '      //string
+  //     })
+  //   }
+  // }
   const PageDate = getPageDate();
   let PageData = [];
   
@@ -95,6 +118,7 @@ const TimeLine = () => {
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
       PageData = await getPageEvent(getPageDate(), loginStatus);
+      data = allEmptyData();
       dispatch(endListEvents(PageData));
       console.log(data);
     })();

@@ -18,7 +18,7 @@ async function getPageRoutine(PageDate, login) {
     eventDisplay: false,        //bool
     routineDisplay: true,       //bool
     completedDisplay: false,     //bool
-    tags: []                    //array
+    tags: ''                   //
   }
 
   return await listEvents(PageDate, login, filter);
