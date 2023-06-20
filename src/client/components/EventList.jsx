@@ -19,7 +19,7 @@ async function getEventList(PageDate, login) {
     eventDisplay: true,
     routineDisplay: false,
     completedDisplay: true,
-    tags: ''
+    tags: ['']
   }
   return await listEventsFromApi(PageDate, login, filter);
 }
