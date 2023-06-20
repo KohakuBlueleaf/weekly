@@ -10,16 +10,9 @@ import '../style/TimeLine.css'
 import RoutineTimeLineModal from './RoutineTimeLineModal';
 import RoutineTimeLineItem from './RoutineTimeLineItem';
 import { getPageDate } from '../utils';
-import {endListRoutines} from '../store/routine/action';
+import { endListRoutines } from '../store/routine/action';
 
-async function getPageRoutine(PageDate, login) {
-  console.log('getPageRoutine', PageDate);
-  let filter = {
-    eventDisplay: false,        //bool
-    routineDisplay: true,       //bool
-    completedDisplay: false,     //bool
-    tags: []                    //array
-  }
+async function getPageRoutine(PageDate, login, filter) {
 
   return await listEvents(PageDate, login, filter);
 }
@@ -99,7 +92,10 @@ const TimeLineRoutine = () => {
     if(authStatus === 'configuring') return;
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
-      PageData = await getPageRoutine(getPageDate(), loginStatus);
+      PageData = await getPageRoutine(getPageDate(), loginStatus, {
+        eventDisplay: false,
+        routineDisplay: true,
+      });
       dispatch(endListRoutines(PageData));
       console.log(data);
     })();
