@@ -36,7 +36,7 @@ function TitleBar() {
         <Container fluid className='titlebar'>
           <Navbar expand="sm" variant="light" bg="light" className='mr-auto navbar bg-transparent'>
               <Container fluid>
-                  <Navbar.Brand href="http://localhost:9000" className='navbar-brand'>
+                  <Navbar.Brand href="/" className='navbar-brand'>
                     {/daily$/.test(currentLocation.pathname) ? 'Daily' : 'Weekly'}
                   </Navbar.Brand>
                   <div>
