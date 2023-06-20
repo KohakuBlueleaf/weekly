@@ -15,10 +15,10 @@ import { endListEvents, setInput } from '../store/posts/action';
 
 
 
-async function getPageEvent(PageDate, login) {
+async function getPageEvent(PageDate, login, filter) {
   // console.log('getPageEvent', PageDate);
 
-  return await listEvents(PageDate, login);
+  return await listEvents(PageDate, login, filter);
 }
 
 function pushPageData(PageData, data) {
@@ -58,6 +58,13 @@ const TimeLine = () => {
   const dispatch = useDispatch();
   
   const listEvents = useSelector((state) => state.addModal.event);
+  const {
+    eventFilter,
+    routineFilter,
+  } = useSelector((state) => ({
+      eventFilter: state.homePage.eventFilter,
+      routineFilter: state.homePage.routineFilter,
+  }));
   
   let data = [];
   for(let j=0; j<7; j++){
@@ -94,7 +101,10 @@ const TimeLine = () => {
     if(authStatus === 'configuring') return;
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=>{
-      PageData = await getPageEvent(getPageDate(), loginStatus);
+      PageData = await getPageEvent(getPageDate(), loginStatus, {
+        eventDisplay: eventFilter,
+        routineDisplay: routineFilter,
+      });
       dispatch(endListEvents(PageData));
       console.log(data);
     })();
