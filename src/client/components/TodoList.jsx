@@ -13,11 +13,24 @@ import { listTodos } from '../api/todo';
 import {getToday} from '../utils/index';
 import {TbMinusVertical} from "react-icons/tb";
 import { modifyTodo as modifyTodoFromApi } from '../api/todo';
+import {endListTags} from '../store/tags/action';
+import { listTags } from '../api/tag';
 
 import "../style/todoList.css";
 
 async function getTodoList(date,login, completed) {
   return await listTodos(login, date, completed); 
+}
+async function getTagsList(login) {
+  return await listTags(login);
+}
+
+
+function getTagById(tags, id) {
+  tags = [];
+  tags.forEach(element => {
+    if(element.id === id) return element;
+  });
 }
 
 const TodoList = () => {
@@ -27,9 +40,12 @@ const TodoList = () => {
 
   //
   const listTodos = useSelector((state) => state.todo.todo);
+  const listTags = useSelector((state) => state.tags.tags);
   console.log('init todo is:', listTodos);
 
   let todoData = [];
+  let tagData = [];
+  let tag;
 
   useEffect(() => {
     console.log('get todos', listTodos, loginStatus);
@@ -37,7 +53,9 @@ const TodoList = () => {
     if(authStatus === 'authenticated' && !loginStatus) return;
     (async()=> {
       todoData = await getTodoList(loginStatus);
-      dispatch(endListTodos(todoData, getToday(), true));
+      dispatch(endListTodos(todoData));
+      tagData = await getTagsList(loginStatus);
+      dispatch(endListTags(tagData));
       console.log("tododata is", todoData);
     })();
   }, [loginStatus, authStatus]);
@@ -47,17 +65,45 @@ const TodoList = () => {
     <ListGroup vertical="true">
       {listTodos.map(t=>{
         return(
-          <ListGroup.Item className='d-flex flex-row'>
-          <TbMinusVertical color="#BE6464" className='todo-color'/>
-          <Form.Check
-              className='lgcheckbox-todo d-flex flex-row'
-              type={'checkbox'}
-              id={`default-checkbox`}
-              defaultChecked={t.completed ? true : false}
-              label={`${t.title}`}
-              onClick={() => {modifyTodoFromApi(t)}}
-          />
-          <FaEquals color="#BE6464" className='equal-icon'></FaEquals>
+          <ListGroup.Item className='d-flex flex-row justify-content-between' key={'todo-list-'+t.id}>
+          <div className='d-flex flex-column w-100'>
+            <div className='d-flex flex-row' >
+              <TbMinusVertical color="#BE6464" className='todo-color'/>
+              <Form.Check
+                  className='lgcheckbox-todo d-flex flex-row'
+                  type={'checkbox'}
+                  id={`default-checkbox`}
+                  defaultChecked={t.completed ? true : false}
+                  label={`${t.title}`}
+                  onClick={() => {modifyTodoFromApi(t)}}
+              />
+              <FaEquals color="#BE6464" className='equal-icon'></FaEquals>
+            </div>
+            <div className='flex-shrink-1 d-flex'>
+            {
+              listTags.map(tags=>{
+                tag = undefined;
+                t.tags.every(targetTag=>{
+                  console.log(t, targetTag)
+                  if(tags.id == targetTag){
+                    console.log(t, targetTag)
+                    tag = tags;
+                    return false
+                  }
+                  return true;
+                })
+                if(tag)
+                  return (
+                  <div 
+                    key={'event-' + t.id + '-' + tag.id} 
+                    className='border rounded ps-2 pe-2'>
+                    {tag.title}
+                  </div>
+                  )
+              })
+            }
+            </div>
+          </div>
           </ListGroup.Item>
         )
       })}       
