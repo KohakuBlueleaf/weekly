@@ -77,7 +77,7 @@ const TodoList = () => {
                   id={`default-checkbox`}
                   defaultChecked={t.completed ? true : false}
                   label={`${t.title}`}
-                  onClick={() => {modifyTodoFromApi(t)}}
+                  onClick={() => {modifyTodoFromApi(t, loginStatus)}}
               />
               <FaEquals color="#BE6464" className='equal-icon'></FaEquals>
             </div>

@@ -59,4 +59,46 @@ router.post('/', async (req, res) => {
   })
 })
 
+router.put('/', async (req, res) => {
+  let user = req.userData;
+  console.log('PUT', req.body, user);
+  await database.Todo.update({
+    content: req.body.title,
+    completed: req.body.completed,
+    year: req.body.year,
+    month: req.body.month,
+    day: req.body.day,
+    weekday: req.body.weekday,
+  }, {
+    where: {
+      id: req.body.id
+    }
+  })
+  let todoData = await database.Todo.findAll({
+    include: [
+      {
+        model: database.User,
+        as: 'owner',
+        where: {id: user.id}
+      },
+      { model: database.Tag, as: 'tags', through: database.Todo_Tag },
+    ]
+  })
+  let processedData = [];
+  todoData.forEach((e) => {
+    processedData.push({
+      id: e.id,
+      title: e.content,
+      completed: e.completed,
+      year: e.year,
+      month: e.month,
+      day: e.day,
+      weekday: e.weekday,
+      tags: e.tags.map((tag) => tag.id),
+    })
+  })
+  console.log('get', processedData)
+  res.json(processedData);
+})
+
 module.exports = router;
