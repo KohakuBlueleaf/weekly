@@ -12,6 +12,7 @@ import {endListTodos} from '../store/todo/action'
 import { listTodos } from '../api/todo';
 import getToday from '../utils/index';
 import {TbMinusVertical} from "react-icons/tb";
+import { modifyTodo as modifyTodoFromApi } from '../api/todo';
 
 import "../style/todoList.css";
 
@@ -54,7 +55,7 @@ const TodoList = () => {
               id={`default-checkbox`}
               defaultChecked={t.completed ? true : false}
               label={`${t.title}`}
-              onClick={() => {}}
+              onClick={() => {modifyTodoFromApi(t)}}
           />
           <FaEquals color="#BE6464" className='equal-icon'></FaEquals>
           </ListGroup.Item>
