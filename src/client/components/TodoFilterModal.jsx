@@ -52,6 +52,7 @@ const TodoFilterModal = () => {
                       id={`default-checkbox`}
                       checked={completedShowFilter ? true : false}
                       label={`Display checked`}
+                      onChange={() => {}}
                   />
 
                     <Modal.Footer>
