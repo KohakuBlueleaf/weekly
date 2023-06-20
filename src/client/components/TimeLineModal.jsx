@@ -109,12 +109,12 @@ const TimeLineModal = () => {
                     </div>
                 </Form.Group>
 
-                {/* <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
+                <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-3 align-self-center m-0'>Tags:</Form.Label>
                     <div className='col'>
-                      {tags[0].title}
+                      {tags[0]}
                     </div>
-                </Form.Group> */}
+                </Form.Group>
 
                 <Form.Group className="d-flex flex-row row mb-3" controlId="eventTitle">
                   <Form.Label className='col-3 align-self-center m-0'>Location:</Form.Label>
