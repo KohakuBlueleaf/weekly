@@ -13,6 +13,9 @@
   background-color: #FFF8F0;
   border-radius: 0.5rem;
 }
+.write-down-sth-wrapper>div>span{
+  text-align: center;
+}
 .write-down-sth-wrapper>textarea{
   height: 100% !important;
   background-color: #FFF8F0;

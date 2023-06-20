@@ -15,7 +15,6 @@ const TimeLineItem = (props) => {
     <div className='d-flex flex-column TimeLineItem-col p-0'>
       <div className='d-flex flex-column TimeLine'>        
         {props.data.map((item, index) => {
-        console.log(item.id, item.title)
           let tag;
           props.tags.map(t=>{
             item.tags.every(targetTag=>{

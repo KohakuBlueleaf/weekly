@@ -31,7 +31,12 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { MdAddCircleOutline, MdAddCircle } from "react-icons/md";
 import { ImNewspaper } from "react-icons/im";
 
+import { setMemo } from '../store/users/actions';
+import { getMemo, writeMemo } from '../api/memo';
+
+
 const OffcanvasExample = (props) => {
+  const loginStatus = useSelector((state) => state.user.token);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentLocation = useLocation();
@@ -41,11 +46,21 @@ const OffcanvasExample = (props) => {
   } = useSelector((state) => ({
     navshow: state.navbar.navshow,
   }));
+  const Memo = useSelector((state) => state.user.memo);
+  
 
   // useEffect(()=>{
   //   console.log('URL: ', document.URL);
   //   console.log('regular exp: ', /settings$/.test(document.URL));
   // })
+  useEffect(() => {
+    if(props.authStatus === 'configuring') return;
+    if(props.authStatus === 'authenticated' && !loginStatus) return;
+    (async()=> {
+      let memo = await getMemo(loginStatus);
+      dispatch(setMemo(memo));
+    })();
+  },[loginStatus, props.authStatus]);
 
   let handleAddClick = () => {
     if (/management$/.test(currentLocation.pathname)) {
@@ -104,9 +119,14 @@ const OffcanvasExample = (props) => {
             <div className='write-down-sth-wrapper'>
               <EditTextarea
                 className='write-down-sth'
-                placeholder='write down something!'
+                placeholder={Memo ? Memo : 'Write down something...'}
                 onChange={(content)=>{console.log('edit', content)}}
-                onSave={(content)=>{console.log('save', content)}}
+                onSave={(content)=>{
+                  (async () => {
+                    let memo = await writeMemo(content, loginStatus);
+                    dispatch(setMemo(memo));
+                  })()
+                }}
                 onClick={()=>{console.log('click')}}
               />
             </div>
