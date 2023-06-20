@@ -41,13 +41,34 @@ const DailyTree = () => {
     
     console.log(data[getToday().week])
     return (
-        <div className='d-flex flex-column h-100 w-100 align-items-center'>
-            <div className='d-flex flex-row row w-100'>
-                <div className='col-6 text-center'>
-                    Routine
+        <div className='d-flex flex-column h-100 w-100 align-items-center'
+            style={{
+                backgroundImage: 'url("/img/daily.png")',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'contain'
+            }}
+        >
+            <div className='d-flex flex-row row w-100 align-items-center justify-content-center'>
+                <div className='col-6 text-center'
+                style={{
+                    backgroundImage: 'url("/img/routine_title.png")',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'contain',
+                    height: '5rem',
+                    width: '10rem'
+                }}>
                 </div>
-                <div className='col-6 text-center'>
-                    Event
+                <div className='col-6 text-center'
+                style={{
+                    backgroundImage: 'url("/img/event_title.png")',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'contain',
+                    height: '5rem',
+                    width: '10rem'
+                }}>
                 </div>
             </div>
             {
@@ -55,11 +76,41 @@ const DailyTree = () => {
                     console.log(e, index)
                     return (
                         <div key={e.id} className='d-flex flex-row row w-100'>
-                            <div className={'col-6 text-center ' + (e.type==='routine' ? 'routine-tree-item' : '')}>
-                                <span>{e.type === 'routine' ? (e.title?e.title:'routine') : ''}</span>
+                            <div 
+                                className={'col-6 text-center d-flex flex-column align-items-end'}
+                                style={{padding: '0'}}
+                            >
+                                <div
+                                className={'d-flex text-center align-items-center justify-content-center'}
+                                style={e.type==='routine' ?{
+                                    backgroundImage: 'url("/img/left.png")',
+                                    backgroundPosition: 'right',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundSize: 'cover',
+                                    height: '2.5rem',
+                                    width: 'calc(100% - 5rem)',
+                                    fontSize: '1.2rem'
+                                }:{}}>
+                                    <span>{e.type === 'routine' ? (e.title?e.title:'routine') : ''}</span>
+                                </div>
                             </div>
-                            <div className={'col-6 text-center ' + (e.type==='event' ? 'event-tree-item' : '')}>
-                                <span>{e.type === 'event' ? (e.title?e.title:'event') : ''}</span>
+                            <div 
+                                className={'col-6 text-center d-flex flex-column align-items-start'}
+                                style={{padding: '0'}}
+                            >
+                                <div
+                                className={'d-flex text-center align-items-center justify-content-center'}
+                                style={e.type==='event' ?{
+                                    backgroundImage: 'url("/img/right.png")',
+                                    backgroundPosition: 'left',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundSize: 'cover',
+                                    height: '2.5rem',
+                                    width: 'calc(100% - 5rem)',
+                                    fontSize: '1.2rem'
+                                }:{}}>
+                                    <span>{e.type === 'event' ? (e.title?e.title:'event') : ''}</span>
+                                </div>
                             </div>
                         </div>
                     )

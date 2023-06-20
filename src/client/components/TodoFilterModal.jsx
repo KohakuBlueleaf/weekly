@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { endListTodos, filterClose } from "../store/todo/action";
 import { listTodos as listTodosFromApi } from '../api/todo';
 import { getPageDate } from '../utils';
+import { todoFilterCompletedToggle } from '../store/todo/action';
 
 const TodoFilterModal = () => {
     const [user, authStatus] = useOutletContext();
@@ -39,7 +40,7 @@ const TodoFilterModal = () => {
           </Modal.Header>
           <Modal.Body>
               <Form className=''
-              onSubmit={async (e) => {
+                onSubmit={async (e) => {
                 e.preventDefault();
                 dispatch(endListTodos(await listTodosFromApi(getPageDate(), loginStatus, completedShowFilter)))
                 dispatch(filterClose());
@@ -50,15 +51,16 @@ const TodoFilterModal = () => {
                       className='lgcheckbox d-flex flex-row mb-3'
                       type={'checkbox'}
                       id={`default-checkbox`}
-                      checked={completedShowFilter ? true : false}
+                      defaultChecked={completedShowFilter ? true : false}
                       label={`Display checked`}
-                      onChange={() => {}}
+                      onChange={() => {dispatch(todoFilterCompletedToggle())}
+                      }
                   />
 
                     <Modal.Footer>
-                            <Button variant="primary" type="submit">
-                                Ok
-                            </Button>
+                        <Button variant="primary" type="submit">
+                            Ok
+                        </Button>
                     </Modal.Footer>
               </Form>
           

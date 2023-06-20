@@ -8,8 +8,8 @@ import "../style/daily.css";
 const DailyTodo= () => {
     
     return (
-        <Form className='container h-33 todo-card-wrapper d-flex flex-column'>
-            <Card className='todo-card'>
+        <Form className='container h-100 todo-card-wrapper d-flex flex-column'>
+            <Card className='todo-card h-100'>
                 <Card.Body className='d-flex flex-column p-0 h-100'>
 
                     <div className='todo-title'>Todo</div>
