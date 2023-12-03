@@ -1,4 +1,5 @@
 #amplify-do-not-edit-begin
+aws-*.js
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/logs
